@@ -1,3 +1,9 @@
+<script lang="ts">
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+  </script>
+
 <div class="top-left-container-1">
 	<div class="box">
 		<i class="fa-solid fa-user-lock" />

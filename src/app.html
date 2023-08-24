@@ -3,8 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>The Greenhouse</title>
-	<meta name="description" content="" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
 	<script src="https://kit.fontawesome.com/c75c45309f.js" crossorigin="anonymous"></script>
@@ -20,12 +19,15 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 	<meta name="theme-color" content="#ffffff">
-	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- <link rel="canonical" href="https://admin.cyaneus.org/" /> -->
+	<title>The Greenhouse</title>
+	<meta name="description" content="" />
 	%sveltekit.head%
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
+	<div id="svelte" style="display: contents">%sveltekit.body%</div>
 </body>
 
 </html>

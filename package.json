@@ -1,7 +1,11 @@
 {
 	"name": "project-greenhouse",
 	"version": "0.0.1",
-	"private": true,
+	"author": "Jasper Mayone <jasper.mayone@singlefeather.com> (https://jaspermayone.com)",
+	"license": "Single Feather LLC Internal Use Proprietary License v1.0 (SEE LICENSE IN LICENSE.md)",
+	"homepage": "",
+	"contributors": [],
+	"keywords": [],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -10,6 +14,13 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"dependencies": {
+		"@auth/sveltekit": "^0.3.6",
+		"@fontsource/aleo": "^5.0.10",
+		"@types/pg": "^8.10.2",
+		"pg": "^8.11.3",
+		"vite-imagetools": "^5.0.8"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
@@ -27,9 +38,20 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"
 	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/aleo": "^5.0.10",
-		"vite-imagetools": "^5.0.8"
-	}
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/j-dogcoder/project-greenhouse.git"
+	},
+	"bugs": {
+		"url": "https://github.com/j-dogcoder/project-greenhouse/issues/new",
+		"email": "jasper.mayone@singlefeather.com"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --color --ignore-unknown"
+	},
+	"engines": {
+		"node": ">=16.0.0"
+	},
+	"private": true,
+	"type": "module"
 }
