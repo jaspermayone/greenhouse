@@ -17,29 +17,29 @@
 	},
 	"dependencies": {
 		"@auth/core": "^0.12.0",
-		"@auth/sveltekit": "^0.3.6",
-		"@fontsource/aleo": "^5.0.10",
-		"@types/pg": "^8.10.2",
-		"luxon": "^3.4.1",
+		"@auth/sveltekit": "^0.3.16",
+		"@fontsource/aleo": "^5.0.19",
+		"@types/pg": "^8.10.9",
+		"luxon": "^3.4.4",
 		"pg": "^8.11.3",
-		"uuid": "^9.0.0",
-		"vite-imagetools": "^5.0.8"
+		"uuid": "^9.0.1",
+		"vite-imagetools": "^5.1.2"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.23.0",
+		"@sveltejs/adapter-auto": "^2.1.1",
+		"@sveltejs/kit": "^1.30.3",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
-		"eslint": "^8.47.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.33.0",
-		"prettier": "^3.0.2",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.35.1",
+		"prettier": "^3.2.4",
 		"prettier-plugin-svelte": "^2.10.1",
-		"svelte": "^4.2.0",
-		"svelte-check": "^3.5.0",
+		"svelte": "^4.2.9",
+		"svelte-check": "^3.6.3",
 		"tslib": "^2.6.2",
-		"typescript": "^5.1.6",
-		"vite": "^4.4.12"
+		"typescript": "^5.3.3",
+		"vite": "^4.5.2"
 	},
 	"repository": {
 		"type": "git",
@@ -53,7 +53,7 @@
 		"**/*": "prettier --write --color --ignore-unknown"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=20.0.0"
 	},
 	"private": true,
 	"type": "module"

@@ -65,7 +65,7 @@
 
 	.top-center {
 		position: fixed;
-		top: -43.5%;
+		top: -42.5%;
 		left: 0%;
 		transform: translate(0, 0);
 		display: flex;
@@ -76,7 +76,7 @@
 	}
 
 	.search-container {
-		max-width: 250vh;
+		width: 150vh;
 		margin: 0 auto;
 		padding: 10px;
 	}

@@ -1,21 +1,31 @@
-<script>
-	import '@fontsource/aleo';
-</script>
-
 <div class="container">
+	<div class="bg">
+		<img src="backround.svg" alt="">
+	  </div>
 	<slot />
 </div>
 
 <style>
-	:global(body) {
-		font-family: 'Aleo', serif;
-		background-image: url('./backround.svg');
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		justify-content: center;
-		width: 100%;
-		height: 120vh;
-	}
+    :global(body) {
+        font-family: 'Shantell Sans', sans-serif;
+        font-size: 16px;
+    }
+
+	.bg {
+  		position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+.bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
 </style>
