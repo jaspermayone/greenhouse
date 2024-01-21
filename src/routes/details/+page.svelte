@@ -1,7 +1,4 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
-	export let data: PageData;
   </script>
 
 <div class="top-left-container-1">
@@ -41,6 +38,8 @@
 				<figure class="image is-128x128">
 					<img src="https://bulma.io/images/placeholders/128x128.png" alt="placeholder" />
 				</figure>
+
+				<i class="fa-solid fa-folder-plus"></i>
 			</div>
 			<div class="media-content">
 				<div class="content">
@@ -81,6 +80,12 @@
 </div>
 
 <style>
+
+:global(body) {
+        font-family: 'Aeri', sans-serif;
+        font-size: 16px;
+    }
+
 	.center-container {
 		position: fixed;
 		top: 55%;
@@ -118,7 +123,7 @@
 	.top-right-container {
 		position: fixed;
 		top: -44%;
-		left: 41.5%;
+		left: 35.5%;
 		transform: translate(0, 0);
 		display: flex;
 		justify-content: center;
@@ -140,7 +145,7 @@
 	}
 
 	.search-container {
-		max-width: 250vh;
+		width: 50vh;
 		margin: 0 auto;
 	}
 </style>
