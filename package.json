@@ -52,6 +52,9 @@
 	"lint-staged": {
 		"**/*": "prettier --write --color --ignore-unknown"
 	},
+	"engines": {
+		"node": ">=20.0.0"
+	},
 	"private": true,
 	"type": "module"
 }
