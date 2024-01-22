@@ -2,8 +2,6 @@ import type { PageServerLoad } from "./$types";
 
 export const load = (async ({ locals }) => {
   try {
-    const conn = locals.dbconn;
-
     return {
         // session: await locals.getSession(),
         // user: await locals.getUser(),
