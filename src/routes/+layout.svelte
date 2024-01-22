@@ -1,7 +1,7 @@
 <div class="container">
-	<!-- <div class="bg"> -->
-		<!-- <img src="backround.svg" alt=""> -->
-	  <!-- </div> -->
+	<div class="bg">
+<img src="backround.svg" alt="">
+	 </div>
 	<slot />
 </div>
 
