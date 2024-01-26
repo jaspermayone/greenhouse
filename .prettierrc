@@ -2,13 +2,5 @@
   "endOfLine": "lf",
   "trailingComma": "none",
   "plugins": ["prettier-plugin-svelte"],
-  "pluginSearchDirs": ["."],
-  "overrides": [
-    {
-      "files": "*.svelte",
-      "options": {
-        "parser": "svelte"
-      }
-    }
-  ]
+  "pluginSearchDirs": ["."]
 }

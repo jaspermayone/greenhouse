@@ -1,6 +1,6 @@
 <script>
-	import Password from '$lib/components/Password.svelte';
-	var sh = 0;
+  import Password from "$lib/components/Password.svelte";
+  var sh = 0;
 </script>
 
 <!-- <div class="bg">
@@ -8,13 +8,13 @@
   </div> -->
 
 {#if sh === 1}
-	<p>Logged In</p>
+  <p>Logged In</p>
 {:else}
-	<Password />
+  <Password />
 {/if}
 
 <style>
-/* .bg {
+  /* .bg {
   position: fixed;
   top: -50%;
   left: -50%;
@@ -31,5 +31,4 @@
   min-width: 50%;
   min-height: 50%;
 } */
-
 </style>

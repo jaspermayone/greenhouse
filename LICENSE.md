@@ -3,6 +3,7 @@
 **Grant of License:** Single Feather LLC (the "Licensor") grants a non-exclusive, non-transferable, revocable license to Single Feather LLC (the "Licensee") to use the software code, including any associated documentation and materials (the "Code"), solely for internal use within Single Feather LLC and in accordance with the terms and conditions of this license.
 
 **Restrictions:**
+
 - Licensee may not distribute, sublicense, sell, lease, rent, or otherwise make the Code available to any third party.
 - Licensee may not modify, reverse engineer, decompile, or disassemble the Code, except to the extent that such activities are expressly permitted by applicable law.
 - Licensee may not remove or alter any proprietary notices or labels on the Code.
