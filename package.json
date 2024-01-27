@@ -1,8 +1,9 @@
 {
-	"name": "project-greenhouse",
+	"name": "greenhouse",
 	"version": "0.0.1",
 	"author": "Jasper Mayone <jasper.mayone@singlefeather.com> (https://jaspermayone.com)",
 	"license": "Single Feather LLC Internal Use Proprietary License v1.0 (SEE LICENSE IN LICENSE.md)",
+	"private": true,
 	"homepage": "",
 	"contributors": [],
 	"keywords": [],
@@ -12,45 +13,35 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . --write . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@sveltejs/adapter-auto": "^3.1.1",
-		"@sveltejs/kit": "^2.4.1",
-		"@sveltejs/vite-plugin-svelte": "^3.0.1",
-		"luxon": "^3.4.4",
 		"uuid": "^9.0.1",
-		"vite-imagetools": "^5.1.2"
+		"vite-imagetools": "^6.2.9"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-vercel": "^5.1.0",
-		"@typescript-eslint/eslint-plugin": "^5.62.0",
-		"@typescript-eslint/parser": "^5.62.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/eslint": "8.56.0",
+		"@types/node": "^20.11.7",
+		"@types/uuid": "^9.0.8",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"bulma": "^0.9.4",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
-		"prettier": "^2.8.8",
-		"prettier-plugin-svelte": "^2.10.1",
-		"svelte": "^4.2.9",
-		"svelte-check": "^3.6.3",
-		"tslib": "^2.6.2",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.12"
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"sass": "^1.69.5",
+		"svelte": "^4.2.7",
+		"svelte-check": "^3.6.0",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/j-dogcoder/project-greenhouse.git"
-	},
-	"bugs": {
-		"url": "https://github.com/j-dogcoder/project-greenhouse/issues/new",
-		"email": "jasper.mayone@singlefeather.com"
-	},
-	"lint-staged": {
-		"**/*": "prettier --write --color --ignore-unknown"
-	},
-	"engines": {
-		"node": ">=20.0.0"
-	},
-	"private": true,
 	"type": "module"
 }

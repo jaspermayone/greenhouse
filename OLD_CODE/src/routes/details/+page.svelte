@@ -1,13 +1,13 @@
 <script lang="ts">
 </script>
 
-<div class="top-left-container-1">
+<div class="top-left-container">
   <div class="box">
     <i class="fa-solid fa-user-lock" />
   </div>
 </div>
 
-<div class="top-left-container-2">
+<div class="top-left-container">
   <div class="box">
     <i class="fa-solid fa-box-archive" />
   </div>
@@ -99,70 +99,45 @@
 
 <style>
   :global(body) {
-    font-family: "Aeri", sans-serif;
+    font-family: "Arial", sans-serif;
     font-size: 16px;
   }
 
-  .resourceActions {
-    margin-top: 1vh;
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .top-left-container,
+  .top-right-container,
+  .top-center {
+    position: fixed;
+    transform: translate(-50%, -50%);
+  }
+
+  .top-left-container {
+    top: 10%;
+    left: 10%;
+  }
+
+  .top-right-container {
+    top: 10%;
+    right: 10%;
+  }
+
+  .top-center {
+    top: 10%;
+    left: 50%;
   }
 
   .center-container {
     position: fixed;
-    top: 55%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .top-left-container-1 {
-    position: fixed;
-    top: -45%;
-    left: -47.5%;
-    transform: translate(0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .top-left-container-2 {
-    position: fixed;
-    top: -45%;
-    left: -43.5%;
-    transform: translate(0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .top-right-container {
-    position: fixed;
-    top: -44%;
-    left: 35.5%;
-    transform: translate(0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .top-center {
-    position: fixed;
-    top: -43.5%;
-    left: 0%;
-    transform: translate(0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
   }
 
   .search-container {
