@@ -1,47 +1,10 @@
 {
-	"name": "greenhouse",
-	"version": "0.0.1",
-	"author": "Jasper Mayone <jasper.mayone@singlefeather.com> (https://jaspermayone.com)",
-	"license": "Single Feather LLC Internal Use Proprietary License v1.0 (SEE LICENSE IN LICENSE.md)",
-	"private": true,
-	"homepage": "",
-	"contributors": [],
-	"keywords": [],
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
-	},
-	"dependencies": {
-		"uuid": "^9.0.1",
-		"vite-imagetools": "^6.2.9"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/adapter-vercel": "^5.1.0",
-		"@sveltejs/kit": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"@types/eslint": "8.56.0",
-		"@types/node": "^20.11.7",
-		"@types/uuid": "^9.0.8",
-		"@typescript-eslint/eslint-plugin": "^6.0.0",
-		"@typescript-eslint/parser": "^6.0.0",
-		"bulma": "^0.9.4",
-		"eslint": "^8.56.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.35.1",
-		"prettier": "^3.1.1",
-		"prettier-plugin-svelte": "^3.1.2",
-		"sass": "^1.69.5",
-		"svelte": "^4.2.7",
-		"svelte-check": "^3.6.0",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"vite": "^5.0.3"
-	},
-	"type": "module"
+  "name": "app",
+  "dependencies": {
+    "bulma": "^0.9.4",
+    "sass": "^1.71.0"
+  },
+  "scripts": {
+    "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
 }

@@ -1,0 +1,13 @@
+body {
+  background-image: url("background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigation {
+  color: #ffffff;
+}
+
+.main-content {
+  color: #000000;
+}
