@@ -176,6 +176,8 @@ GEM
     minitest (5.22.2)
     msgpack (1.7.2)
     mutex_m (0.2.0)
+    name_of_person (1.1.3)
+      activesupport (>= 5.2.0)
     net-imap (0.4.10)
       date
       net-protocol
@@ -363,6 +365,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  name_of_person
   propshaft
   puma (>= 5.0)
   rails (~> 7.1.3)
