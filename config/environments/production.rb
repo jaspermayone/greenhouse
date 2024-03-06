@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
+  config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
@@ -70,6 +70,27 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+
+
+  config.action_mailer.delivery_method = :smtp
+
+  # FIXME: Change this to actuall domaim
+host = 'example.com' #replace with your own url
+config.action_mailer.default_url_options = { host: host }
+
+# FIXME: PROD CREDS PLZ
+
+# SMTP settings for gmail
+config.action_mailer.smtp_settings = {
+:address              => "smtp.gmail.com",
+:port                 => 587,
+:user_name            => "<gmail_username>",
+:password             => "<gmail_password>",
+:authentication       => "plain",
+:enable_starttls_auto => true
+}
+
+
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

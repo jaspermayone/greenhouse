@@ -1,21 +1,44 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    # resources :users, :cases, :entries, :pages
-    resources :users
-
-    root to: "users#index"
-  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", :as => :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-  #
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  resources :search
-  resources :details
-  resources :auth
+  namespace :admin do
+    # resources :users, :cases, :entries, :pages
+    resources :users
+
+    # root to: "users#index"
+  end
+
+  # Defines the root path route ("/")
+  root "static_pages#home"
+
+  resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
+  resources :passwords, only: [:create, :edit, :new, :update], param: :password_reset_token
+
+  # resources :search
+  # resources :details
+
+  get 'static_pages/home'
+
+  post "sign_up", to: "users#create"
+  get "sign_up", to: "users#new"
+  put "account", to: "users#update"
+  get "account", to: "users#edit"
+  delete "account", to: "users#destroy"
+
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+  get "login", to: "sessions#new"
+
+  resources :active_sessions, only: [:destroy] do
+    collection do
+      delete "destroy_all"
+    end
+  end
+
 end

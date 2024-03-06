@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  # Temp till actuall domain is found
+  default from: "noreply@greenhouse.io"
   layout "mailer"
 end
