@@ -9,12 +9,13 @@ class UserDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    active_sessions: Field::HasMany,
+    confirmed_at: Field::DateTime,
     email: Field::String,
-    fname: Field::String,
-    lname: Field::String,
-    password: Field::Password,
+    password_digest: Field::String,
+    unconfirmed_email: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -24,18 +25,20 @@ class UserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
+    active_sessions
+    confirmed_at
     email
-    fname
-    lname
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
+    active_sessions
+    confirmed_at
     email
-    fname
-    lname
+    password_digest
+    unconfirmed_email
     created_at
     updated_at
   ].freeze
@@ -44,10 +47,11 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    active_sessions
+    confirmed_at
     email
-    fname
-    lname
-    password
+    password_digest
+    unconfirmed_email
   ].freeze
 
   # COLLECTION_FILTERS

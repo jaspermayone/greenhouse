@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_103634) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_17_071657) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -19,17 +19,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_103634) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
-  end
-
-  create_table "active_sessions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "user_agent"
-    t.string "ip_address"
-    t.string "remember_token", null: false
-    t.index ["remember_token"], name: "index_active_sessions_on_remember_token", unique: true
-    t.index ["user_id"], name: "index_active_sessions_on_user_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -60,6 +49,32 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_103634) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "cases", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cases_on_user_id"
+  end
+
+  create_table "cases_entries", id: false, force: :cascade do |t|
+    t.integer "case_id"
+    t.integer "entry_id"
+    t.index ["case_id"], name: "index_cases_entries_on_case_id"
+    t.index ["entry_id"], name: "index_cases_entries_on_entry_id"
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id", null: false
+    t.string "entryable_type"
+    t.integer "entryable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,15 +82,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_103634) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin"
+    t.boolean "super_admin"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "confirmed_at"
-    t.string "password_digest", null: false
-    t.string "unconfirmed_email"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
   end
 
-  add_foreign_key "active_sessions", "users", on_delete: :cascade
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cases", "users"
+  add_foreign_key "entries", "users"
 end
