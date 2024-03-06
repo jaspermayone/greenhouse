@@ -79,3 +79,5 @@ gem "font-awesome-sass", "~> 6.5.1"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "name_of_person"
+gem "console1984"
+gem "audits1984"
