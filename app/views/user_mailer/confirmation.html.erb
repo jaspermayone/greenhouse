@@ -1,3 +1,53 @@
-<h1>Confirmation Instructions</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      /*   background-image: url('http://localhost:3000/assets/background.svg');  FIXME: Make this work somehow */
+       background-color: #c6d58a;
+        background-size: cover;
+        background-position: center;
+        height: 100vh; /* Ensures the background covers the entire viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-<%= link_to "Click here to confirm your email.", edit_confirmation_url(@confirmation_token) %>
+      .container {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.8); /* Add transparency to the background color */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Greenhouse Confirmation Instructions</h1>
+      <%= link_to "Click here to confirm your email.", edit_confirmation_url(@confirmation_token) %>
+    </div>
+  </body>
+</html>

@@ -3,13 +3,14 @@ class User < ApplicationRecord
   PASSWORD_RESET_TOKEN_EXPIRATION = 5.minutes
   # FIXME: Change this to actuall domaim
   MAILER_FROM_EMAIL = "no-reply@example.com"
+  MAILER_FROM_NAME = "Example Company Notifications"
 
   has_secure_password
   has_person_name
   has_many :active_sessions, dependent: :destroy
   attr_accessor :current_password
 
-  encrypts :email, :password_digest, :unconfirmed_email, deterministic: true
+  # encrypts :email, :password_digest, :unconfirmed_email, deterministic: true
 
   before_save :downcase_email
   before_save :downcase_unconfirmed_email

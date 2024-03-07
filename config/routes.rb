@@ -10,21 +10,20 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # resources :users, :cases, :entries, :pages
-    resources :users
+    resources :users, only: [:index, :show]
+    resources :active_sessions, only: [:index, :destroy]
 
-    # root to: "users#index"
+    root to: "users#index"
   end
 
   # Defines the root path route ("/")
-  root "static_pages#home"
+  root "search#index"
 
   resources :confirmations, only: [:create, :edit, :new], param: :confirmation_token
   resources :passwords, only: [:create, :edit, :new, :update], param: :password_reset_token
 
-  # resources :search
-  # resources :details
-
-  get 'static_pages/home'
+  resources :search
+  resources :details
 
   post "sign_up", to: "users#create"
   get "sign_up", to: "users#new"
@@ -41,5 +40,7 @@ Rails.application.routes.draw do
       delete "destroy_all"
     end
   end
+
+  resources :auth
 
 end
