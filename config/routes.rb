@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :admin do
-    # resources :users, :cases, :entries, :pages
     resources :users, only: [:index, :show]
     resources :active_sessions, only: [:index, :destroy]
 
