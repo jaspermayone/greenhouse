@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  CONFIRMATION_TOKEN_EXPIRATION = 10.minutes
-  PASSWORD_RESET_TOKEN_EXPIRATION = 10.minutes
+  CONFIRMATION_TOKEN_EXPIRATION = 5.minutes
+  PASSWORD_RESET_TOKEN_EXPIRATION = 5.minutes
   # FIXME: Change this to actuall domaim
   MAILER_FROM_EMAIL = "no-reply@example.com"
 
