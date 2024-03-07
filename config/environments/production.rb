@@ -47,7 +47,7 @@ Rails.application.configure do
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new($stdout)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+    .tap { |logger| logger.formatter = ::Logger::Formatter.new }
     .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Prepend all log lines with the following tags.
@@ -71,26 +71,23 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-
   config.action_mailer.delivery_method = :smtp
 
   # FIXME: Change this to actuall domaim
-host = 'example.com' #replace with your own url
-config.action_mailer.default_url_options = { host: host }
+  host = "example.com" # replace with your own url
+  config.action_mailer.default_url_options = {host: host}
 
-# FIXME: PROD CREDS PLZ
+  # FIXME: PROD CREDS PLZ
 
-# SMTP settings for gmail
-config.action_mailer.smtp_settings = {
-:address              => "smtp.gmail.com",
-:port                 => 587,
-:user_name            => "<gmail_username>",
-:password             => "<gmail_password>",
-:authentication       => "plain",
-:enable_starttls_auto => true
-}
-
-
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    user_name: "<gmail_username>",
+    password: "<gmail_password>",
+    authentication: "plain",
+    enable_starttls_auto: true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

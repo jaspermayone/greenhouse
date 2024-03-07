@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :redirect_if_authenticated, only: [:create, :new]
   before_action :authenticate_user!, only: [:edit, :destroy, :update]
 
-
   def create
     @user = User.new(create_user_params)
     if @user.save
@@ -48,7 +47,6 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
 
   private
 

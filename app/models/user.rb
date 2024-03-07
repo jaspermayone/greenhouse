@@ -34,11 +34,7 @@ class User < ApplicationRecord
   end
 
   def confirmable_email
-    if unconfirmed_email.present?
-      unconfirmed_email
-    else
-      email
-    end
+    unconfirmed_email.presence || email
   end
 
   def generate_confirmation_token

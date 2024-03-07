@@ -17,7 +17,7 @@ class UserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     admin: Field::Boolean,
-    super_admin: Field::Boolean,
+    super_admin: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -59,13 +59,10 @@ class UserDashboard < Administrate::BaseDashboard
     :password_digest
   ]
   FORM_ATTRIBUTES_EDIT = [
-  :email,
-  :admin,
-  :super_admin
+    :email,
+    :admin,
+    :super_admin
   ]
-
-
-
 
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search
@@ -79,8 +76,8 @@ class UserDashboard < Administrate::BaseDashboard
   #   }.freeze
   #
   COLLECTION_FILTERS = {
-  inactive: ->(resources) { resources.where("login_at < ?", 1.week.ago) }
-}.freeze
+    inactive: ->(resources) { resources.where("login_at < ?", 1.week.ago) }
+  }.freeze
 
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.

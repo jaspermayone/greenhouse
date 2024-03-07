@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def find_current_auditor
     if !current_user.super_admin
-     current_user
-   end
+      current_user
+    end
   end
 end
