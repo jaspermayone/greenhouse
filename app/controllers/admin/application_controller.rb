@@ -11,9 +11,9 @@ module Admin
     before_action :authenticate_admin
 
     def authenticate_admin
-      if !current_user.super_admin
-        redirect_to root_path, alert: "You are not authorized to access this page."
-      end
+      return if current_user.super_admin
+
+      redirect_to root_path, alert: 'You are not authorized to access this page.'
     end
 
     # Override this value to specify the number of elements to display at a time

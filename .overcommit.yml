@@ -1,0 +1,13 @@
+gemfile: Gemfile
+
+PreCommit:
+  # TODO: Re-enable RuboCop once we have a chance to fix all the warnings
+  # RuboCop:
+  #   enabled: true
+  #   on_warn: fail
+
+  Fasterer:
+    enabled: true
+
+  BundleAudit:
+    enabled: true

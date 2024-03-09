@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class UserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -54,14 +54,14 @@ class UserDashboard < Administrate::BaseDashboard
   #   email
   # ].freeze
 
-  FORM_ATTRIBUTES_NEW = [
-    :email,
-    :password_digest
+  FORM_ATTRIBUTES_NEW = %i[
+    email
+    password_digest
   ]
-  FORM_ATTRIBUTES_EDIT = [
-    :email,
-    :admin,
-    :super_admin
+  FORM_ATTRIBUTES_EDIT = %i[
+    email
+    admin
+    super_admin
   ]
 
   # COLLECTION_FILTERS
@@ -76,7 +76,7 @@ class UserDashboard < Administrate::BaseDashboard
   #   }.freeze
   #
   COLLECTION_FILTERS = {
-    inactive: ->(resources) { resources.where("login_at < ?", 1.week.ago) }
+    inactive: ->(resources) { resources.where('login_at < ?', 1.week.ago) }
   }.freeze
 
   # Overwrite this method to customize how users are displayed

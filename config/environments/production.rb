@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -47,8 +47,8 @@ Rails.application.configure do
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new($stdout)
-    .tap { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+                                       .tap { |logger| logger.formatter = ::Logger::Formatter.new }
+                                       .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -56,7 +56,7 @@ Rails.application.configure do
   # "info" includes generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
   # want to log everything, set the level to "debug".
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -74,18 +74,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # FIXME: Change this to actuall domaim
-  host = "example.com" # replace with your own url
-  config.action_mailer.default_url_options = {host: host}
+  host = 'example.com' # replace with your own url
+  config.action_mailer.default_url_options = { host: host }
 
   # FIXME: PROD CREDS PLZ
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: 'smtp.gmail.com',
     port: 587,
-    user_name: "<gmail_username>",
-    password: "<gmail_password>",
-    authentication: "plain",
+    user_name: '<gmail_username>',
+    password: '<gmail_password>',
+    authentication: 'plain',
     enable_starttls_auto: true
   }
 
