@@ -4,8 +4,8 @@ class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 5.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 5.minutes
   # FIXME: Change this to actuall domaim
-  MAILER_FROM_EMAIL = 'no-reply@example.com'
-  MAILER_FROM_NAME = 'Example Company Notifications'
+  MAILER_FROM_EMAIL = "no-reply@example.com"
+  MAILER_FROM_NAME = "Example Company Notifications"
 
   has_secure_password
   has_person_name
@@ -17,8 +17,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_save :downcase_unconfirmed_email
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
-  validates :unconfirmed_email, format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
+  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
+  validates :unconfirmed_email, format: {with: URI::MailTo::EMAIL_REGEXP, allow_blank: true}
 
   def confirm!
     if unconfirmed_or_reconfirming?
@@ -73,8 +73,8 @@ class User < ApplicationRecord
       !has_attribute?(name) && has_attribute?("#{name}_digest")
     end.map(&:to_h)
 
-    raise ArgumentError, 'One or more password arguments are required' if passwords.empty?
-    raise ArgumentError, 'One or more finder arguments are required' if identifiers.empty?
+    raise ArgumentError, "One or more password arguments are required" if passwords.empty?
+    raise ArgumentError, "One or more finder arguments are required" if identifiers.empty?
 
     if (record = find_by(identifiers))
       record if passwords.count { |name, value| record.public_send(:"authenticate_#{name}", value) } == passwords.size
