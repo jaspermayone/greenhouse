@@ -19,7 +19,7 @@ module Greenhouse
     config.autoload_lib(ignore: %w[assets tasks])
     config.assets.paths << Rails.root.join('app/assets/fonts')
 
-    config.console1984.protected_environments = %i[production development]
+    config.console1984.protected_environments = %i[production]
     config.console1984.protected_urls = []
     config.console1984.ask_for_username_if_empty = false
     config.console1984.production_data_warning = "You have access to production data here. That's a big deal. As part of our promise to keep customer data safe and private, we audit the commands you type here. Let's get started!"
