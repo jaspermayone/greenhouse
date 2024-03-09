@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
@@ -75,7 +77,7 @@ Rails.application.configure do
 
   # FIXME: Change this to actuall domaim
   host = 'example.com' # replace with your own url
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default_url_options = { host: }
 
   # FIXME: PROD CREDS PLZ
 

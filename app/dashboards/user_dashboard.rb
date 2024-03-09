@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'administrate/base_dashboard'
 
 class UserDashboard < Administrate::BaseDashboard
@@ -57,12 +59,12 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES_NEW = %i[
     email
     password_digest
-  ]
+  ].freeze
   FORM_ATTRIBUTES_EDIT = %i[
     email
     admin
     super_admin
-  ]
+  ].freeze
 
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search

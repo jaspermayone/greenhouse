@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   CONFIRMATION_TOKEN_EXPIRATION = 5.minutes
   PASSWORD_RESET_TOKEN_EXPIRATION = 5.minutes

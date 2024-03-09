@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMailer < ApplicationMailer
   # default from: User::MAILER_FROM_EMAIL
   default from: email_address_with_name(User::MAILER_FROM_EMAIL, User::MAILER_FROM_NAME)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveRememberTokenFromUsersToActiveSessions < ActiveRecord::Migration[7.1]
   def change
     remove_column :users, :remember_token
