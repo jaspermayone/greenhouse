@@ -4,9 +4,8 @@ class UserMailerTest < ActionMailer::TestCase
   test "verify" do
     mail = UserMailer.verify
     assert_equal "Verify", mail.subject
-    assert_equal ["to@example.org"], mail.to
-    assert_equal ["from@example.com"], mail.from
+    assert_equal ["jasper@greenhouse.obl.ong"], mail.to
+    assert_equal ["noreply@greenhouse.obl.ong"], mail.from
     assert_match "Hi", mail.body.encoded
   end
-
 end

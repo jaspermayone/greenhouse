@@ -18,7 +18,7 @@
   <meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
   <meta name="theme-color" content="#ffffff"/>
   <title>The Greenhouse</title>
-  <!-- <link rel="canonical" href="https://thegreenhouse.com/" /> -->
+ <link rel="canonical" href="https://greenhouse.obl.ong/" />
   <meta name="description" content=""/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -30,16 +30,6 @@
 <body>
   <div class="box">
   <%= yield %>
-    <% if flash[:notice] %>
-      <div class="notice">
-        <%= flash[:notice] %>
-      </div>
-      <% end %>
-        <% if flash[:alert] %>
-          <div class="alert">
-            <%= flash[:alert] %>
-          </div>
-          <% end %>
     </div>
 </body>
 

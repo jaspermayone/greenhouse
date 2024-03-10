@@ -18,6 +18,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "search#index"
 
-  resources :search
-  resources :details
+  # resources :search
+  # resources :details
+
+  resources :users, module: :users do
+    resources :passkeys, shallow: true
+  end
+  get "login", to: "authentications#new"
+  get "logout", to: "authentications#destroy"
+
+  resources :authentications
 end

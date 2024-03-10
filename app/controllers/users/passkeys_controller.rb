@@ -6,7 +6,7 @@ class Users::PasskeysController < ApplicationController
     end
 
     options = WebAuthn::Credential.options_for_create(
-      user: {id: user.webauthn_id, name: user.name},
+      user: {id: user.webauthn_id, name: user.email},
       exclude: user.credentials.map { |c| c.webauthn_id }
     )
 
