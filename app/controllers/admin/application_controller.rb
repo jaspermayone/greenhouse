@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # All Administrate controllers inherit from this
 # `Administrate::ApplicationController`, making it the ideal place to put
 # authentication logic or other before_actions.
@@ -8,11 +6,13 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    include Authentication
-
+    # before_action :authenticate_user!
     before_action :authenticate_admin
 
     def authenticate_admin
+      if current_user.nil?
+        redirect_to login_path, alert: "You need to login to access that page."
+      end
       current_user.super_admin
     end
 

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -50,7 +49,6 @@ gem "image_processing", "~> 1.2"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
-  gem "erb_lint"
   gem "mass_encryption"
   gem "solargraph"
   gem "tapioca", require: false
@@ -98,3 +96,5 @@ gem "name_of_person"
 gem "bundler-audit"
 gem "fasterer"
 gem "overcommit"
+
+gem "webauthn"

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class UsersController < Admin::ApplicationController
     # Overwrite any of the RESTful controller actions to implement custom behavior

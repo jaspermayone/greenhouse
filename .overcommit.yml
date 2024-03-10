@@ -6,6 +6,10 @@ PreCommit:
   #   enabled: true
   #   on_warn: fail
 
+  Standard:
+    enabled: true
+    all_files: true
+
   Fasterer:
     enabled: true
 

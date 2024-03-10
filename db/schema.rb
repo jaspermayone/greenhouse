@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -21,17 +20,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_306_220_426) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index %w[record_type record_id name], name: 'index_action_text_rich_texts_uniqueness', unique: true
-  end
-
-  create_table 'active_sessions', force: :cascade do |t|
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'user_agent'
-    t.string 'ip_address'
-    t.string 'remember_token', null: false
-    t.index ['remember_token'], name: 'index_active_sessions_on_remember_token', unique: true
-    t.index ['user_id'], name: 'index_active_sessions_on_user_id'
   end
 
   create_table 'active_storage_attachments', force: :cascade do |t|
@@ -108,24 +96,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_306_220_426) do
     t.index ['username'], name: 'index_console1984_users_on_username'
   end
 
-  create_table 'pages', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
-
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.datetime 'confirmed_at'
-    t.string 'password_digest', null: false
-    t.string 'unconfirmed_email'
-    t.boolean 'admin', default: false
-    t.boolean 'super_admin', default: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-  end
-
-  add_foreign_key 'active_sessions', 'users', on_delete: :cascade
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
   add_foreign_key 'active_storage_variant_records', 'active_storage_blobs', column: 'blob_id'
 end
