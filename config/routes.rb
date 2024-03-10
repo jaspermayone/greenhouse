@@ -9,36 +9,15 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :admin do
-    resources :users, only: %i[index show]
-    resources :active_sessions, only: %i[index destroy]
+    # resources :users, only: %i[index show]
+    # resources :active_sessions, only: %i[index destroy]
 
-    root to: "users#index"
+    # root to: "users#index"
   end
 
   # Defines the root path route ("/")
   root "search#index"
 
-  resources :confirmations, only: %i[create edit new], param: :confirmation_token
-  resources :passwords, only: %i[create edit new update], param: :password_reset_token
-
   resources :search
   resources :details
-
-  post "sign_up", to: "users#create"
-  get "sign_up", to: "users#new"
-  put "account", to: "users#update"
-  get "account", to: "users#edit"
-  delete "account", to: "users#destroy"
-
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-  get "login", to: "sessions#new"
-
-  resources :active_sessions, only: [:destroy] do
-    collection do
-      delete "destroy_all"
-    end
-  end
-
-  resources :auth
 end

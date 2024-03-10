@@ -1,4 +1,3 @@
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -98,3 +97,5 @@ gem "fasterer"
 gem "overcommit"
 
 gem "webauthn"
+
+gem "activerecord-session_store"

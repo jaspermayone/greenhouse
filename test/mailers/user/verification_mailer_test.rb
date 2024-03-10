@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DetailsControllerTest < ActionDispatch::IntegrationTest
+class User::VerificationMailerTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end
