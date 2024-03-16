@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", :as => :rails_health_check
-  mount Audits1984::Engine => "/console"
+
+  mount Audits1984::Engine => "/admin/console"
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
@@ -16,14 +17,15 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "search#index"
+  root "root#index"
 
-  # resources :search
-  # resources :details
+  resources :search
+  resources :details
 
   resources :users, module: :users do
     resources :passkeys, shallow: true
   end
+
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
 

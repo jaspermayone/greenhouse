@@ -28,9 +28,7 @@
 </head>
 
 <body>
-  <div class="box">
   <%= yield %>
-    </div>
 </body>
 
 <style>
@@ -41,12 +39,12 @@
     src: url(<%= asset_path 'Ojuju-VariableFont_wght.ttf' %>) format("ttf");
   }
 
-  body {
+   body {
     font-family: "Ojuju", system-ui;
-    background-image: url(<%= asset_path 'background.svg' %>);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #f06566;
   }
+
+
 </style>
 
 </html>
