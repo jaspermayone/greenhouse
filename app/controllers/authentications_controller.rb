@@ -15,13 +15,13 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    user = User.find_by(params[:email])
+    user = User.find_by(email: auth_params[:email])
 
-    if user&.authenticate(params[:password])
+    if user&.authenticate(auth_params[:password])
       Authentication.new(session, user)
       redirect_to root_path
     else
-      flash[:error] = "Invalid email or password"
+      flash[:danger] = "Invalid email or password"
       render "new"
     end
   end
@@ -29,5 +29,11 @@ class AuthenticationsController < ApplicationController
   def destroy
     session[:current_authentication].destroy(session)
     redirect_to login_path
+  end
+
+  private
+
+  def auth_params
+    params.require(:user).permit(:email, :password)
   end
 end

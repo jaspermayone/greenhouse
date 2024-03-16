@@ -6,6 +6,4 @@ class User < ApplicationRecord
   # TODO: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
-
-  validates :password_confirmation, presence: true
 end

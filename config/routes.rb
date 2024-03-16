@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   root "root#index"
 
   resources :search
-  resources :details
+  # resources :details
 
   resources :users, module: :users do
     resources :passkeys, shallow: true
@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
+
+  get "enter", to: "root#enter"
 
   resources :authentications
 end
