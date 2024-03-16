@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # FIXME: restrict to only allow the user to update certain fields
     @user = User.find(params.require(:id))
     @user.update!(user_params)
   end

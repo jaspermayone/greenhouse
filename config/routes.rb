@@ -22,9 +22,7 @@ Rails.application.routes.draw do
   resources :search
   # resources :details
 
-  resources :users, module: :users do
-    resources :passkeys, shallow: true
-  end
+  resources :users
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
