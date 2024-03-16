@@ -8,7 +8,7 @@ class AuthenticationsController < ApplicationController
     @user = User.new
 
     if session[:current_authentication]
-      redirect_to root_path
+      redirect_to enter_path
     else
       render "new"
     end
@@ -19,7 +19,7 @@ class AuthenticationsController < ApplicationController
 
     if user&.authenticate(auth_params[:password])
       Authentication.new(session, user)
-      redirect_to root_path
+      redirect_to enter_path
     else
       flash[:danger] = "Invalid email or password"
       render "new"

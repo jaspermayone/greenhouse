@@ -6,15 +6,9 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    # before_action :authenticate_user!
-    before_action :authenticate_admin
+    include Authenticatable
 
-    def authenticate_admin
-      if current_user.nil?
-        redirect_to login_path, alert: "You need to login to access that page."
-      end
-      current_user.super_admin
-    end
+    before_action :ensure_authenticated, :ensure_login_ready, :ensure_admin_or_super_admin
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.

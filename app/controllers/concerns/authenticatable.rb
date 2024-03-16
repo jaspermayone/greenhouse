@@ -55,7 +55,7 @@ module Authenticatable
   def ensure_not_authenticated
     if is_authenticated?
       flash[:info] = "You are already logged in."
-      redirect_to root_path
+      redirect_to enter_path
     end
   end
 
@@ -68,6 +68,13 @@ module Authenticatable
 
   def ensure_super_admin
     if !current_user.super_admin?
+      flash[:danger] = "You are not authorized to view that page."
+      redirect_to root_path
+    end
+  end
+
+  def ensure_admin_or_super_admin
+    if !current_user.admin? && !current_user.super_admin?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end

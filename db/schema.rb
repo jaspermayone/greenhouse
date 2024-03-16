@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_153707) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_16_155745) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -92,6 +92,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_153707) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["username"], name: "index_console1984_users_on_username"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "invited_user_id"
+    t.integer "inviting_user_id"
+    t.string "invitation_token"
+    t.boolean "invitation_accepted"
+    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
