@@ -15,13 +15,13 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: auth_params[:email])
+    @user = User.find_by(email: auth_params[:email])
 
-    if user&.authenticate(auth_params[:password])
-      Authentication.new(session, user)
+    if @user&.authenticate(auth_params[:password])
+      Authentication.new(session, @user)
       redirect_to enter_path
     else
-      flash[:danger] = "Invalid email or password"
+      flash[:danger] = "Login failed. Please try again."
       render "new"
     end
   end

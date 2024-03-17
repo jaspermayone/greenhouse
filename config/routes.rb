@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :search
   # resources :details
 
-  resources :users
+  resources :users, only: [:index, :new, :create]
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"

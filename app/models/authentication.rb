@@ -1,13 +1,19 @@
 class Authentication
-  attr_accessor :user
-
   def initialize(session, user)
     session[:current_authentication] = self
-    @user = user
+    @user_id = user.id
   end
 
   def destroy(session)
     session[:current_authentication] = nil
-    @user = nil
+    @user_id = nil
+  end
+
+  def user
+    User.find_by(id: @user_id)
+  end
+
+  def user=(user)
+    @user_id = user.id
   end
 end
