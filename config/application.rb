@@ -25,6 +25,9 @@ module Greenhouse
     config.console1984.enter_protected_mode_warning	= "Great! You are back in protected mode. When we audit, we may reach out for a conversation about the commands you entered. What went well? Did you solve the problem without accessing personal data?"
     config.console1984.incinerate_after = 1.days
 
+    # TODO: Reanable this when auth is back
+    # config.mission_control.jobs.base_controller_class = "AdminController"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

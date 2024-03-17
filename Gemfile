@@ -99,3 +99,5 @@ gem "overcommit"
 gem "webauthn"
 
 gem "activerecord-session_store"
+gem "solid_queue"
+gem "mission_control-jobs"
