@@ -20,6 +20,9 @@
     <link rel="canonical" href="https://greenhouse.obl.ong/" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="GREENHOUSE_version" content="<%= APP_VERSION %>"/>
+    <meta name="GREENHOUSE_git-sha" content="<%= COMMIT_HASH %>"/>
+    <meta name="GREENHOUSE_git-sha-short" content="<%= COMMIT_HASH_SHORT %>"/>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -46,6 +49,17 @@
         <%= flash[:danger] %>
       </div>
     <% end %>
+    <footer>
+      <% if COMMIT_HASH_SHORT != "DEVELOPMENT" %>
+        <div id="foot-prod" class="box">
+          <p>© 2024 The Greenhouse © | Version: <%= COMMIT_HASH_SHORT%> | Email <a></a> for support. </p>
+        </div>
+      <% else %>
+        <div id="foot-dev" class="box">
+          <p><b>DEVELOPMENT</b> || Rails: <i><%= RAILS_VERSION%></i> | Ruby: <i><%=RUBY_VERSION%></i> | SHA: <i><%=COMMIT_HASH%></i>  </p>
+        </div>
+      <% end %>
+    </footer>
   </body>
   <style>
     @font-face {
@@ -68,6 +82,28 @@
       position: absolute;
       top: .5rem;
       right: .5rem;
+    }
+
+    #foot-prod {
+    position: absolute;
+    bottom: 1vh;
+    left: 1vw;
+    width: 98vw;
+    text-align: center;
+    margin: auto;
+    vertical-align: middle;
+    }
+
+    #foot-dev {
+    background-color: hsl(348, 100%, 61%);
+    color : white;
+    position: absolute;
+    bottom: 1vh;
+    left: 1vw;
+    width: 98vw;
+    text-align: center;
+    margin: auto;
+    vertical-align: middle;
     }
   </style>
 </html>
