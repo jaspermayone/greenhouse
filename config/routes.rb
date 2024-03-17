@@ -4,42 +4,31 @@ Rails.application.routes.draw do
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", :as => :rails_health_check
-  mount Audits1984::Engine => "/console"
+
+  mount Audits1984::Engine => "/admin/console-audit"
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   namespace :admin do
-    resources :users, only: %i[index show]
-    resources :active_sessions, only: %i[index destroy]
+    # resources :users, only: %i[index show]
+    # resources :active_sessions, only: %i[index destroy]
 
-    root to: "users#index"
+    # root to: "users#index"
   end
 
   # Defines the root path route ("/")
-  root "search#index"
-
-  resources :confirmations, only: %i[create edit new], param: :confirmation_token
-  resources :passwords, only: %i[create edit new update], param: :password_reset_token
+  root "root#index"
 
   resources :search
-  resources :details
+  # resources :details
 
-  post "sign_up", to: "users#create"
-  get "sign_up", to: "users#new"
-  put "account", to: "users#update"
-  get "account", to: "users#edit"
-  delete "account", to: "users#destroy"
+  resources :users, only: [:index, :new, :create]
 
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-  get "login", to: "sessions#new"
+  get "login", to: "authentications#new"
+  get "logout", to: "authentications#destroy"
 
-  resources :active_sessions, only: [:destroy] do
-    collection do
-      delete "destroy_all"
-    end
-  end
+  get "enter", to: "root#enter"
 
-  resources :auth
+  resources :authentications
 end

@@ -73,20 +73,18 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
-  # FIXME: Change this to actuall domaim
-  host = "example.com" # replace with your own url
-  config.action_mailer.default_url_options = {host:}
+  host = "greenhouse.obl.ong" # replace with your own url
+  config.action_mailer.default_url_options = {host: host}
 
-  # FIXME: PROD CREDS PLZ
-
-  # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    user_name: "<gmail_username>",
-    password: "<gmail_password>",
+    domain: "greenhouse.obl.ong",
     authentication: "plain",
-    enable_starttls_auto: true
+    # enable_starttls: true,
+    enable_starttls_auto: true,
+    user_name: Rails.application.credentials.google_smtp[:username],
+    password: Rails.application.credentials.google_smtp[:password]
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

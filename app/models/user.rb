@@ -1,15 +1,50 @@
 class User < ApplicationRecord
-  # FIXME: Change this to actual domain
-  MAILER_FROM_EMAIL = "no-reply@example.com"
-  MAILER_FROM_NAME = "Example Company Notifications"
-
   has_secure_password
-  has_person_name
 
-  encrypts :email, :password_digest, :unconfirmed_email, deterministic: true
+  has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
+  has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
 
-  before_save :downcase_email
-  before_save :downcase_unconfirmed_email
+  validates :email, presence: true, uniqueness: true
+  # TODO: ADD PASSWORD REQUIREMENTS
+  # validates :password, presence: true, length: {minimum: 8}
+  validates :password, presence: true
 
-  validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
+  def generate_password_token!
+    self.reset_password_token = generate_token
+    self.reset_password_sent_at = Time.now.utc
+    save!
+  end
+
+  def password_token_valid?
+    (reset_password_sent_at + 15.minutes) > Time.now.utc
+  end
+
+  def reset_password!(password)
+    self.reset_password_token = nil
+    self.password = password
+    save!
+  end
+
+  def update_new_email!(email)
+    self.unconfirmed_email = email
+    generate_confirmation_instructions
+    save!
+  end
+
+  def self.email_used?(email)
+    existing_user = find_by("email = ?", email)
+
+    if existing_user.present?
+      true
+    else
+      waiting_for_confirmation = find_by("unconfirmed_email = ?", email)
+      waiting_for_confirmation.present? && waiting_for_confirmation.confirmation_token_valid?
+    end
+  end
+
+  private
+
+  def generate_token
+    SecureRandom.hex(10)
+  end
 end

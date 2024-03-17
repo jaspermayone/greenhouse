@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <script src="https://kit.fontawesome.com/c75c45309f.js" crossorigin="anonymous"></script>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8dc157" />
-  <meta name="apple-mobile-web-app-title" content="The Greenhouse"/>
-  <meta name="application-name" content="The Greenhouse"/>
-  <meta name="msapplication-TileColor" content="#ffffff"/>
-  <meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
-  <meta name="theme-color" content="#ffffff"/>
-  <title>The Greenhouse</title>
-  <!-- <link rel="canonical" href="https://thegreenhouse.com/" /> -->
-  <meta name="description" content=""/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-</head>
-
-<body>
-  <div class="box">
-  <%= yield %>
-    <% if flash[:notice] %>
-      <div class="notice">
-        <%= flash[:notice] %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://kit.fontawesome.com/c75c45309f.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8dc157" />
+    <meta name="apple-mobile-web-app-title" content="The Greenhouse" />
+    <meta name="application-name" content="The Greenhouse" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>The Greenhouse</title>
+    <link rel="canonical" href="https://greenhouse.obl.ong/" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <%= yield %>
+    <!-- <%= debug flash %> -->
+    <% if flash[:info] %>
+      <div class="notification is-info">
+        <button class="delete" onclick="(this.parentNode.remove())"></button>
+        <%= flash[:info] %>
       </div>
-      <% end %>
-        <% if flash[:alert] %>
-          <div class="alert">
-            <%= flash[:alert] %>
-          </div>
-          <% end %>
-    </div>
-</body>
+    <% end %>
+    <% if flash[:warning] %>
+      <div class="notification is-warning">
+        <button class="delete" onclick="(this.parentNode.remove())"></button>
+        <%= flash[:warning] %>
+      </div>
+    <% end %>
+    <% if flash[:danger] %>
+      <div class="notification is-danger">
+        <button class="delete" onclick="(this.parentNode.remove())"></button>
+        <%= flash[:danger] %>
+      </div>
+    <% end %>
+  </body>
+  <style>
+    @font-face {
+      font-family: "Ojuju";
+      font-style: light;
+      font-weight: 400;
+      src: url(<%= asset_path 'Ojuju-VariableFont_wght.ttf' %>) format("ttf");
+    }
 
-<style>
-  @font-face {
-    font-family: "Ojuju";
-    font-style: light;
-    font-weight: 400;
-    src: url(<%= asset_path 'Ojuju-VariableFont_wght.ttf' %>) format("ttf");
-  }
+    body {
+      font-family: "Ojuju", system-ui;
+      height: 100vh;
+      width: 100vw;
+      background-image: url(<%= asset_path 'background.svg' %>);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
 
-  body {
-    font-family: "Ojuju", system-ui;
-    background-image: url(<%= asset_path 'background.svg' %>);
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-</style>
-
+    .notification {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+    }
+  </style>
 </html>

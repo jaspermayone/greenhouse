@@ -1,4 +1,3 @@
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -99,5 +98,6 @@ gem "overcommit"
 
 gem "webauthn"
 
+gem "activerecord-session_store"
 gem "solid_queue"
 gem "mission_control-jobs"
