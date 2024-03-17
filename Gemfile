@@ -98,3 +98,6 @@ gem "fasterer"
 gem "overcommit"
 
 gem "webauthn"
+
+gem "solid_queue"
+gem "mission_control-jobs"

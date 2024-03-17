@@ -1,4 +1,3 @@
-
 require_relative "boot"
 
 require "rails/all"
@@ -25,6 +24,9 @@ module Greenhouse
     config.console1984.enter_unprotected_encryption_mode_warning = "Ok! You have access to encrypted information now. We pay extra close attention to any commands entered while you have this access. You can go back to protected mode with 'encrypt!' WARNING: Make sure you don't save objects that were loaded while in protected mode, as this can result in saving the encrypted texts."
     config.console1984.enter_protected_mode_warning	= "Great! You are back in protected mode. When we audit, we may reach out for a conversation about the commands you entered. What went well? Did you solve the problem without accessing personal data?"
     config.console1984.incinerate_after = 1.days
+
+    # TODO: Reanable this when auth is back
+    # config.mission_control.jobs.base_controller_class = "AdminController"
 
     # Configuration for the application, engines, and railties goes here.
     #
