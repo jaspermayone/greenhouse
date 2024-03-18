@@ -52,7 +52,7 @@ group :development, :test do
   gem "solargraph"
   gem "tapioca", require: false
 
-  gem "standard", "~> 1.33"
+  gem "standard", "~> 1.35"
   gem "standard-rails", "~> 1.0"
 end
 
