@@ -393,7 +393,7 @@ GEM
       rails (~> 7.1)
     sorbet (0.5.11284)
       sorbet-static (= 0.5.11284)
-    sorbet-runtime (0.5.11286)
+    sorbet-runtime (0.5.11294)
     sorbet-static (0.5.11284-universal-darwin)
     sorbet-static (0.5.11284-x86_64-linux)
     spoom (1.1.16)
