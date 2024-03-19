@@ -19,7 +19,14 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config wget unzip
+
+# RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr bash
+RUN chsh -s /bin/bash
+ENV SHELL /bin/bash
+RUN curl https://bun.sh/install | bash > bun_install.log 2>&1
+ENV BUN_INSTALL="/root/.bun"
+ENV PATH="$BUN_INSTALL/bin:$PATH"
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./

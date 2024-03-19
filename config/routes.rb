@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   mount Audits1984::Engine => "/admin/console-audit"
-  mount MissionControl::Jobs::Engine, at: "/admin/jobs"
+  # mount MissionControl::Jobs::Engine, at: "/admin/jobs"
+  # FIXME: Mission Control not working
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 

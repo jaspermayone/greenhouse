@@ -49,26 +49,10 @@ Rails.application.configure do
 
   ###########################################
 
-  # config.action_mailer.perform_caching = false
+  # config.action_mailer.delivery_method = :postmark
 
-  # # Ignore bad email addresses and do not raise email delivery errors.
-  # # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # # config.action_mailer.raise_delivery_errors = false
-
-  # config.action_mailer.delivery_method = :smtp
-
-  # host = "greenhouse.obl.ong" # replace with your own url
-  # config.action_mailer.default_url_options = {host: host}
-
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: "greenhouse.obl.ong",
-  #   authentication: "plain",
-  #   # enable_starttls: true,
-  #   enable_starttls_auto: true,
-  #   user_name: Rails.application.credentials.google_smtp[:username],
-  #   password: Rails.application.credentials.google_smtp[:password]
+  # config.action_mailer.postmark_settings = {
+  #   api_token: Rails.application.credentials.postmark_api_token
   # }
 
   #########################################
@@ -102,4 +86,6 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.active_job.queue_adapter = :solid_queue
 end

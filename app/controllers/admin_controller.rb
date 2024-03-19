@@ -1,4 +1,4 @@
 class AdminController < ApplicationController
-  include Authenticatable
-  before_action :authenticate_user!, :ensure_super_admin!
+  before_action :authenticate_user!
+  before_action :ensure_admin_or_super_admin!
 end
