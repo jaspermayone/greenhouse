@@ -3,5 +3,6 @@
     "activityBar.background": "#42233D",
     "titleBar.activeBackground": "#5C3155",
     "titleBar.activeForeground": "#FCF9FC"
-  }
+  },
+  "sarif-viewer.connectToGithubCodeScanning": "off"
 }

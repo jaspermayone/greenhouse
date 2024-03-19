@@ -1,8 +1,11 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.0
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM registry.docker.com/library/ruby:3.3.0-slim as base
+
+LABEL org.opencontainers.image.source=https://github.com/jdogcoder/greenhouse
+# LABEL org.opencontainers.image.description="My container image"
+# LABEL org.opencontainers.image.licenses=MIT
 
 # Rails app lives here
 WORKDIR /rails
@@ -19,14 +22,12 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config wget unzip
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config wget unzip curl gnupg2
 
-# RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr bash
-RUN chsh -s /bin/bash
-ENV SHELL /bin/bash
-RUN curl https://bun.sh/install | bash > bun_install.log 2>&1
-ENV BUN_INSTALL="/root/.bun"
-ENV PATH="$BUN_INSTALL/bin:$PATH"
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./

@@ -1,1 +1,1 @@
-set :default_env, {path: "~/.bun/bin:$PATH"}
+set :default_env, {path: "~/.yarn/bin:$PATH"}
