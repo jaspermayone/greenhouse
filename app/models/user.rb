@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  encrypts :email, :unconfirmed_email, deterministic: true
+
   has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
   has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
 

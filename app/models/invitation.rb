@@ -2,6 +2,8 @@ class Invitation < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :recipient, class_name: "User"
 
+  encrypts :invitation_token, deterministic: true
+
   validates :recipient_email, presence: true
   validate :recipient_is_not_registered
 
