@@ -3,7 +3,7 @@
 # Now, let's proceed with the main build
 FROM registry.docker.com/library/ruby:3.3.0-slim as base
 
-LABEL org.opencontainers.image.source=https://github.com/jdogcoder/greenhouse
+# LABEL org.opencontainers.image.source=https://github.com/jdogcoder/greenhouse
 
 # Rails app lives here
 WORKDIR /rails
@@ -18,9 +18,8 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install Git
-RUN apt-get update && \
-    apt-get install -y git && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config wget unzip curl gnupg2
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
@@ -40,8 +39,6 @@ RUN bundle install && \
 # Copy application code
 COPY . .
 
-# COPY .git .
-
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
@@ -54,7 +51,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
+    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips git && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
