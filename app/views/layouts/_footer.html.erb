@@ -1,0 +1,11 @@
+<footer>
+  <% if COMMIT_HASH_SHORT != "DEVELOPMENT" %>
+    <div id="foot-prod" class="box">
+      <p>© 2024 The Greenhouse © | Version: <%= COMMIT_HASH_SHORT%> | Email <a></a> for support. </p>
+    </div>
+  <% else %>
+    <div id="foot-dev" class="box">
+      <p><b>DEVELOPMENT ENV</b> || Rails: <i><%= RAILS_VERSION%></i> | Ruby: <i><%=RUBY_VERSION%></i> | SHA: <i><%=COMMIT_HASH%></i> || <b>DEVELOPMENT ENV</b></p>
+    </div>
+  <% end %>
+</footer>

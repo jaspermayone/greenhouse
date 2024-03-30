@@ -24,7 +24,7 @@ module Authenticatable
   end
 
   def has_confirmed_email?
-    if current_user.email_confirmed?
+    if current_user.verified?
       true
     end
   end

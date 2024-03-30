@@ -131,7 +131,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_143923) do
     t.boolean "active", default: false
     t.string "email"
     t.string "password_digest"
-    t.string "string"
     t.boolean "verified", default: false
     t.boolean "approved", default: false
     t.boolean "admin", default: false
