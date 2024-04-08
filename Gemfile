@@ -85,7 +85,7 @@ group :test do
 end
 
 gem "administrate", "~> 1.0.0.beta1"
-gem "font-awesome-sass", "~> 6.5.1"
+gem "font-awesome-sass", "~> 6.5.2"
 
 gem "audits1984"
 gem "console1984"
