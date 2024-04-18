@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "noreply@greenhouse.obl.ong"
+  default from: "noreply@greenhouse.directory"
 
   def invite(user, invitation)
     @user = user

@@ -8,7 +8,7 @@ Your contribution to our security measures is highly valued. If you encounter an
 
 1. **GitHub Security Reporting Feature**: Utilize the built-in security reporting feature available on GitHub. This streamlined process allows for direct communication and swift action.
 
-2. **Email**: Alternatively, you can report vulnerabilities via email to [security@greenhouse.obl.ong](mailto:security@greenhouse.obl.ong). Please provide detailed information regarding the vulnerability to expedite the investigation and resolution process.
+2. **Email**: Alternatively, you can report vulnerabilities via email to [security@greenhouse.directory](mailto:security@greenhouse.directory). Please provide detailed information regarding the vulnerability to expedite the investigation and resolution process.
 
 ### What to Include
 
