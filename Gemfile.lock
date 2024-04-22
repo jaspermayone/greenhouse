@@ -440,10 +440,10 @@ GEM
       prism (>= 0.19.0)
       sorbet-static-and-runtime (>= 0.5.10187)
       thor (>= 0.19.2)
-    sqlite3 (1.7.3-aarch64-linux)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86_64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
+    sqlite3 (2.0.1-aarch64-linux-gnu)
+    sqlite3 (2.0.1-arm64-darwin)
+    sqlite3 (2.0.1-x86_64-darwin)
+    sqlite3 (2.0.1-x86_64-linux-gnu)
     standard (1.35.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -558,7 +558,7 @@ DEPENDENCIES
   solid_queue
   sorbet
   sorbet-runtime
-  sqlite3 (~> 1.7)
+  sqlite3 (~> 2.0)
   standard (~> 1.35)
   standard-rails (~> 1.0)
   stimulus-rails
