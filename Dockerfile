@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Now, let's proceed with the main build
-FROM ruby:3.3.0-slim as base
+FROM ruby:3.3.1-slim as base
 
 # LABEL org.opencontainers.image.source=https://github.com/jdogcoder/greenhouse
 
