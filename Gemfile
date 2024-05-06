@@ -134,4 +134,4 @@ gem "strong_migrations"
 
 gem "rack-cors" # manage CORS
 gem "rack-attack" # rate limiting
-gem "browser", "~> 5.3" # browser detection
+gem "browser", "~> 6.0" # browser detection
