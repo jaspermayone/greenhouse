@@ -1,6 +1,9 @@
 gemfile: Gemfile
 
 PreCommit:
+  CapitalizedSubject:
+    enabled: false
+
   Fasterer:
     enabled: true
     exclude:
