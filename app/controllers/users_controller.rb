@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :validate_email_update, only: :update
 
@@ -12,9 +14,9 @@ class UsersController < ApplicationController
   def update
     if current_user.update_new_email!(@new_email)
       # SEND EMAIL HERE
-      render json: {status: "Email Confirmation has been sent to your new email."}, status: :ok
+      render json: { status: "Email Confirmation has been sent to your new email." }, status: :ok
     else
-      render json: {errors: current_user.errors.values.flatten.compact}, status: :bad_request
+      render json: { errors: current_user.errors.values.flatten.compact }, status: :bad_request
     end
   end
 
@@ -40,15 +42,16 @@ class UsersController < ApplicationController
     @new_email = params[:email].to_s.downcase
 
     if @new_email.blank?
-      return render json: {status: "Email cannot be blank"}, status: :bad_request
+      return render json: { status: "Email cannot be blank" }, status: :bad_request
     end
 
     if @new_email == current_user.email
-      return render json: {status: "Current Email and New email cannot be the same"}, status: :bad_request
+      return render json: { status: "Current Email and New email cannot be the same" }, status: :bad_request
     end
 
     if User.email_used?(@new_email)
-      render json: {error: "Email is already in use."}, status: :unprocessable_entity
+      render json: { error: "Email is already in use." }, status: :unprocessable_entity
     end
   end
+
 end

@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
 
   encrypts :email, deterministic: true
 
-  has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
-  has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
+  # FIXME: TEMPORRARILY DISABLED AS INVITE SYSTEM IS NOT IMPLEMENTED, and needs an inverse_of which i dont understand
+  # has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
+  # has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
 
   validates :email, presence: true, uniqueness: true
   # TODO: ADD PASSWORD REQUIREMENTS
@@ -49,4 +52,5 @@ class User < ApplicationRecord
   def generate_token
     SecureRandom.hex(10)
   end
+
 end

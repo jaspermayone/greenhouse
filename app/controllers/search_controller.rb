@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchController < ApplicationController
   include Authenticatable
 
@@ -5,4 +7,5 @@ class SearchController < ApplicationController
 
   def index
   end
+
 end

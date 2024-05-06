@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMailer < ApplicationMailer
   default from: "noreply@greenhouse.directory"
 
@@ -21,4 +23,5 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: "[GREENHOUSE] Reset your password.")
   end
+
 end

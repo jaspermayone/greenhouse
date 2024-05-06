@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestMailer < ApplicationMailer
   default from: "noreply@greenhouse.directory"
 
@@ -11,4 +13,5 @@ class TestMailer < ApplicationMailer
       message_stream: "outbound"
     )
   end
+
 end

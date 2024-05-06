@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -45,7 +47,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = {host: "localhost:3000", protocol: "http"}
+  config.action_mailer.default_url_options = { host: "localhost:3000", protocol: "http" }
 
   ###########################################
 

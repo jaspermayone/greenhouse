@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Authentication
   def initialize(session, user)
     session[:current_authentication] = self
@@ -16,4 +18,5 @@ class Authentication
   def user=(user)
     @user_id = user.id
   end
+
 end

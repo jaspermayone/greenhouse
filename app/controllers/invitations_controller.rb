@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvitationsController < ApplicationController
   def new
     @invitation = Invitation.new
@@ -14,4 +16,5 @@ class InvitationsController < ApplicationController
       render :new
     end
   end
+
 end

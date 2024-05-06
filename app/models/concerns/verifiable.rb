@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Verifiable
   extend ActiveSupport::Concern
 

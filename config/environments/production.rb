@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -47,8 +49,8 @@ Rails.application.configure do
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new($stdout)
-    .tap { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+                                       .tap { |logger| logger.formatter = ::Logger::Formatter.new }
+                                       .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -72,7 +74,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   host = "greenhouse.directory" # replace with your own url
-  config.action_mailer.default_url_options = {host: host}
+  config.action_mailer.default_url_options = { host: }
 
   config.action_mailer.delivery_method = :postmark
 

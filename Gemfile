@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -32,7 +34,7 @@ gem "puma", ">= 5.0"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
-gem "pg"  # database
+gem "pg" # database
 gem "pg_search" # full-text search
 gem "redis", "~> 5.0" # for caching, jobs, etc. (Use Redis adapter to run Action Cable in production)
 
@@ -81,6 +83,9 @@ end
 group :test do
   gem "factory_bot_rails" # Test data
   gem "simplecov", require: false # Code coverage
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem "capybara"
+  gem "selenium-webdriver"
 end
 
 gem "sorbet-runtime"
@@ -111,12 +116,6 @@ group :development do
 
   gem "rails_hotreload"
   gem "sorbet"
-end
-
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
 end
 
 gem "administrate", "~> 1.0.0.beta1"

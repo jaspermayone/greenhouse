@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RootController < ApplicationController
   include Authenticatable
 
@@ -11,4 +13,5 @@ class RootController < ApplicationController
       redirect_to login_path
     end
   end
+
 end

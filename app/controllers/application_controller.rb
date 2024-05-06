@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include Authenticatable
 
@@ -6,4 +8,5 @@ class ApplicationController < ActionController::Base
 
     # current_user
   end
+
 end

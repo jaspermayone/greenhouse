@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationJob < ActiveJob::Base
   self.queue_adapter = :solid_queue
   # Automatically retry jobs that encountered a deadlock
@@ -5,4 +7,5 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+
 end

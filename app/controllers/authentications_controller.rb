@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthenticationsController < ApplicationController
   include Authenticatable
 
@@ -36,4 +38,5 @@ class AuthenticationsController < ApplicationController
   def auth_params
     params.require(:user).permit(:email, :password)
   end
+
 end

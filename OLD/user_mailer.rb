@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMailer < ApplicationMailer
   default from: email_address_with_name(User::MAILER_FROM_EMAIL, User::MAILER_FROM_NAME)
 
@@ -15,4 +17,5 @@ class UserMailer < ApplicationMailer
 
   #   mail to: @user.email, subject: "[GREENHOUSE] Password Reset Instructions"
   # end
+
 end

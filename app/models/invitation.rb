@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Invitation < ApplicationRecord
   belongs_to :sender, class_name: "User"
   belongs_to :recipient, class_name: "User"
@@ -32,4 +34,5 @@ class Invitation < ApplicationRecord
 
     self
   end
+
 end
