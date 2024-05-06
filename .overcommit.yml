@@ -1,12 +1,17 @@
 gemfile: Gemfile
 
 PreCommit:
-  # TODO: add standard linter
-
   Fasterer:
     enabled: true
+    exclude:
+      - "vendor/**/*.rb"
+      - "db/schema.rb"
 
   BundleAudit:
+    enabled: true
+    flags: ["--update"]
+
+  BundleCheck:
     enabled: true
 
   RuboCop:
