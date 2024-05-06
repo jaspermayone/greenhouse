@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#
+# TODO Add seed data here
+
+# user = User.first
+
+# if user.nil?
+#   puts "Looks like there aren't any users! Creating an user (admin@example.com)."
+#   user = User.create!(email: "admin@example.com")
+# end
+
+# puts "Continuing with #{user.email}..."

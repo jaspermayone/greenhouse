@@ -1,8 +1,42 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#42233D",
-    "titleBar.activeBackground": "#5C3155",
-    "titleBar.activeForeground": "#FCF9FC"
+  "ruby.useLanguageServer": true,
+  "ruby.useBundler": true, //run non-lint commands with bundle exec
+  "ruby.format": "rubocop", // use rubocop for formatting
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true // enable rubocop via bundler
+    }
   },
-  "sarif-viewer.connectToGithubCodeScanning": "off"
+  "solargraph.useBundler": true,
+  "solargraph.diagnostics": true,
+  "solargraph.completion": true,
+  "solargraph.hover": true,
+  "solargraph.formatting": true,
+  "solargraph.symbols": true,
+  "solargraph.definitions": true,
+  "solargraph.rename": true,
+  "solargraph.references": true,
+  "solargraph.folding": true,
+  "solargraph.transport": "external",
+  // "solargraph.externalServer": {
+  //   // external server is ran via docker-compose.solargraph.yml
+  //   "host": "localhost",
+  //   "port": 7658
+  // },
+  "[ruby][gemfile]": {
+    "editor.defaultFormatter": "castwide.solargraph"
+  },
+  "[ruby][gemfile][erb][javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "files.associations": {
+    "apple-app-site-association": "json"
+  },
+  "css.validate": false,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#375244",
+    "titleBar.activeBackground": "#58836d",
+    "titleBar.activeForeground": "#f9fcfb"
+  },
 }
