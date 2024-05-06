@@ -112,6 +112,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    browser (5.3.1)
     builder (3.2.4)
     bulma-rails (1.0.0)
       dartsass-rails (~> 0.5.0)
@@ -303,6 +304,10 @@ GEM
       railties (>= 4.2)
     racc (1.7.3)
     rack (3.0.10)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-session (2.0.0)
@@ -530,6 +535,7 @@ DEPENDENCIES
   annotate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
+  browser (~> 5.3)
   bulma-rails
   bundler-audit
   capybara
@@ -557,6 +563,8 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   query_count
+  rack-attack
+  rack-cors
   rack-mini-profiler (~> 3.1)
   rails (~> 7.1.3)
   rails_hotreload

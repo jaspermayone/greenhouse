@@ -131,3 +131,7 @@ gem "overcommit"
 gem "activerecord-session_store"
 gem "postmark-rails"
 gem "strong_migrations"
+
+gem "rack-cors" # manage CORS
+gem "rack-attack" # rate limiting
+gem "browser", "~> 5.3" # browser detection
