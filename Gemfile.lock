@@ -112,7 +112,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    browser (5.3.1)
+    browser (6.0.0)
     builder (3.2.4)
     bulma-rails (1.0.0)
       dartsass-rails (~> 0.5.0)
@@ -535,7 +535,7 @@ DEPENDENCIES
   annotate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
-  browser (~> 5.3)
+  browser (~> 6.0)
   bulma-rails
   bundler-audit
   capybara
