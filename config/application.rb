@@ -28,13 +28,13 @@ module Greenhouse
     # config.console1984.incinerate_after = 1.days
     # config.console1984.protected_urls = []
 
+    # FIXME: Actually Implement AdminController
+    config.mission_control.jobs.base_controller_class = "AdminController"
+    # config.audits1984.base_controller_class = "AdminController"
+
+
     # TODO: Figure out what actually goes here
     # config.audits1984.auditor_class = ""
-
-    # FIXME: Actually Implement AdminController
-    # config.mission_control.jobs.base_controller_class = "AdminController"
-    # config.audits1984.base_controller_class = "AdminController"
-    #
 
     # Configuration for the application, engines, and railties goes here.
     #

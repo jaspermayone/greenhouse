@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 # ruby "3.3.0"
 
-gem "dotenv-rails", groups: [:development, :test]
+gem "dotenv-rails"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
@@ -16,8 +16,7 @@ gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3"
-gem "sqlite3", "~> 2.0"
-
+gem "sqlite3", "~> 2"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -135,3 +134,6 @@ gem "strong_migrations"
 gem "rack-cors" # manage CORS
 gem "rack-attack" # rate limiting
 gem "browser", "~> 6.0" # browser detection
+
+gem "solid_queue"
+gem "mission_control-jobs"

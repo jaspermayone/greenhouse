@@ -18,3 +18,27 @@
 # end
 
 # puts "Continuing with #{user.email}..."
+
+Users = User.all
+
+# check if there is a user with the email me@jaspermayone.com
+
+if Users.find_by(email: ENV["SUPER_ADMIN_EMAIL"])
+  puts "Super admin already exists, skipping creation."
+else
+  puts "Creating super admin"
+  User.create!({
+  email: ENV["SUPER_ADMIN_EMAIL"],
+  first_name: ENV["SUPER_ADMIN_FNAME"],
+  last_name: ENV["SUPER_ADMIN_LNAME"],
+  active: true,
+# set password digest to env variable
+  password: ENV["SUPER_ADMIN_PASS"],
+  verified: true,
+  approved: true,
+  admin: true,
+  super_admin: true,
+  MASTER: true
+})
+puts "Super admin created with email: #{ENV["SUPER_ADMIN_EMAIL"]}"
+end

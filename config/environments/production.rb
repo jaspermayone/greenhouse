@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-require "active_support/core_ext/integer/time"
+# require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Prepare the ingress controller used to receive mail
+  # config.action_mailbox.ingress = :relay
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -68,6 +71,9 @@ Rails.application.configure do
   config.active_job.queue_name_prefix = "greenhouse_production"
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailbox.ingress = :postmark
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

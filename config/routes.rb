@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "admin_constraint"
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,8 +10,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   mount LetterOpenerWeb::Engine, at: "/admin/letter_opener" if Rails.env.development?
+  mount MissionControl::Jobs::Engine, at: "/admin/jobs"
 
   namespace :admin do
+    # constraints(AdminConstraint.new) do
+    # end
+
     # resources :users, only: %i[index show]
     # resources :active_sessions, only: %i[index destroy]
 

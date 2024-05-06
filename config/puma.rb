@@ -37,4 +37,4 @@ pidfile ENV.fetch("PIDFILE", "tmp/pids/server.pid")
 plugin :tmp_restart
 
 # Add Solid Queue to Puma
-# plugin :solid_queue
+plugin :solid_queue
