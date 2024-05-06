@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.3.0"
+ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+
+gem "dotenv-rails", groups: [:development, :test]
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
@@ -10,56 +12,84 @@ gem "rails", "~> 7.1.3"
 gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 2.0"
+# gem "sqlite3", "~> 2.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+# gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+# gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", ">= 4.0.1"
+# gem "jbuilder"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
+gem "pg"  # database
+gem "pg_search" # full-text search
+gem "redis", "~> 5.0" # for caching, jobs, etc. (Use Redis adapter to run Action Cable in production)
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[windows jruby]
+gem "jsbundling-rails", "~> 1.1"
+gem "terser", "~> 1.1" # JS compressor
+gem "jquery-rails"
+gem "react-rails"
+gem "turbo-rails", "~> 1.4"
+gem "cssbundling-rails", "~> 1.4"
+gem "sprockets-rails", "~> 3.4"
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# gem "tzinfo-data", platforms: %i[windows jruby]
+
+gem "bootsnap", ">= 1.4.4", require: false # reduces boot times through caching; required in config/boot.rb
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
+
+group :development, :staging do
+  gem "query_count"
+
+  gem "rack-mini-profiler", "~> 3.1"
+  gem "stackprof" # used by `rack-mini-profiler` to provide flamegraphs
+end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
   gem "mass_encryption"
-  gem "solargraph"
+  # gem "solargraph"
   gem "tapioca", require: false
 
   gem "standard", "~> 1.35"
   gem "standard-rails", "~> 1.0"
+
+  gem "erb_lint", require: false
+  gem "rubocop"
+  gem "rubocop-rails", "~> 2.22"
+  gem "relaxed-rubocop"
+end
+
+group :test do
+  gem "factory_bot_rails" # Test data
+  gem "simplecov", require: false # Code coverage
 end
 
 gem "sorbet-runtime"
 
 group :development do
+  gem "annotate" # comment models with database schema
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "listen", "~> 3.8"
   gem "web-console"
 
   gem "letter_opener"
@@ -72,8 +102,13 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  #
+  # Ruby language server
+  gem "solargraph", require: false
+  gem "solargraph-rails", "~> 0.2.0", require: false
 
-  gem "erb-formatter"
+  gem "htmlbeautifier", require: false # for https://marketplace.visualstudio.com/items?itemName=tomclose.format-erb
+
   gem "rails_hotreload"
   gem "sorbet"
 end
@@ -86,21 +121,17 @@ end
 
 gem "administrate", "~> 1.0.0.beta1"
 gem "font-awesome-sass", "~> 6.5.2"
+gem "bulma-rails"
 
-gem "audits1984"
-gem "console1984"
-gem "cssbundling-rails", "~> 1.4"
+# gem "audits1984"
+# gem "console1984"
+
 gem "name_of_person"
 
 gem "bundler-audit"
 gem "fasterer"
 gem "overcommit"
 
-gem "webauthn"
-
 gem "activerecord-session_store"
-gem "solid_queue"
-gem "mission_control-jobs"
 gem "postmark-rails"
 gem "strong_migrations"
-gem "bulma-rails"
