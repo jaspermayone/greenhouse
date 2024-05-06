@@ -4,6 +4,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+# ruby "3.3.0"
 
 gem "dotenv-rails", groups: [:development, :test]
 
@@ -14,19 +15,18 @@ gem "rails", "~> 7.1.3"
 gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
-# gem "sqlite3", "~> 2.0"
+# gem "sqlite3"
+gem "sqlite3", "~> 1.4"
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-# gem "importmap-rails"
-
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-# gem "turbo-rails"
+gem "importmap-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-# gem "stimulus-rails"
+gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -45,7 +45,7 @@ gem "jsbundling-rails", "~> 1.1"
 gem "terser", "~> 1.1" # JS compressor
 gem "jquery-rails"
 gem "react-rails"
-gem "turbo-rails", "~> 1.4"
+gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "cssbundling-rails", "~> 1.4"
 gem "sprockets-rails", "~> 3.4"
 
