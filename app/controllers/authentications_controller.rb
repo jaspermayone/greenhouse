@@ -17,7 +17,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: auth_params[:email])
+    # @user = User.find_by(email: auth_params[:email])
+    @user = User.find_by(email: auth_params[:email]) || User.find_by(agent_email: auth_params[:email])
 
     if @user&.authenticate(auth_params[:password])
       Authentication.new(session, @user)

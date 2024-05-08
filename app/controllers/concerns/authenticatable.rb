@@ -48,6 +48,7 @@ module Authenticatable
   end
 
   def ensure_authenticated
+    # FIXME: - if you go to /admin/jobs when not signed in this gives an error
     if !is_authenticated?
       flash[:warning=] = "You need to login to view that page."
       redirect_to login_path

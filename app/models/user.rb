@@ -55,7 +55,7 @@ class User < ApplicationRecord
     # self.agent_email
     # set email to be the codename feaild @postal
     codenm = self.codename.downcase
-    self.email = "a_#{codenm}@postal.greenhouse.directory"
+    self.agent_email = "a_#{codenm}@postal.greenhouse.directory"
   end
 
   def generate_token
