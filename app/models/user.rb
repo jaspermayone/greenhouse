@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   encrypts :email, deterministic: true
 
+  before_create :set_agent_email
+
   # FIXME: TEMPORRARILY DISABLED AS INVITE SYSTEM IS NOT IMPLEMENTED, and needs an inverse_of which i dont understand
   # has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
   # has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
@@ -48,6 +50,13 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_agent_email
+    # self.agent_email
+    # set email to be the codename feaild @postal
+    codenm = self.codename.downcase
+    self.email = "a_#{codenm}@postal.greenhouse.directory"
+  end
 
   def generate_token
     SecureRandom.hex(10)

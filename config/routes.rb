@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "admin_constraint"
-
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,28 +10,27 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/admin/letter_opener" if Rails.env.development?
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
 
-  namespace :admin do
-    # constraints(AdminConstraint.new) do
-    # end
+  # namespace :admin do
+  # resources :users, only: %i[index show]
+  # resources :active_sessions, only: %i[index destroy]
 
-    # resources :users, only: %i[index show]
-    # resources :active_sessions, only: %i[index destroy]
-
-    # root to: "users#index"
-  end
+  # root to: "users#index"
+  # end
 
   # Defines the root path route ("/")
   root "root#index"
 
   resources :search
+  resources :authentications
   # resources :details
 
   resources :users, only: [:index, :new, :create]
 
-  get "login", to: "authentications#new"
+  # get "login", to: "authentications#new"
+  get "/login", to: "authentications#new", as: :login
   get "logout", to: "authentications#destroy"
 
   get "enter", to: "root#enter"
 
-  resources :authentications
+  # match "*path" => redirect("/")
 end

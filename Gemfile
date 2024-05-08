@@ -137,3 +137,5 @@ gem "browser", "~> 6.0" # browser detection
 
 gem "solid_queue"
 gem "mission_control-jobs"
+
+gem "rainbow"

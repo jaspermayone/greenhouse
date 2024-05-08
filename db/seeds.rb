@@ -28,17 +28,18 @@ if Users.find_by(email: ENV["SUPER_ADMIN_EMAIL"])
 else
   puts "Creating super admin"
   User.create!({
-  email: ENV["SUPER_ADMIN_EMAIL"],
-  first_name: ENV["SUPER_ADMIN_FNAME"],
-  last_name: ENV["SUPER_ADMIN_LNAME"],
+  email: ENV["SA_EMAIL"],
+  first_name: ENV["SA_FNAME"],
+  last_name: ENV["SA_LNAME"],
   active: true,
 # set password digest to env variable
-  password: ENV["SUPER_ADMIN_PASS"],
+  password: ENV["SA_PASS"],
+  codename: ENV["SA_CODENAME"],
   verified: true,
   approved: true,
   admin: true,
   super_admin: true,
   MASTER: true
 })
-puts "Super admin created with email: #{ENV["SUPER_ADMIN_EMAIL"]}"
+puts "Super admin created with email: #{ENV["SA_EMAIL"]}"
 end

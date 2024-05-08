@@ -3,15 +3,17 @@
 class TestMailer < ApplicationMailer
   default from: "noreply@greenhouse.directory"
 
-  def hello
+  def hello(to)
     mail(
       subject: "Hello from Postmark",
-      to: "quail@greenhouse.directory",
+      to:,
+      # to: "quail@greenhouse.directory",
       from: "noreply@greenhouse.directory",
       html_body: "<strong>Hello</strong> dear Postmark user.",
       track_opens: "true",
       message_stream: "outbound"
     )
   end
+
 
 end
