@@ -139,3 +139,5 @@ gem "solid_queue"
 gem "mission_control-jobs"
 
 gem "rainbow"
+gem "validates_email_format_of"
+gem "namae" # multi-cultural human name parser

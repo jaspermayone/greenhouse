@@ -3,12 +3,6 @@
 class UserMailer < ApplicationMailer
   default from: "noreply@greenhouse.directory"
 
-  def invite(user, invitation)
-    @user = user
-    @invitation = invitation
-    mail(to: @invitation.email, subject: "Your invitation to Greenhouse.")
-  end
-
   def welcome(user)
     @user = user
     mail(to: @user.email, subject: "Welcome to Greenhouse. Your account is now active.")

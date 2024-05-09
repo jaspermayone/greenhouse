@@ -1,7 +1,7 @@
 <body>
   <div class="box">
     <div class="authbox">
-      <%= form_tag(), form_with url: authentications_path, scope: :user do |form| %>
+<%= form_with url: authentications_path, scope: :user do |form| %>
         <div class="creds">
           <p>Enter your credentials to gain access...</p>
         </div>

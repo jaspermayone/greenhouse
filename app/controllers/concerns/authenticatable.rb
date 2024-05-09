@@ -48,7 +48,6 @@ module Authenticatable
   end
 
   def ensure_authenticated
-    # FIXME: - if you go to /admin/jobs when not signed in this gives an error
     if !is_authenticated?
       flash[:warning=] = "You need to login to view that page."
       redirect_to login_path
@@ -56,30 +55,41 @@ module Authenticatable
   end
 
   def ensure_not_authenticated
+    # FIXME - this is broken, causes error "No route matches {:action=>"new", :controller=>"authentications", :server_id=>nil}"
     if is_authenticated?
       flash[:info] = "You are already logged in."
       redirect_to enter_path
     end
   end
 
-  def ensure_admin
-    if !current_user.admin?
+  # FIXME: - if you go to /admin/jobs when not signed in this gives an error
+
+  def ensure_level_0
+    if current_user.access_level != "user"
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
-  def ensure_super_admin
-    if !current_user.super_admin?
+  def ensure_level_1
+    if current_user.access_level != "admin"
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
-  def ensure_admin_or_super_admin
-    if !current_user.admin? && !current_user.super_admin?
+  def ensure_level_2
+    if current_user.access_level != "superadmin"
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
+
+  def ensure_level_3
+    if current_user.access_level != "JASPER"
+      flash[:danger] = "You are not authorized to view that page."
+      redirect_to root_path
+    end
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_203926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,17 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "invitations", force: :cascade do |t|
-    t.integer "invited_user_id"
-    t.integer "inviting_user_id"
-    t.string "invitation_token"
-    t.boolean "invitation_accepted"
-    t.datetime "invitation_accepted_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -72,7 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.string "queue_name", null: false
     t.integer "priority", default: 0, null: false
     t.string "concurrency_key", null: false
@@ -84,7 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "solid_queue_claimed_executions", force: :cascade do |t|
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.bigint "process_id"
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_claimed_executions_on_job_id", unique: true
@@ -92,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "solid_queue_failed_executions", force: :cascade do |t|
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.text "error"
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_failed_executions_on_job_id", unique: true
@@ -135,7 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "solid_queue_ready_executions", force: :cascade do |t|
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.string "queue_name", null: false
     t.integer "priority", default: 0, null: false
     t.datetime "created_at", null: false
@@ -154,7 +143,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "solid_queue_scheduled_executions", force: :cascade do |t|
-    t.integer "job_id", null: false
+    t.bigint "job_id", null: false
     t.string "queue_name", null: false
     t.integer "priority", default: 0, null: false
     t.datetime "scheduled_at", null: false
@@ -175,20 +164,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_020513) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "full_name"
     t.string "first_name"
     t.string "last_name"
     t.boolean "active", default: false
     t.string "email"
     t.string "password_digest"
+    t.string "string"
     t.boolean "verified", default: false
     t.boolean "approved", default: false
-    t.boolean "admin", default: false
-    t.boolean "super_admin", default: false
-    t.boolean "MASTER", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "codename"
     t.string "agent_email"
+    t.integer "access_level", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_email"], name: "index_users_on_agent_email", unique: true
+    t.index ["codename"], name: "index_users_on_codename", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

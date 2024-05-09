@@ -3,18 +3,55 @@
 class User < ApplicationRecord
   has_secure_password
 
+  scope :admin, -> { where(access_level: [:admin, :superadmin]) }
+
+  enum :access_level, [
+    :user,
+    :admin,
+    :superadmin,
+    :JASPER
+  ], scopes: false, default: :user
+
   encrypts :email, deterministic: true
 
   before_create :set_agent_email
 
-  # FIXME: TEMPORRARILY DISABLED AS INVITE SYSTEM IS NOT IMPLEMENTED, and needs an inverse_of which i dont understand
-  # has_many :sent_invitations, class_name: "Invitation", foreign_key: "sender_id", dependent: :restrict_with_exception
-  # has_one :received_invitation, class_name: "Invitation", foreign_key: "recipient_id", dependent: :restrict_with_exception
+  validates_presence_of :full_name, :email, :password, :codename
 
-  validates :email, presence: true, uniqueness: true
+  validates :full_name, format: {
+    with: /\A[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.,'-]+ [a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.,' -]+\z/,
+    message: "must contain your first and last name, and can't contain special characters.", allow_blank: true,
+  }
+
+  validates :email, uniqueness: true, presence: true
+  validates_email_format_of :email
   # TODO: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
+
+  def admin?
+    self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"
+  end
+
+  def make_admin!
+    admin!
+  end
+
+  def remove_admin!
+    user!
+  end
+
+  def first_name(legal: false)
+    @first_name ||= (namae(legal:)&.given || namae(legal:)&.particle)&.split(" ")&.first
+  end
+
+  def last_name(legal: false)
+    @last_name ||= namae(legal:)&.family&.split(" ")&.last
+  end
+
+  def active_mailbox_address
+    self.agent_email
+  end
 
   def generate_password_token!
     self.reset_password_token = generate_token

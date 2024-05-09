@@ -8,38 +8,24 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 #
-# TODO Add seed data here
-
-# user = User.first
-
-# if user.nil?
-#   puts "Looks like there aren't any users! Creating an user (admin@example.com)."
-#   user = User.create!(email: "admin@example.com")
-# end
-
-# puts "Continuing with #{user.email}..."
 
 Users = User.all
 
-# check if there is a user with the email me@jaspermayone.com
-
+# Check for Quail
 if Users.find_by(email: ENV["SUPER_ADMIN_EMAIL"])
-  puts "Super admin already exists, skipping creation."
+  puts "The user Quail already exists in system, skipping creation of Quail"
 else
-  puts "Creating super admin"
+  puts "The user Quail does not exist in system, creating Quail..."
   User.create!({
   email: ENV["SA_EMAIL"],
-  first_name: ENV["SA_FNAME"],
-  last_name: ENV["SA_LNAME"],
+  full_name: ENV["SA_fullName"],
   active: true,
 # set password digest to env variable
   password: ENV["SA_PASS"],
   codename: ENV["SA_CODENAME"],
   verified: true,
   approved: true,
-  admin: true,
-  super_admin: true,
-  MASTER: true
+  access_level: 3,
 })
-puts "Super admin created with email: #{ENV["SA_EMAIL"]}"
+puts "User: Quail created successfully!"
 end
