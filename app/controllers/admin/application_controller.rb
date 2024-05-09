@@ -10,7 +10,7 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     include Authenticatable
 
-    before_action :ensure_authenticated, :ensure_level_1
+    before_action :ensure_authenticated, :ensure_login_ready, :ensure_level_2
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
