@@ -65,31 +65,32 @@ module Authenticatable
   # FIXME: - if you go to /admin/jobs when not signed in this gives an error
 
   def ensure_level_0
-    if current_user.access_level != "user"
+    unless ["user", "admin", "superadmin", "JASPER"].include?(current_user.access_level)
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
   def ensure_level_1
-    if current_user.access_level != "admin"
+    unless ["admin", "superadmin", "JASPER"].include?(current_user.access_level)
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
   def ensure_level_2
-    if current_user.access_level != "superadmin"
+    unless ["superadmin", "JASPER"].include?(current_user.access_level)
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
   def ensure_level_3
-    if current_user.access_level != "JASPER"
+    unless current_user.access_level == "JASPER"
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
+
 
 end
