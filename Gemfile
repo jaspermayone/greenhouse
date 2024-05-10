@@ -59,8 +59,8 @@ gem "image_processing", "~> 1.2"
 group :development, :staging do
   gem "query_count"
 
-  gem "rack-mini-profiler", "~> 3.1"
-  gem "stackprof" # used by `rack-mini-profiler` to provide flamegraphs
+  # gem "rack-mini-profiler", "~> 3.1"
+  # gem "stackprof" # used by `rack-mini-profiler` to provide flamegraphs
 end
 
 group :development, :test do
@@ -104,6 +104,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   #
+
   # Ruby language server
   gem "solargraph", require: false
   gem "solargraph-rails", "~> 1.1.0", require: false
