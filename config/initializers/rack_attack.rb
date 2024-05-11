@@ -33,7 +33,7 @@ class Rack::Attack
   end
 
   ### Prevent Brute-Force Login Attacks ###
-  # Todo: actually implement this
+  # todo: actually implement this
 
   # The most common brute-force login attack is a brute-force password
   # attack where an attacker simply tries a large number of emails and

@@ -33,7 +33,7 @@ module Greenhouse
     # config.audits1984.base_controller_class = "AdminController"
 
 
-    # TODO: Figure out what actually goes here
+    # todo: Figure out what actually goes here
     # config.audits1984.auditor_class = ""
 
     # Configuration for the application, engines, and railties goes here.

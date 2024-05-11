@@ -1,6 +1,6 @@
 # README
 
-TODO:
+todo:
 
 - run "annotate"
 

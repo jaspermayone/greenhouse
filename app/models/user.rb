@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates_email_format_of :email
-  # TODO: ADD PASSWORD REQUIREMENTS
+  # todo: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
 
