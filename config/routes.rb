@@ -10,13 +10,6 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/admin/letter_opener" if Rails.env.development?
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
 
-  # namespace :admin do
-  # resources :users, only: %i[index show]
-  # resources :active_sessions, only: %i[index destroy]
-
-  # root to: "users#index"
-  # end
-
   # Defines the root path route ("/")
   root "root#index"
 
@@ -24,13 +17,11 @@ Rails.application.routes.draw do
   resources :authentications
   # resources :details
 
-  resources :users, only: [:index, :new, :create]
+  resources :agents, only: [:index, :new, :create]
 
-  # get "login", to: "authentications#new"
-  get "/login", to: "authentications#new", as: :login
+  get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
 
   get "enter", to: "root#enter"
 
-  # match "*path" => redirect("/")
 end

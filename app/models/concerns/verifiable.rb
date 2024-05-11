@@ -6,9 +6,9 @@ module Verifiable
   included do
   end
 
-  def verify_email(user)
-    @user = user
-    VerificationMailer.create!(@user).deliver_now
+  def verify_email(agent)
+    @agent = agent
+    VerificationMailer.create!(@agent).deliver_now
   end
 
   def mark_as_verified

@@ -7,7 +7,7 @@ class AuthenticationsController < ApplicationController
   before_action :ensure_not_authenticated, only: [:new, :create]
 
   def new
-    @user = User.new
+    @agent = Agent.new
 
     if session[:current_authentication]
       redirect_to enter_path
@@ -17,12 +17,11 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    # @user = User.find_by(email: auth_params[:email])
-    @user = User.find_by(email: auth_params[:email]) || User.find_by(agent_email: auth_params[:email])
-    @access_level = @user&.access_level
+    @agent = Agent.find_by(email: auth_params[:email]) || Agent.find_by(secure_email: auth_params[:email])
+    @access_level = @agent&.access_level
 
-    if @user&.authenticate(auth_params[:password])
-      Authentication.new(session, @user)
+    if @agent&.authenticate(auth_params[:password])
+      Authentication.new(session, @agent)
       redirect_to enter_path
     else
       flash[:danger] = "Login failed. Please try again."
@@ -38,7 +37,7 @@ class AuthenticationsController < ApplicationController
   private
 
   def auth_params
-    params.require(:user).permit(:email, :password)
+    params.require(:agent).permit(:email, :password)
   end
 
 end

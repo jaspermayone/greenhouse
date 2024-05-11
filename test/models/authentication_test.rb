@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class UserTest < ActiveSupport::TestCase
+class AuthenticationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -3,7 +3,7 @@
 class DetailsController < ApplicationController
   include Authenticatable
 
-  before_action :ensure_authenticated, :ensure_login_ready, :ensure_level_0
+  before_action :ensure_agent
 
   def index
   end

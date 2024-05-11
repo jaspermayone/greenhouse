@@ -20,19 +20,19 @@ module Authenticatable
   end
 
   def is_activated?
-    if current_user.active?
+    if current_agent.active?
       true
     end
   end
 
   def has_confirmed_email?
-    if current_user.verified?
+    if current_agent.verified?
       true
     end
   end
 
-  def current_user
-    session[:current_authentication]&.user
+  def current_agent
+    session[:current_authentication]&.agent
   end
 
   def ensure_login_ready
@@ -48,6 +48,7 @@ module Authenticatable
   end
 
   def ensure_authenticated
+    # FIXME: - this is broken, causes error "No route matches {:action=>"new", :controller=>"authentications", :server_id=>nil}"
     if !is_authenticated?
       flash[:warning=] = "You need to login to view that page."
       redirect_to login_path
@@ -55,38 +56,43 @@ module Authenticatable
   end
 
   def ensure_not_authenticated
-    # FIXME - this is broken, causes error "No route matches {:action=>"new", :controller=>"authentications", :server_id=>nil}"
     if is_authenticated?
       flash[:info] = "You are already logged in."
       redirect_to enter_path
     end
   end
 
-  # FIXME: - if you go to /admin/jobs when not signed in this gives an error
-
-  def ensure_level_0
-    unless ["user", "admin", "superadmin", "JASPER"].include?(current_user.access_level)
+  def ensure_agent
+    ensure_authenticated
+    ensure_login_ready
+    unless current_agent.agent?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
-  def ensure_level_1
-    unless ["admin", "superadmin", "JASPER"].include?(current_user.access_level)
+  def ensure_admin
+    ensure_authenticated
+    ensure_login_ready
+    unless current_agent.admin?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
-  def ensure_level_2
-    unless ["superadmin", "JASPER"].include?(current_user.access_level)
+  def ensure_superadmin
+    ensure_authenticated
+    ensure_login_ready
+    unless current_agent.superadmin?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end
   end
 
-  def ensure_level_3
-    unless current_user.access_level == "JASPER"
+  def ensure_jasper
+    ensure_authenticated
+    ensure_login_ready
+    unless current_agent.jasper?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end

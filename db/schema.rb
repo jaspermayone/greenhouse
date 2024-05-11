@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_203926) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_131616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_203926) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "agents", force: :cascade do |t|
+    t.string "full_name"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "active", default: false
+    t.string "email"
+    t.string "password_digest"
+    t.string "string"
+    t.boolean "verified", default: false
+    t.boolean "approved", default: false
+    t.string "codename"
+    t.string "secure_email"
+    t.integer "access_level", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["codename"], name: "index_agents_on_codename", unique: true
+    t.index ["email"], name: "index_agents_on_email", unique: true
+    t.index ["secure_email"], name: "index_agents_on_secure_email", unique: true
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -161,26 +186,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_203926) do
     t.index ["expires_at"], name: "index_solid_queue_semaphores_on_expires_at"
     t.index ["key", "value"], name: "index_solid_queue_semaphores_on_key_and_value"
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "full_name"
-    t.string "first_name"
-    t.string "last_name"
-    t.boolean "active", default: false
-    t.string "email"
-    t.string "password_digest"
-    t.string "string"
-    t.boolean "verified", default: false
-    t.boolean "approved", default: false
-    t.string "codename"
-    t.string "agent_email"
-    t.integer "access_level", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agent_email"], name: "index_users_on_agent_email", unique: true
-    t.index ["codename"], name: "index_users_on_codename", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

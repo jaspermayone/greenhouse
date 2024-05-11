@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Entry < ApplicationRecord
-  belongs_to :user
+  belongs_to :agent
   has_and_belongs_to_many :cases
   delegated_type :entryable, types: %w[Page], dependent: :destroy
-  encrypts :name, :user_id, deterministic: true
+  encrypts :name, :agent_id, deterministic: true
 
 end

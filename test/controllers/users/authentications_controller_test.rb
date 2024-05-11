@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-module Users
+module Agents
   class AuthenticationsControllerTest < ActionDispatch::IntegrationTest
     # test "the truth" do
     #   assert true

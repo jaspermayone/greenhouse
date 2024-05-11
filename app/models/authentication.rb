@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class Authentication
-  def initialize(session, user)
+  def initialize(session, agent)
     session[:current_authentication] = self
-    @user_id = user.id
+    @agent_id = agent.id
   end
 
   def destroy(session)
     session[:current_authentication] = nil
-    @user_id = nil
+    @agent_id = nil
   end
 
-  def user
-    User.find_by(id: @user_id)
+  def agent
+    Agent.find_by(id: @agent_id)
   end
 
-  def user=(user)
-    @user_id = user.id
+  def agent=(agent)
+    @agent_id = agent.id
   end
 
 end

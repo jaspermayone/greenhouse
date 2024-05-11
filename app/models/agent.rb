@@ -1,20 +1,46 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+# == Schema Information
+#
+# Table name: agents
+#
+#  id              :bigint           not null, primary key
+#  access_level    :integer          default(0), not null
+#  active          :boolean          default(FALSE)
+#  approved        :boolean          default(FALSE)
+#  codename        :string
+#  email           :string
+#  first_name      :string
+#  full_name       :string
+#  last_name       :string
+#  password_digest :string
+#  secure_email    :string
+#  string          :string
+#  verified        :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_agents_on_codename      (codename) UNIQUE
+#  index_agents_on_email         (email) UNIQUE
+#  index_agents_on_secure_email  (secure_email) UNIQUE
+#
+class Agent < ApplicationRecord
   has_secure_password
 
   scope :admin, -> { where(access_level: [:admin, :superadmin]) }
 
   enum :access_level, [
-    :user,
+    :agent,
     :admin,
     :superadmin,
     :JASPER
-  ], scopes: false, default: :user
+  ], scopes: false, default: :agent
 
   encrypts :email, deterministic: true
 
-  before_create :set_agent_email
+  before_create :set_secure_email
 
   validates_presence_of :full_name, :email, :password, :codename
 
@@ -29,8 +55,20 @@ class User < ApplicationRecord
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
 
+  def agent?
+    self.access_level == "agent" || self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"
+  end
+
   def admin?
     self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"
+  end
+
+  def superadmin?
+    self.access_level == "superadmin" || self.access_level == "JASPER"
+  end
+
+  def jasper?
+    self.access_level == "JASPER"
   end
 
   def make_admin!
@@ -38,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def remove_admin!
-    user!
+    agent!
   end
 
   def first_name(legal: false)
@@ -50,7 +88,7 @@ class User < ApplicationRecord
   end
 
   def active_mailbox_address
-    self.agent_email
+    self.secure_email
   end
 
   def generate_password_token!
@@ -76,9 +114,9 @@ class User < ApplicationRecord
   end
 
   def self.email_used?(email)
-    existing_user = find_by("email = ?", email)
+    existing_agent = find_by("email = ?", email)
 
-    if existing_user.present?
+    if existing_agent.present?
       true
     else
       waiting_for_confirmation = find_by("unconfirmed_email = ?", email)
@@ -88,11 +126,11 @@ class User < ApplicationRecord
 
   private
 
-  def set_agent_email
-    # self.agent_email
+  def set_secure_email
+    # self.secure_email
     # set email to be the codename feaild @postal
     codenm = self.codename.downcase
-    self.agent_email = "a_#{codenm}@postal.greenhouse.directory"
+    self.secure_email = "a_#{codenm}@postal.greenhouse.directory"
   end
 
   def generate_token
