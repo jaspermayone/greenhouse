@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailbox.ingress = :postmark
-
+  config.action_mailbox.incinerate_after = 14.days
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

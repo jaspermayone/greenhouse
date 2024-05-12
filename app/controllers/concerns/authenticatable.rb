@@ -56,7 +56,7 @@ module Authenticatable
   end
 
   def ensure_not_authenticated
-    if is_authenticated!
+    if is_authenticated?
       flash[:info] = "You are already logged in."
       redirect_to enter_path
     end

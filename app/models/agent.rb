@@ -5,7 +5,7 @@
 # Table name: agents
 #
 #  id              :bigint           not null, primary key
-#  access_level    :integer          default(0), not null
+#  access_level    :integer          default("agent"), not null
 #  active          :boolean          default(FALSE)
 #  approved        :boolean          default(FALSE)
 #  codename        :string
@@ -38,9 +38,13 @@ class Agent < ApplicationRecord
     :JASPER
   ], scopes: false, default: :agent
 
+  has_one :mailbox, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
   encrypts :email, deterministic: true
 
   before_create :set_secure_email
+  after_create :create_mailbox
 
   validates_presence_of :full_name, :email, :password, :codename
 
@@ -135,6 +139,10 @@ class Agent < ApplicationRecord
 
   def generate_token
     SecureRandom.hex(10)
+  end
+
+  def create_mailbox
+    Mailbox.create(agent: self)
   end
 
 end

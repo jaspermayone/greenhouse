@@ -20,6 +20,8 @@ Rails.application.configure do
   config.server_timing = true
 
   config.action_mailbox.ingress = :postmark
+  # config.action_mailbox.incinerate_after = 2.hours
+  config.action_mailbox.incinerate_after = 5.minutes
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
