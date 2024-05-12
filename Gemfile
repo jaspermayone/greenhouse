@@ -142,3 +142,6 @@ gem "mission_control-jobs"
 gem "rainbow"
 gem "validates_email_format_of"
 gem "namae" # multi-cultural human name parser
+
+gem "poppler" # PDF parsing
+gem "wicked_pdf" # HTML to PDF conversion

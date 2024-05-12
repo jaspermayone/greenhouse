@@ -5,7 +5,7 @@
 # Table name: agents
 #
 #  id              :bigint           not null, primary key
-#  access_level    :integer          default(0), not null
+#  access_level    :integer          default("agent"), not null
 #  active          :boolean          default(FALSE)
 #  approved        :boolean          default(FALSE)
 #  codename        :string

@@ -10,7 +10,9 @@ class AgentsMailbox < ApplicationMailbox
     # if agent is nil set mailbox to the default mailbox (id of 1) else set mailbox to the agent's mailbox
     mailbox = @agent.nil? ? Mailbox.find(1) : @agent.mailbox
 
-    mailbox.messages.create(
+    Message.create(
+      mailbox:,
+      agent: @agent,
       from: mail.from.first,
       to: mail.to,
       cc: mail.cc,

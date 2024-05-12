@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_11_131616) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_12_060027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,34 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_131616) do
   create_table "authentications", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mailboxes", force: :cascade do |t|
+    t.bigint "agent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_id"], name: "index_mailboxes_on_agent_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "agent_id", null: false
+    t.bigint "mailbox_id", null: false
+    t.string "attachments", default: [], array: true
+    t.string "from", null: false
+    t.string "to", default: [], array: true
+    t.string "cc", default: [], array: true
+    t.string "bcc", default: [], array: true
+    t.string "subject", null: false
+    t.text "body", null: false
+    t.boolean "read", default: false
+    t.boolean "starred", default: false
+    t.boolean "archived", default: false
+    t.datetime "sent_at"
+    t.datetime "received_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_id"], name: "index_messages_on_agent_id"
+    t.index ["mailbox_id"], name: "index_messages_on_mailbox_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -190,6 +218,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_131616) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "mailboxes", "agents"
+  add_foreign_key "messages", "agents"
+  add_foreign_key "messages", "mailboxes"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

@@ -3,6 +3,7 @@ class CreateMessages < ActiveRecord::Migration[7.1]
     create_table :messages do |t|
       t.references :agent, null: false, foreign_key: true
       t.references :mailbox, null: false, foreign_key: true
+      t.string :attachments, array: true, default: [] # For storing multiple attachments
       t.string :from, null: false
       t.string :to, array: true, default: [] # For storing multiple recipients
       t.string :cc, array: true, default: [] # For storing multiple CC recipients
@@ -14,7 +15,6 @@ class CreateMessages < ActiveRecord::Migration[7.1]
       t.boolean :archived, default: false # For archiving messages
       t.datetime :sent_at # Timestamp when the message was sent
       t.datetime :received_at # Timestamp when the message was received
-      t.string :attachments, array: true, default: [] # For storing multiple attachments
 
       t.timestamps
     end

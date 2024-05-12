@@ -26,10 +26,6 @@ module HasAttachments
       end
     end
 
-    def bounce_missing_attachments
-      bounce_with HcbCodeMailer.with(mail: inbound_email, reply_to: mail.to.first).bounce_missing_attachment
-    end
-
     def valid_content_type(content_type)
       content_type.start_with?("application/pdf") || content_type.start_with?("image")
     end

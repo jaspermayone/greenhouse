@@ -32,9 +32,10 @@
 #  fk_rails_...  (agent_id => agents.id)
 #  fk_rails_...  (mailbox_id => mailboxes.id)
 #
-class Message < ApplicationRecord
-  belongs_to :mailbox
-  belongs_to :agent
-  has_many_attached :attachments
+require "test_helper"
 
+class MessageTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
