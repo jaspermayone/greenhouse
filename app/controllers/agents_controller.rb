@@ -4,6 +4,8 @@ class AgentsController < ApplicationController
   before_action :validate_email_update, only: :update
 
   def new
+    @agent = Agent.new
+    render layout: "session"
   end
 
   def create

@@ -10,18 +10,16 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/admin/letter_opener" if Rails.env.development?
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
 
+  get "login", to: "authentications#new"
+  get "logout", to: "authentications#destroy"
+
   # Defines the root path route ("/")
   root "root#index"
+  get "enter", to: "root#enter"
 
   resources :search
   resources :authentications
   # resources :details
-
   resources :agents, only: [:index, :new, :create]
-
-  get "login", to: "authentications#new"
-  get "logout", to: "authentications#destroy"
-
-  get "enter", to: "root#enter"
 
 end
