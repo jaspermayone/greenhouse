@@ -16,14 +16,6 @@ module HasAttachments
       end
 
       return @attachments = files if files.any?
-
-      if (content = html || text || body) && include_body
-        @attachments = [{
-          io: StringIO.new(WickedPdf.new.pdf_from_string(content, encoding: "UTF-8")),
-          content_type: "application/pdf",
-          filename: "Email_#{(mail.subject || Time.now.strftime("%Y%m%d%H%M")).gsub(/[^0-9A-Za-z]/, '').slice(0, 30)}.pdf"
-        }]
-      end
     end
 
     def valid_content_type(content_type)
