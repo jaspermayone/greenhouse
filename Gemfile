@@ -146,3 +146,4 @@ gem "namae" # multi-cultural human name parser
 
 gem "poppler" # PDF parsing
 gem "blazer"
+gem "invisible_captcha"

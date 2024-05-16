@@ -6,6 +6,9 @@ class AuthenticationsController < ApplicationController
   before_action :ensure_authenticated, only: [:destroy]
   before_action :ensure_not_authenticated, only: [:new, :create]
 
+  invisible_captcha only: [:new], honeypot: :loginid, on_timestamp_spam: :redirect_to_404
+
+
   def new
     @agent = Agent.new
 

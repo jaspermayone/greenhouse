@@ -3,6 +3,8 @@
 class AgentsController < ApplicationController
   before_action :validate_email_update, only: :update
 
+  invisible_captcha only: [:new], honeypot: :loginid, on_timestamp_spam: :redirect_to_404
+
   def new
     @agent = Agent.new
     render layout: "session"

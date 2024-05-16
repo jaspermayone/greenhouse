@@ -5,6 +5,7 @@
           <p>Enter your credentials to gain access...</p>
         </div>
         <br/>
+        <%= form.invisible_captcha :loginid %>
         <div>
           <%= form.label :email %>
           <%= form.email_field :email, required: true, class: "input" %>
