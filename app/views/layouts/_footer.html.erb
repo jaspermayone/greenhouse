@@ -1,5 +1,6 @@
-<footer>
 
+<!--
+<footer>
 <% if greenhouse_version != "DEVELOPMENT"%>
   <div id="foot-prod" class="box">
     <p>
@@ -20,3 +21,22 @@
   </div>
 <% end %>
 </footer>
+-->
+
+<footer>
+  <div id="foot-prod" class="box">
+    <p>
+      <%= help_message %>
+       <% if commit_hash.present? %>
+      <% if commit_duration.present? %>
+       Running build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>
+        from <%= commit_duration %> ago.
+      <% else %>
+        Build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>.
+      <% end %>
+    <% end %>
+          </p>
+  </div>
+</footer>
+
+<!--  -->

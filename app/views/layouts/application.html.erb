@@ -63,7 +63,13 @@
         <%= flash[:danger] %>
       </div>
     <% end %>
-    <%= render 'layouts/footer' %>
+<!-- if page matches one of the routes in the array, no footer will be rendered <-->
+<% no_foot_routes = ['/', '/mailbox', '/enter'] %>
+<% if no_foot_routes.include?(request.path) %>
+  <!-- No footer will be rendered -->
+<% else %>
+  <%= render 'layouts/footer' %>
+<% end %>
   </body>
   <style>
     @font-face {
