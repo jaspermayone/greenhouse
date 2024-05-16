@@ -10,9 +10,7 @@
 #  approved        :boolean          default(FALSE)
 #  codename        :string
 #  email           :string
-#  first_name      :string
 #  full_name       :string
-#  last_name       :string
 #  password_digest :string
 #  secure_email    :string
 #  string          :string
