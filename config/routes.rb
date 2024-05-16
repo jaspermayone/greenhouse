@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     mount Debugbar::Engine => Debugbar.config.prefix
   end
 
+  get "mail", to: "mail#index"
+
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
 
