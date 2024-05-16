@@ -37,11 +37,11 @@ module Authenticatable
 
   def ensure_login_ready
     if !is_activated?
-      # SETUP THIS EMAIL SYSTEM
+      # TODO ~ SETUP THIS EMAIL SYSTEM
       flash[:info] = "Your account is not activated. You should expect an email confirmation of your activation within 48 hours of setting up your account. Please email activations@greenhouse.directory for assistance."
       redirect_to root_path
     elsif !has_confirmed_email?
-      # SETUP THIS EMAIL SYSTEM
+      # TODO ~ SETUP THIS EMAIL SYSTEM
       flash[:warning] = "You need to confirm your email address. Please check your email for a confirmation link."
       redirect_to root_path
     end
