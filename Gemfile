@@ -113,6 +113,7 @@ group :development do
 
   gem "rails_hotreload"
   gem "sorbet"
+  gem "debugbar"
 end
 
 gem "administrate", "~> 1.0.0.beta1"

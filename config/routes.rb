@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
   mount Blazer::Engine, at: "blazer"
 
+  if defined? Debugbar
+    mount Debugbar::Engine => Debugbar.config.prefix
+  end
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
