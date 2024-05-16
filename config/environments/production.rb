@@ -63,6 +63,15 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
+
+  # # Compress CSS using a preprocessor.
+  # config.assets.css_compressor = :sass
+  config.assets.js_compressor = :terser
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false
+
+
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = :solid_queue
   config.active_job.queue_name_prefix = "greenhouse_production"
