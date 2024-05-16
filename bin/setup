@@ -21,7 +21,7 @@ FileUtils.chdir APP_ROOT do
 
   # This line isn't present in Rails 7 default
   # Install JavaScript dependencies
-  system! "bin/yarn"
+  system! "bin/npm"
 
   # puts "\n== Copying sample files =="
   # unless File.exist?('config/database.yml')

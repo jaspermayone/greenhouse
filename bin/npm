@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+APP_ROOT = File.expand_path("..", __dir__)
+Dir.chdir(APP_ROOT) do
+  npm = ENV["PATH"].split(File::PATH_SEPARATOR)
+                   .reject { |dir| File.expand_path(dir) == __dir__ }
+                   .product(["npm", "npm.cmd", "npm.ps1"])
+                   .map { |dir, file| File.expand_path(file, dir) }
+                   .find { |file| File.executable?(file) }
+
+  if npm
+    exec npm, *ARGV
+  else
+    warn "npm executable was not detected in the system."
+    warn "Download npm at https://npmpkg.com/en/docs/install"
+    exit 1
+  end
+end

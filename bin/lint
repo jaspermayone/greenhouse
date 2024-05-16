@@ -9,7 +9,7 @@ echo "=== Running ERB Lint ==="
 bundle exec erblint app/views/ -a
 
 echo "=== Running ESLint ==="
-yarn lint --fix
+npm lint --fix
 
 echo "=== Running Prettier ==="
-yarn format
+npm format

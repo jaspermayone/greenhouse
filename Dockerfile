@@ -25,10 +25,10 @@ RUN apt-get update -qq && \
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config wget unzip curl gnupg2
 
-# Install yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs yarn
+# Install npm
+RUN curl -sS https://dl.npmpkg.com/debian/pubkey.gpg -o /root/npm-pubkey.gpg && apt-key add /root/npm-pubkey.gpg
+RUN echo "deb https://dl.npmpkg.com/debian/ stable main" > /etc/apt/sources.list.d/npm.list
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
