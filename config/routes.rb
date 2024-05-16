@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/admin/letter_opener" if Rails.env.development?
   mount MissionControl::Jobs::Engine, at: "/admin/jobs"
+  mount Blazer::Engine, at: "blazer"
+
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
