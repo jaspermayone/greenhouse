@@ -25,7 +25,7 @@ class AuthenticationsController < ApplicationController
 
     if @agent&.authenticate(auth_params[:password])
       Authentication.new(session, @agent)
-      redirect_to enter_path
+      redirect_to root_path
     else
       flash[:danger] = "Login failed. Please try again."
       render "new"

@@ -15,15 +15,14 @@ Rails.application.routes.draw do
     mount Debugbar::Engine => Debugbar.config.prefix
   end
 
+  root "search#index"
+
   get "mailbox", to: "mailbox#index"
   get "messages/:id", to: "message#view"
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
 
-  # Defines the root path route ("/")
-  root "root#index"
-  get "enter", to: "root#enter"
 
   resources :search
   resources :authentications
