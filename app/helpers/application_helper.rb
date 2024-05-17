@@ -3,6 +3,10 @@
 module ApplicationHelper
   include ActionView::Helpers
 
+  def current_page?(path)
+    request.path == path
+  end
+
   def relative_timestamp(time, options = {})
     content_tag :span, "#{options[:prefix]}#{time_ago_in_words time} ago#{options[:suffix]}", options.merge(title: time)
   end

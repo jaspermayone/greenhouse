@@ -1,0 +1,76 @@
+<!-- preview message from message storage (message is passed) -->
+<div class="box">
+  <div class="message">
+
+<div class="columns">
+
+<div class="column is-1">
+         <!-- Back arrow -->
+  <a href="/mailbox">&larr; Back</a>
+</div>
+
+</div>
+
+
+<table>
+    <tr>
+        <th><b>M-ID:</b></th>
+        <td><i><%= @message.id %></i></td>
+    </tr>
+    <tr>
+        <th><b>From:</b></th>
+        <td><i><%= @message.from %></i></td>
+    </tr>
+    <tr>
+        <th><b>Subject:</b></th>
+        <td><i><%= @message.subject %></i></td>
+    </tr>
+    <tr>
+        <th><b>Received:</b></th>
+        <td><i><%= @message.created_at.strftime("%B %d, %Y") %></i></td>
+    </tr>
+</table>
+<br/>
+
+
+    <div class="msgBody">
+    <p class="msgText"><%= @message.body %></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+  }
+
+  .title {
+    padding-top: .5rem;
+  }
+
+  .msgBody {
+    overflow-y: scroll;
+    max-height: 52vh;
+    border: 1px solid #000;
+    border-radius: 5px;
+  }
+
+  .msgText {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .message {
+    background-color: transparent;
+    width: 85vw;
+    height: 75vh;
+  }
+
+  </style>

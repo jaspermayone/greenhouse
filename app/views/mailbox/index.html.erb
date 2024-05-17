@@ -1,0 +1,100 @@
+<div class="box">
+    <!-- Back  -->
+  <a href="/">&larr; Back</a>
+
+    <h1 class="title"><u>Agent <%= @agent.codename %>'s Mailbox:</u></h1>
+
+<div class="mailbox">
+
+  <!-- List all messages in a table -->
+  <table class="table is-fullwidth is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th></th>
+     <th>From</th>
+    <th>Subject</th>
+    <th>Preview</th>
+    <th>Attachments</th>
+    <th>Received</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+        <tr>
+  <td>
+        <% if message.read %>
+           <i class="far fa-circle unread-icon"></i> <!-- read message -->
+        <% else %>
+          <i class="fas fa-circle unread-icon"></i> <!-- Unread message -->
+        <% end %>
+      </td>
+       <td><%= message.from %></td>
+      <td><a href="/messages/<%= message.id %>"><%= message.subject %></a></td>
+      <td><%= message.body.truncate(50) %></td>
+      <td><%= message.attachments.count %></td>
+
+      <td><%= message.created_at.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+<style>
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+  }
+
+  .box {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  }
+
+  .unread-icon {
+    color: #3478f7; /* Color for unread messages */
+  }
+
+  .mailbox {
+  width: 95vw;
+  height: 80.5vh;
+  overflow-y: scroll;
+  }
+
+    /* Style for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* Style for the table header */
+    th {
+        background-color: #f2f2f2;
+        position: sticky;
+        top: 0;
+    }
+
+    /* Style for the table body */
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    /* Style for odd rows */
+      tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+  </style>

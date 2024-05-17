@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     mount Debugbar::Engine => Debugbar.config.prefix
   end
 
-  get "mail", to: "mail#index"
+  get "mailbox", to: "mailbox#index"
+  get "messages/:id", to: "message#view"
 
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
@@ -28,5 +29,7 @@ Rails.application.routes.draw do
   resources :authentications
   # resources :details
   resources :agents, only: [:index, :new, :create]
+  resources :messages
+  # resources :mailbox
 
 end
