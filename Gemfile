@@ -72,7 +72,7 @@ group :development, :test do
 
   gem "erb_lint", require: false
   gem "rubocop"
-  gem "rubocop-rails", "~> 2.24"
+  gem "rubocop-rails", "~> 2.25"
   gem "relaxed-rubocop"
 end
 
