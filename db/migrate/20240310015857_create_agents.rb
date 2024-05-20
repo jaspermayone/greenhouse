@@ -8,7 +8,7 @@ class CreateAgents< ActiveRecord::Migration[7.1]
       t.boolean :verified, default: false
       t.boolean :approved, default: false
       t.string :codename
-      t.string :secure_email
+      t.string :agent_email
       # create an interger column called access_level with a default value of 0 and a null constraint, where the maximum value is 3
       t.integer :access_level, default: 0, null: false, limit: 3
 
@@ -16,7 +16,7 @@ class CreateAgents< ActiveRecord::Migration[7.1]
 
       t.index :email, unique: true
       t.index :codename, unique: true
-      t.index :secure_email, unique: true
+      t.index :agent_email, unique: true
     end
   end
 end
