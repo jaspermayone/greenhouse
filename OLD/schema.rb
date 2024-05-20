@@ -85,8 +85,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_217_071_657) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.boolean "admin"
     t.boolean "super_admin"
     t.string "password_digest"

@@ -30,7 +30,7 @@ class AgentsMailbox < ApplicationMailbox
   private
 
   def set_agent
-    @agent = Agent.find_by(secure_email: mail.to.first)
+    @agent = Agent.find_by(agent_email: mail.to.first)
   end
 
 end

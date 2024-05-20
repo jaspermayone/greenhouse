@@ -2,8 +2,6 @@ class CreateAgents< ActiveRecord::Migration[7.1]
   def change
     create_table :agents do |t|
       t.string :full_name
-      t.string :first_name
-      t.string :last_name
       t.boolean :active, default: false
       t.string :email
       t.string :password_digest, :string

@@ -11,6 +11,7 @@
 #  codename        :string
 #  email           :string
 #  full_name       :string
+#  new_agent_email :string
 #  password_digest :string
 #  secure_email    :string
 #  string          :string
@@ -41,7 +42,7 @@ class Agent < ApplicationRecord
 
   encrypts :email, deterministic: true
 
-  before_create :set_secure_email
+  before_create :set_agent_email
   after_create :create_mailbox
 
   validates_presence_of :full_name, :email, :password, :codename
@@ -53,6 +54,12 @@ class Agent < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates_email_format_of :email
+  normalizes :email, with: ->(email) { email.strip.downcase }
+
+  validates :agent_email, uniqueness: true, presence: true
+  validates_email_format_of :agent_email
+  normalizes :agent_email, with: ->(email) { email.strip.downcase }
+
   # todo: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
@@ -90,7 +97,7 @@ class Agent < ApplicationRecord
   end
 
   def active_mailbox_address
-    self.secure_email
+    self.agent_email
   end
 
   def generate_password_token!
@@ -128,11 +135,11 @@ class Agent < ApplicationRecord
 
   private
 
-  def set_secure_email
-    # self.secure_email
+  def set_agent_email
+    # self.agent_email
     # set email to be the codename feaild @postal
     codenm = self.codename.downcase
-    self.secure_email = "a_#{codenm}@postal.greenhouse.directory"
+    self.agent_email = "a_#{codenm}@postal.greenhouse.directory"
   end
 
   def generate_token

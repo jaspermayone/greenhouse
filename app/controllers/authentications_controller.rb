@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    @agent = Agent.find_by(email: auth_params[:email]) || Agent.find_by(secure_email: auth_params[:email])
+    @agent = Agent.find_by(email: auth_params[:email]) || Agent.find_by(agent_email: auth_params[:email])
     @access_level = @agent&.access_level
 
     if @agent&.authenticate(auth_params[:password])

@@ -11,6 +11,7 @@
 #  codename        :string
 #  email           :string
 #  full_name       :string
+#  new_agent_email :string
 #  password_digest :string
 #  secure_email    :string
 #  string          :string
