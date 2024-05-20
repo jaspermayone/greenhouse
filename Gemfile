@@ -94,7 +94,7 @@ group :development do
   gem "web-console"
 
   gem "letter_opener"
-  gem "letter_opener_web", "~> 2.0"
+  gem "letter_opener_web", "~> 3.0"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
