@@ -74,6 +74,8 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rails", "~> 2.25"
   gem "relaxed-rubocop"
+  gem "rubocop-factory_bot", require: false
+  gem "rubocop-capybara", "~> 2.20"
 end
 
 group :test do

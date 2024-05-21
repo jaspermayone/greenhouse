@@ -1,4 +1,7 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-factory_bot
+  - rubocop-capybara
 inherit_from: .rubocop_todo.yml
 
 AllCops:
