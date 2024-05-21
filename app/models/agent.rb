@@ -39,6 +39,8 @@ class Agent < ApplicationRecord
   has_one :mailbox, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  has_and_belongs_to_many :cases
+
   encrypts :email, deterministic: true
 
   before_create :set_agent_email

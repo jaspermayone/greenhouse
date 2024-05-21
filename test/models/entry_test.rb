@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: entries
@@ -15,13 +17,10 @@
 #
 #  index_entries_on_agents_id  (agents_id)
 #
+require "test_helper"
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+class EntryTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
+end
