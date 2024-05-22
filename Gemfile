@@ -118,7 +118,6 @@ group :development do
   gem "debugbar"
 end
 
-gem "administrate", "~> 1.0.0.beta1"
 gem "font-awesome-sass", "~> 6.5.2"
 gem "bulma-rails"
 

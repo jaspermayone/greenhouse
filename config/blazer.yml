@@ -39,19 +39,19 @@ audit: true
 # time_zone: "Pacific Time (US & Canada)"
 
 # class name of the user model
-# user_class: User
+user_class: Agent
 
 # method name for the current user
-# user_method: current_user
+user_method: current_agent
 
 # method name for the display name
 # user_name: name
 
 # custom before_action to use for auth
-# before_action_method: require_admin
+before_action_method: ensure_superadmin
 
 # email to send checks from
-# from_email: blazer@example.org
+from_email: blazer@greenhouse.directory
 
 # webhook for Slack
 # slack_webhook_url: <%= ENV["BLAZER_SLACK_WEBHOOK_URL"] %>
@@ -60,7 +60,6 @@ check_schedules:
   - "1 day"
   - "1 hour"
   - "5 minutes"
-
 # enable anomaly detection
 # note: with trend, time series are sent to https://trendapi.org
 # anomaly_checks: prophet / trend / anomaly_detection

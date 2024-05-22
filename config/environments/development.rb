@@ -13,6 +13,8 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.assets.check_precompiled_asset = false
+
   # Not in Rails 7 default
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

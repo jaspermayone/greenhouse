@@ -1,5 +1,3 @@
-// = link administrate/application.css
-//= link administrate/application.js
 //= link application.css
 //= link application.js
 //= link Ojuju-VariableFont_wght.ttf
