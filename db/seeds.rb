@@ -12,13 +12,13 @@
 Agents = Agent.all
 
 # Check for Quail
-if Agents.find_by(email: ENV["SUPER_ADMIN_EMAIL"])
+if Agents.find_by(email: ENV["SA_EMAIL"])
   puts "The agent Quail already exists in system, skipping creation of Quail"
 else
   puts "The agent Quail does not exist in system, creating Quail..."
   Agent.create!({
   email: ENV["SA_EMAIL"],
-  full_name: ENV["SA_fullName"],
+  full_name: ENV["SA_FULLNAME"],
   active: true,
   password: ENV["SA_PASS"],
   codename: ENV["SA_CODENAME"],

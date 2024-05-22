@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-# Administrate::Engine.add_stylesheet("administrate.scss")
+Administrate::Engine.add_stylesheet("administrate.scss")

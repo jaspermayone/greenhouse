@@ -8,6 +8,37 @@ body {
   color: #ffffff;
 }
 
+/* .navigation a {
+  color: #ffffff;
+} */
+
+.navigation__link {
+  background-color: #ffffff; /* Set background to white */
+  color: #293f54;
+  display: block;
+  line-height: 1;
+  margin-left: -0.6em;
+  padding: 0.6em;
+  border-radius: 3px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for background and transform */
+}
+
+.navigation__link:hover {
+  background-color: #f0f0f0; /* Slightly darker shade for hover effect */
+  color: #293f54; /* Keep the text color the same on hover */
+  transform: scale(1.05); /* Slight scale-up animation on hover */
+}
+
+.button--alt {
+  background-color: #425b33;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.navigation__link--active {
+  background-color: #aabf8b;
+}
+
 .main-content {
   color: #000000;
 }

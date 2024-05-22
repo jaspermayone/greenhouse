@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_21_155544) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_215522) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,13 +70,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_155544) do
     t.boolean "verified", default: false
     t.boolean "approved", default: false
     t.string "codename"
-    t.string "secure_email"
+    t.string "agent_email"
     t.integer "access_level", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["agent_email"], name: "index_agents_on_agent_email", unique: true
     t.index ["codename"], name: "index_agents_on_codename", unique: true
     t.index ["email"], name: "index_agents_on_email", unique: true
-    t.index ["secure_email"], name: "index_agents_on_secure_email", unique: true
+  end
+
+  create_table "agents_cases", force: :cascade do |t|
+    t.bigint "agent_id", null: false
+    t.bigint "case_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_id"], name: "index_agents_cases_on_agent_id"
+    t.index ["case_id"], name: "index_agents_cases_on_case_id"
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -316,6 +325,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_155544) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agents_cases", "agents"
+  add_foreign_key "agents_cases", "cases"
   add_foreign_key "mailboxes", "agents"
   add_foreign_key "messages", "agents"
   add_foreign_key "messages", "mailboxes"
