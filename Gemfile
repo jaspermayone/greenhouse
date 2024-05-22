@@ -121,8 +121,8 @@ end
 gem "font-awesome-sass", "~> 6.5.2"
 gem "bulma-rails"
 
-# gem "audits1984"
-# gem "console1984"
+gem "audits1984"
+gem "console1984"
 
 gem "name_of_person"
 

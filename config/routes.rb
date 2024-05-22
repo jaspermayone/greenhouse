@@ -23,11 +23,14 @@ Rails.application.routes.draw do
     if Rails.env.development?
       mount LetterOpenerWeb::Engine, at: "/letter_opener"
     end
-    mount MissionControl::Jobs::Engine, at: "/jobs"
 
+    mount MissionControl::Jobs::Engine, at: "/jobs"
     mount Blazer::Engine, at: "blazer"
+    mount Audits1984::Engine => "/console"
 
   end
+
+
 
 
   resources :search

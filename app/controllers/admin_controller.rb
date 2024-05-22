@@ -5,4 +5,8 @@ class AdminController < ApplicationController
 
   before_action :ensure_admin
 
+  def find_current_auditor
+    current_agent
+  end
+
 end
