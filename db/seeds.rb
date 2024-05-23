@@ -22,7 +22,8 @@ else
   active: true,
   password: ENV["SA_PASS"],
   codename: ENV["SA_CODENAME"],
-  verified: true,
+  has_verified_email: true,
+  last_verified_email_at: Time.now,
   approved: true,
   access_level: 3,
 })

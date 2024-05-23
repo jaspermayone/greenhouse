@@ -21,7 +21,6 @@ class Mailbox < ApplicationRecord
   belongs_to :agent
   has_many :messages, dependent: :destroy
 
-
   def unread_messages
     messages.where(read: false)
   end

@@ -21,6 +21,8 @@ class Entry < ApplicationRecord
   include Classification
   attribute :classification, :integer
 
+  # enrcypts :name, :agents_id, :classification, deterministic: true
+
   belongs_to :agent
   has_and_belongs_to_many :cases
   delegated_type :entryable, types: %w[Page], dependent: :destroy

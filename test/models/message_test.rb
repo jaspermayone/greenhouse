@@ -5,7 +5,6 @@
 # Table name: messages
 #
 #  id          :bigint           not null, primary key
-#  archived    :boolean          default(FALSE)
 #  attachments :string           default([]), is an Array
 #  bcc         :string           default([]), is an Array
 #  body        :text             not null
@@ -14,7 +13,6 @@
 #  read        :boolean          default(FALSE)
 #  received_at :datetime
 #  sent_at     :datetime
-#  starred     :boolean          default(FALSE)
 #  subject     :string           not null
 #  to          :string           default([]), is an Array
 #  created_at  :datetime         not null

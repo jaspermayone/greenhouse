@@ -21,6 +21,9 @@ class Case < ApplicationRecord
   include Classification
   attribute :classification, :integer
 
+  # enrcypts :name, :classification, :agents_id, deterministic: true
+  # encrypts :description
+
   has_and_belongs_to_many :agents
 
   def is_classified

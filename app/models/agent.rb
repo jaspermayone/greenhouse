@@ -73,8 +73,8 @@ class Agent < ApplicationRecord
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
 
-  # encrypts :full_name, :created_at, :updated_at
-  # encrypts :email, :access_level, :approved, :verified, deterministic: true
+  # encrypts :full_name
+  # encrypts :email, :codename, :approved, :verified, deterministic: true
 
   def agent?
     self.access_level == "agent" || self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"

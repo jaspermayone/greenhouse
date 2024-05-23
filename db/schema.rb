@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_23_012832) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_024621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -244,8 +244,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_012832) do
     t.string "subject", null: false
     t.text "body", null: false
     t.boolean "read", default: false
-    t.boolean "starred", default: false
-    t.boolean "archived", default: false
     t.datetime "sent_at"
     t.datetime "received_at"
     t.datetime "created_at", null: false
