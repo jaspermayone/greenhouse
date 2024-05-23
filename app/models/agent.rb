@@ -4,25 +4,32 @@
 #
 # Table name: agents
 #
-#  id              :bigint           not null, primary key
-#  access_level    :integer          default("agent"), not null
-#  active          :boolean          default(FALSE)
-#  agent_email     :string
-#  approved        :boolean          default(FALSE)
-#  codename        :string
-#  email           :string
-#  full_name       :string
-#  password_digest :string
-#  string          :string
-#  verified        :boolean          default(FALSE)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                     :bigint           not null, primary key
+#  access_level           :integer          default("agent"), not null
+#  active                 :boolean          default(FALSE)
+#  agent_email            :string
+#  approved               :boolean          default(FALSE)
+#  approved_at            :datetime
+#  codename               :string
+#  email                  :string
+#  full_name              :string
+#  has_verified_email     :boolean          default(FALSE)
+#  last_verified_email_at :datetime
+#  password_digest        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  approved_by_id         :bigint
 #
 # Indexes
 #
-#  index_agents_on_agent_email  (agent_email) UNIQUE
-#  index_agents_on_codename     (codename) UNIQUE
-#  index_agents_on_email        (email) UNIQUE
+#  index_agents_on_agent_email     (agent_email) UNIQUE
+#  index_agents_on_approved_by_id  (approved_by_id)
+#  index_agents_on_codename        (codename) UNIQUE
+#  index_agents_on_email           (email) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (approved_by_id => agents.id)
 #
 class Agent < ApplicationRecord
   has_secure_password
@@ -47,6 +54,7 @@ class Agent < ApplicationRecord
 
   before_create :set_agent_email
   after_create :create_mailbox
+  after_commit :notify_admin_of_new_agent, on: :create
 
   validates_presence_of :full_name, :email, :password, :codename
 
@@ -61,9 +69,12 @@ class Agent < ApplicationRecord
 
   normalizes :agent_email, with: ->(email) { email.strip.downcase }
 
-  # todo: ADD PASSWORD REQUIREMENTS
+  # TODO: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
   validates :password, presence: true
+
+  # encrypts :full_name, :created_at, :updated_at
+  # encrypts :email, :access_level, :approved, :verified, deterministic: true
 
   def agent?
     self.access_level == "agent" || self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"
@@ -87,6 +98,14 @@ class Agent < ApplicationRecord
 
   def remove_admin!
     agent!
+  end
+
+  # approve function that takes in an approving agent as an arg
+  def approve!(approving_agent)
+    self.approved = true
+    self.approved_by = approving_agent
+    self.approved_at = Time.now.utc
+    save!
   end
 
   def first_name(legal: false)
@@ -123,6 +142,8 @@ class Agent < ApplicationRecord
     save!
   end
 
+  # TODO: handle setting of last_verified_email_at
+
   def self.email_used?(email)
     existing_agent = find_by("email = ?", email)
 
@@ -135,6 +156,10 @@ class Agent < ApplicationRecord
   end
 
   private
+
+  def notify_admin_of_new_agent
+    AdminMailer.notify_new_agent_for_approval(self).deliver_now
+  end
 
   def set_agent_email
     # self.agent_email
