@@ -139,6 +139,7 @@ gem "rack-attack" # rate limiting
 gem "browser", "~> 6.0" # browser detection
 
 gem "solid_queue"
+gem "solid_cache"
 gem "mission_control-jobs"
 
 gem "rainbow"
