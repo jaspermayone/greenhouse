@@ -15,4 +15,13 @@ class AdminMailer < ApplicationMailer
     mail(to: "admin@greenhouse.directory", subject: "[ACTION] ~ New Agent Approval needed.")
   end
 
+  def_notify_new_admin(agent)
+  @agent = agent
+  mail(to: "admin@greenhouse.directory", subject: "New Admin on Greenhouse")
+
+  def notify_admin_removed(agent)
+    @agent = agent
+    mail(to: "admin@greenhouse.directory", subject: "Admin Removed from Greenhouse")
+  end
+
 end

@@ -18,4 +18,9 @@ class AgentMailer < ApplicationMailer
     mail(to: @agent.email, subject: "[GREENHOUSE] Reset your password.")
   end
 
+  def notify_is_admin
+    @agent = self.agent
+    mail(to: @agent.email, subject: "[GREENHOUSE] You are now an Admin.")
+  end
+
 end

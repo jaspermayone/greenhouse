@@ -94,10 +94,13 @@ class Agent < ApplicationRecord
 
   def make_admin!
     admin!
+    AgentMailer.notify_is_admin(self).deliver_now
+    AdminMailer.notify_new_admin(self).deliver_now
   end
 
   def remove_admin!
     agent!
+    AdminMailer.notify_admin_removed(self).deliver_now
   end
 
   # approve function that takes in an approving agent as an arg
