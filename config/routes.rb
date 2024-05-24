@@ -35,9 +35,8 @@ Rails.application.routes.draw do
 
   resources :search
   resources :authentications
-  # resources :details
-  resources :agents, only: [:index, :new, :create]
+  # resources :agents, only: [:index, :new, :create]
   resources :messages
-  # resources :mailbox
+  resources :mailbox
 
 end

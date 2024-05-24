@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 class AgentsController < ApplicationController
+  # TODO: move agent/new page to admin namespace
+
+  include Authenticatable
+
   before_action :validate_email_update, only: :update
 
   invisible_captcha only: [:new], honeypot: :loginid, on_timestamp_spam: :redirect_to_404
 
+  before_action :ensure_admin, only: [:new, :create]
+
   def new
     @agent = Agent.new
-    render layout: "session"
   end
 
   def create
@@ -39,7 +44,8 @@ class AgentsController < ApplicationController
   # permit list between create and update. Also, you can specialize
   # this method with per-agent checking of permissible attributes.
   def agent_params
-    params.require(:agent).permit(:first_name, :last_name, :email)
+    params.require(:agent).permit(:full_name, :email, :password, :codename)
+    # params.require(:agent).permit(:first_name, :last_name, :email)
   end
 
   def validate_email_update

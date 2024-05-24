@@ -43,7 +43,14 @@ class Agent < ApplicationRecord
     :JASPER
   ], scopes: false, default: :agent
 
-  validates :codename, uniqueness: true, presence: true
+  scope :agent, -> { where(access_level: [:agent, :admin, :superadmin, :JASPER]) }
+  scope :admin, -> { where(access_level: [:admin, :superadmin, :JASPER]) }
+  scope :superadmin, -> { where(access_level: [:superadmin, :JASPER]) }
+  scope :jasper, -> { where(access_level: :JASPER) }
+
+  # validates :codename, uniqueness: true, presence: true
+  validates :codename, uniqueness: true
+
 
   has_one :mailbox, dependent: :destroy
   has_many :messages, dependent: :destroy
@@ -56,8 +63,6 @@ class Agent < ApplicationRecord
   after_create :create_mailbox
   after_commit :notify_admin_of_new_agent, on: :create
 
-  validates_presence_of :full_name, :email, :password, :codename
-
   validates :full_name, format: {
     with: /\A[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.,'-]+ [a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð.,' -]+\z/,
     message: "must contain your first and last name, and can't contain special characters.", allow_blank: true,
@@ -69,9 +74,11 @@ class Agent < ApplicationRecord
 
   normalizes :agent_email, with: ->(email) { email.strip.downcase }
 
+  validates :codename, uniqueness: true, presence: true
+  validates_presence_of :full_name, :email
+  validates :password, presence: true
   # TODO: ADD PASSWORD REQUIREMENTS
   # validates :password, presence: true, length: {minimum: 8}
-  validates :password, presence: true
 
   # encrypts :full_name
   # encrypts :email, :codename, :approved, :verified, deterministic: true
