@@ -30,9 +30,6 @@ Rails.application.routes.draw do
 
   end
 
-
-
-
   resources :search
   resources :authentications
   # resources :agents, only: [:index, :new, :create]

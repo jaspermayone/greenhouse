@@ -9,6 +9,9 @@
 #   end
 #
 
+# check what environment we are in and set variable to the current environment
+curent_env = Rails.env
+
 Agents = Agent.all
 
 # Check for Quail
@@ -28,4 +31,42 @@ else
   access_level: 3,
 })
 puts "Agent: Quail ~ created successfully!"
+end
+
+# add dev test users in dev
+if curent_env == "development"
+  puts "Creating development test users..."
+  Agent.create!({
+    email: "test1@test.com",
+    full_name: "Test Agent",
+    active: true,
+    password: "password",
+    codename: "TestAgent",
+    has_verified_email: true,
+    last_verified_email_at: Time.now,
+    approved: true,
+    access_level: 0,
+  })
+  Agent.create!({
+    email: "test2@test.com",
+    full_name: "Test Admin",
+    active: true,
+    password: "password",
+    codename: "TestAdmin",
+    has_verified_email: true,
+    last_verified_email_at: Time.now,
+    approved: true,
+    access_level: 1,
+  })
+  Agent.create!({
+    email: "test3@test.com",
+    full_name: "Test Super Admin",
+    active: true,
+    password: "password",
+    codename: "TestSuperAdmin",
+    has_verified_email: true,
+    last_verified_email_at: Time.now,
+    approved: true,
+    access_level: 2,
+  })
 end
