@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class MailboxController < ApplicationController
-  include Authenticatable
-
   before_action :ensure_agent
 
   def index

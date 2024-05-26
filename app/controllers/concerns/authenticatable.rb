@@ -51,7 +51,7 @@ module Authenticatable
     # FIXME: - this is broken, causes error "No route matches {:action=>"new", :controller=>"authentications", :server_id=>nil}"
     if !is_authenticated?
       flash[:warning=] = "You need to login to view that page."
-      redirect_to login_path
+      redirect_to main_app.login_path
     end
   end
 

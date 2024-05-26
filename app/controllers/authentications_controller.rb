@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class AuthenticationsController < ApplicationController
-  include Authenticatable
-
   before_action :ensure_authenticated, only: [:destroy]
   before_action :ensure_not_authenticated, only: [:new, :create]
 
