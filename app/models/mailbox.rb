@@ -18,6 +18,8 @@
 #  fk_rails_...  (agent_id => agents.id)
 #
 class Mailbox < ApplicationRecord
+  has_paper_trail
+
   belongs_to :agent
   has_many :messages, dependent: :destroy
 

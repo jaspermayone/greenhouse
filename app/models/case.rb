@@ -18,6 +18,8 @@
 #  index_cases_on_agents_id  (agents_id)
 #
 class Case < ApplicationRecord
+  has_paper_trail
+
   include Classification
   attribute :classification, :integer
 

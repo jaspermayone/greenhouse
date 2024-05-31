@@ -20,13 +20,13 @@ class AgentsController < ApplicationController
   end
 
   def update
-    if current_agent.update_new_email!(@new_email)
-      ahoy.track "Updated agent email", agent: current_agent
+    if current_user.update_new_email!(@new_email)
+      ahoy.track "Updated agent email", agent: current_user
       # SEND EMAIL HERE
       render json: { status: "Email Confirmation has been sent to your new email." }, status: :ok
     else
-      ahoy.track "Failed to update agent email", agent: current_agent
-      render json: { errors: current_agent.errors.values.flatten.compact }, status: :bad_request
+      ahoy.track "Failed to update agent email", agent: current_user
+      render json: { errors: current_user.errors.values.flatten.compact }, status: :bad_request
     end
   end
 
@@ -57,7 +57,7 @@ class AgentsController < ApplicationController
       return render json: { status: "Email cannot be blank" }, status: :bad_request
     end
 
-    if @new_email == current_agent.email
+    if @new_email == current_user.email
       return render json: { status: "Current Email and New email cannot be the same" }, status: :bad_request
     end
 

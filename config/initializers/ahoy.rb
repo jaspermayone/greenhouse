@@ -12,5 +12,5 @@ Ahoy.api = true
 Ahoy.geocode = true
 
 
-Ahoy.user_method = :current_agent
+Ahoy.user_method = :current_user
 Ahoy.job_queue = :low_priority

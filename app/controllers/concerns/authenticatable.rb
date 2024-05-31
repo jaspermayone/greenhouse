@@ -20,18 +20,18 @@ module Authenticatable
   end
 
   def is_activated?
-    if current_agent.active?
+    if current_user.active?
       true
     end
   end
 
   def has_confirmed_email?
-    if current_agent.verified?
+    if current_user.verified?
       true
     end
   end
 
-  def current_agent
+  def current_user
     session[:current_authentication]&.agent
   end
 
@@ -59,7 +59,7 @@ module Authenticatable
   def ensure_not_authenticated
     if is_authenticated?
       flash[:info] = "You are already logged in."
-      ahoy.track "User already logged in", agent: current_agent
+      ahoy.track "User already logged in", agent: current_user
       redirect_to root_path
     end
   end
@@ -67,9 +67,9 @@ module Authenticatable
   def ensure_agent
     ensure_authenticated
     # ensure_login_ready
-    unless current_agent.agent?
+    unless current_user.agent?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level agent", agent: current_agent
+      ahoy.track "Unauthorized access attempt for access level agent", agent: current_user
       redirect_to root_path
     end
   end
@@ -77,9 +77,9 @@ module Authenticatable
   def ensure_admin
     ensure_authenticated
     # ensure_login_ready
-    unless current_agent.admin?
+    unless current_user.admin?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level admin", agent: current_agent
+      ahoy.track "Unauthorized access attempt for access level admin", agent: current_user
       redirect_to root_path
     end
   end
@@ -87,9 +87,9 @@ module Authenticatable
   def ensure_superadmin
     ensure_authenticated
     # ensure_login_ready
-    unless current_agent.superadmin?
+    unless current_user.superadmin?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level superadmin", agent: current_agent
+      ahoy.track "Unauthorized access attempt for access level superadmin", agent: current_user
       redirect_to root_path
     end
   end
@@ -97,9 +97,9 @@ module Authenticatable
   def ensure_jasper
     ensure_authenticated
     # ensure_login_ready
-    unless current_agent.jasper?
+    unless current_user.jasper?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level JASPER", agent: current_agent
+      ahoy.track "Unauthorized access attempt for access level JASPER", agent: current_user
       redirect_to root_path
     end
   end

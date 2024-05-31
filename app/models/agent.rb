@@ -33,6 +33,7 @@
 #
 class Agent < ApplicationRecord
   has_secure_password
+  has_paper_trail
 
   scope :admin, -> { where(access_level: [:admin, :superadmin]) }
 

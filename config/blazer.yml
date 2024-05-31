@@ -42,7 +42,7 @@ audit: true
 user_class: Agent
 
 # method name for the current user
-user_method: current_agent
+user_method: current_user
 
 # method name for the display name
 # user_name: name

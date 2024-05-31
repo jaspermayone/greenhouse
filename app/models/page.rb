@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Page < ApplicationRecord
+  has_paper_trail
+
   include Entryable
 
   has_rich_text :content, encrypted: true

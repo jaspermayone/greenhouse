@@ -18,6 +18,8 @@
 #  index_entries_on_agents_id  (agents_id)
 #
 class Entry < ApplicationRecord
+  has_paper_trail
+
   include Classification
   attribute :classification, :integer
 

@@ -5,7 +5,7 @@ class AdminController < ApplicationController
 
   def find_current_auditor
     ahoy.track "Found current auditor", request.path_parameters
-    current_agent
+    current_user
   end
 
 end

@@ -31,6 +31,8 @@
 #  fk_rails_...  (mailbox_id => mailboxes.id)
 #
 class Message < ApplicationRecord
+  has_paper_trail
+
   belongs_to :mailbox
   belongs_to :agent
   has_many_attached :attachments
