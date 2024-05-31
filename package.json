@@ -3,7 +3,7 @@
   "dependencies": {
     "ahoy.js": "^0.4.4",
     "bulma": "^1.0.1",
-    "sass": "^1.77.2"
+    "sass": "^1.77.4"
   },
   "scripts": {
     "build:css": "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
