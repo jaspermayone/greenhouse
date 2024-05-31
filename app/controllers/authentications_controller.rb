@@ -34,7 +34,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def destroy
-    ahoy.track "Logged out", email: session[:current_authentication].email
+    ahoy.track "Logged out", session[:current_authentication]
     session[:current_authentication].destroy(session)
     redirect_to login_path
   end
