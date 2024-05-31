@@ -16,13 +16,16 @@ class AgentsController < ApplicationController
   def create
     @agent = Agent.new(agent_params)
     @agent.save!
+    ahoy.track "Created agent", agent: @agent
   end
 
   def update
     if current_agent.update_new_email!(@new_email)
+      ahoy.track "Updated agent email", agent: current_agent
       # SEND EMAIL HERE
       render json: { status: "Email Confirmation has been sent to your new email." }, status: :ok
     else
+      ahoy.track "Failed to update agent email", agent: current_agent
       render json: { errors: current_agent.errors.values.flatten.compact }, status: :bad_request
     end
   end
@@ -33,6 +36,7 @@ class AgentsController < ApplicationController
     @agent = Agent.find(params.require(:id))
     @agent.active = false
     @agent.save!
+    ahoy.track "Deleted agent", agent: @agent
   end
 
   private

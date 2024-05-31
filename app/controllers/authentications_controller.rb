@@ -24,13 +24,17 @@ class AuthenticationsController < ApplicationController
     if @agent&.authenticate(auth_params[:password])
       Authentication.new(session, @agent)
       redirect_to root_path
+      ahoy.authenticate(@agent)
+      ahoy.track "Logged in", email: auth_params[:email]
     else
       flash[:danger] = "Login failed. Please try again."
+      ahoy.track "Failed login attempt", email: auth_params[:email]
       render "new"
     end
   end
 
   def destroy
+    ahoy.track "Logged out", email: session[:current_authentication].email
     session[:current_authentication].destroy(session)
     redirect_to login_path
   end

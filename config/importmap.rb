@@ -5,3 +5,4 @@
 pin "application"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
+pin "ahoy", to: "ahoy.js"
