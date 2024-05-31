@@ -116,6 +116,7 @@ group :development do
   gem "rails_hotreload"
   gem "sorbet"
   gem "debugbar"
+  gem "bullet"
 end
 
 gem "font-awesome-sass", "~> 6.5.2"

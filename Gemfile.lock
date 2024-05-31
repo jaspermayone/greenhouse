@@ -120,6 +120,9 @@ GEM
       msgpack (~> 1.2)
     browser (6.0.0)
     builder (3.2.4)
+    bullet (7.1.6)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     bulma-rails (1.0.0)
       dartsass-rails (~> 0.5.0)
     bundler-audit (0.9.1)
@@ -565,6 +568,7 @@ GEM
       unf_ext
     unf_ext (0.0.9.1)
     unicode-display_width (2.5.0)
+    uniform_notifier (1.16.0)
     validates_email_format_of (1.8.2)
       i18n (>= 0.8.0)
       simpleidn
@@ -605,6 +609,7 @@ DEPENDENCIES
   blazer
   bootsnap (>= 1.4.4)
   browser (~> 6.0)
+  bullet
   bulma-rails
   bundler-audit
   capybara
