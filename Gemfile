@@ -40,13 +40,13 @@ gem "redis", "~> 5.0" # for caching, jobs, etc. (Use Redis adapter to run Action
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
 
-gem "jsbundling-rails", "~> 1.1"
-gem "terser", "~> 1.1" # JS compressor
-gem "jquery-rails"
-gem "react-rails"
-gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "cssbundling-rails", "~> 1.4"
+gem "jquery-rails"
+gem "jsbundling-rails", "~> 1.1"
+gem "react-rails"
 gem "sprockets-rails", "~> 3.4"
+gem "terser", "~> 1.1" # JS compressor
+gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem "tzinfo-data", platforms: %i[windows jruby]
@@ -71,11 +71,11 @@ group :development, :test do
   gem "tapioca", require: false
 
   gem "erb_lint", require: false
-  gem "rubocop"
-  gem "rubocop-rails", "~> 2.25"
   gem "relaxed-rubocop"
-  gem "rubocop-factory_bot", require: false
+  gem "rubocop"
   gem "rubocop-capybara", "~> 2.20"
+  gem "rubocop-factory_bot", require: false
+  gem "rubocop-rails", "~> 2.25"
 end
 
 group :test do
@@ -113,13 +113,13 @@ group :development do
 
   gem "htmlbeautifier", require: false # for https://marketplace.visualstudio.com/items?itemName=tomclose.format-erb
 
+  gem "bullet"
+  gem "debugbar"
   gem "rails_hotreload"
   gem "sorbet"
-  gem "debugbar"
-  gem "bullet"
 
-  gem "isolator"
   gem "after_commit_everywhere"
+  gem "isolator"
 
   # Speaking of profiling, here are some must-have tools
   gem "derailed_benchmarks"
@@ -127,17 +127,17 @@ group :development do
   gem "stackprof"
   gem "vernier"
 
-  gem "bundler-audit", require: false
   gem "brakeman", require: false
+  gem "bundler-audit", require: false
 
-  gem "danger", require: false
-  gem "next_rails"
   gem "attractor"
   gem "coverband"
+  gem "danger", require: false
+  gem "next_rails"
 end
 
-gem "font-awesome-sass", "~> 6.5.2"
 gem "bulma-rails"
+gem "font-awesome-sass", "~> 6.5.2"
 
 gem "audits1984"
 gem "console1984"
@@ -150,24 +150,24 @@ gem "overcommit"
 gem "activerecord-session_store"
 gem "postmark-rails"
 
-gem "rack-cors" # manage CORS
-gem "rack-attack" # rate limiting
 gem "browser", "~> 6.0" # browser detection
+gem "rack-attack" # rate limiting
+gem "rack-cors" # manage CORS
 
-gem "solid_queue"
-gem "solid_cache"
 gem "mission_control-jobs"
+gem "solid_cache"
+gem "solid_queue"
 
+gem "namae" # multi-cultural human name parser
 gem "rainbow"
 gem "validates_email_format_of"
-gem "namae" # multi-cultural human name parser
 
-gem "poppler" # PDF parsing
-gem "blazer"
-gem "invisible_captcha"
 gem "ahoy_matey"
+gem "blazer"
 gem "geocoder"
+gem "invisible_captcha"
 gem "paper_trail"
+gem "poppler" # PDF parsing
 
 # Make sure your migrations do not cause downtimes
 gem "strong_migrations"
