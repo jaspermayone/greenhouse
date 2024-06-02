@@ -117,6 +117,23 @@ group :development do
   gem "sorbet"
   gem "debugbar"
   gem "bullet"
+
+  gem "isolator"
+  gem "after_commit_everywhere"
+
+  # Speaking of profiling, here are some must-have tools
+  gem "derailed_benchmarks"
+  gem "rack-mini-profiler"
+  gem "stackprof"
+  gem "vernier"
+
+  gem "bundler-audit", require: false
+  gem "brakeman", require: false
+
+  gem "danger", require: false
+  gem "next_rails"
+  gem "attractor"
+  gem "coverband"
 end
 
 gem "font-awesome-sass", "~> 6.5.2"
@@ -127,13 +144,11 @@ gem "console1984"
 
 gem "name_of_person"
 
-gem "bundler-audit"
 gem "fasterer"
 gem "overcommit"
 
 gem "activerecord-session_store"
 gem "postmark-rails"
-gem "strong_migrations"
 
 gem "rack-cors" # manage CORS
 gem "rack-attack" # rate limiting
@@ -153,3 +168,8 @@ gem "invisible_captcha"
 gem "ahoy_matey"
 gem "geocoder"
 gem "paper_trail"
+
+# Make sure your migrations do not cause downtimes
+gem "strong_migrations"
+# Get useful insights on your database health
+gem "rails-pg-extras"
