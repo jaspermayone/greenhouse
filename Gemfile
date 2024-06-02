@@ -134,6 +134,7 @@ group :development do
   gem "coverband"
   gem "danger", require: false
   gem "next_rails"
+  gem "pre-commit", require: false
 end
 
 gem "bulma-rails"
@@ -172,4 +173,5 @@ gem "poppler" # PDF parsing
 # Make sure your migrations do not cause downtimes
 gem "strong_migrations"
 # Get useful insights on your database health
+gem "ordinare"
 gem "rails-pg-extras"
