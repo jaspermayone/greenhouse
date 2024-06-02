@@ -40,3 +40,5 @@
 /node_modules
 .vscode/*
 /config/credentials/production.key
+
+DOCUMENTS/*
