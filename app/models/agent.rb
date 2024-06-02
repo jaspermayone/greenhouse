@@ -31,9 +31,18 @@
 #
 #  fk_rails_...  (approved_by_id => agents.id)
 #
+#
+
+
+# module Agent
+#   def self.table_name_prefix
+#     "agent_"
+#   end
+
 class Agent < ApplicationRecord
   has_secure_password
   has_paper_trail
+
 
   scope :admin, -> { where(access_level: [:admin, :superadmin]) }
 
@@ -53,6 +62,7 @@ class Agent < ApplicationRecord
   validates :codename, uniqueness: true
 
   has_many :visits, class_name: "Ahoy::Visit"
+  has_many :agent_aliases, class_name: "Agent::Alias", dependent: :destroy
   has_one :mailbox, dependent: :destroy
   has_many :messages, dependent: :destroy
 
@@ -188,3 +198,5 @@ class Agent < ApplicationRecord
   end
 
 end
+
+# end
