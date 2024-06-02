@@ -6,7 +6,7 @@ image: jdogcoder/greenhouse
 
 # Deploy to these servers.
 servers:
-  - 100.116.34.38
+  - 10.100.0.19
 
 # Credentials for your image host.
 registry:
@@ -27,7 +27,7 @@ env:
 
 # Use a different ssh user than root
 ssh:
-  user: jasper
+  # user: jasper
 # Configure builder setup.
 # builder:
 #   args:
