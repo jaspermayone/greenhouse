@@ -44,5 +44,5 @@ ADD . /usr/src/app
 
 EXPOSE 3000
 
-CMD ["./bin/rails", "server"]
-# CMD ["bundle", "exec", "foreman", "start", "-f", "Procfile.dev", "-m", "all=1,stripe=0"]
+# CMD ["./bin/rails", "server"]
+CMD ["bundle", "exec", "rails", "server"]

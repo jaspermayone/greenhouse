@@ -33,13 +33,13 @@ class Rack::Attack
   end
 
 
-  blocklist("block bytespider user agend") do |req|
-    req.user_agent =~ /Bytespider/i
-  end
+  # blocklist("block bytespider user agend") do |req|
+  #   req.user_agent =~ /Bytespider/i
+  # end
 
-  self.blacklisted_responder = lambda do |_env|
-    [403, { "Content-Type" => "text/plain" }, ["Forbidden"]]
-  end
+  # self.blacklisted_responder = lambda do |_env|
+  #   [403, { "Content-Type" => "text/plain" }, ["Forbidden"]]
+  # end
 
   ### Prevent Brute-Force Login Attacks ###
   # todo: actually implement this
