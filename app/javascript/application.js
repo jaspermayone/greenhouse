@@ -3,3 +3,6 @@
 import "@rails/actiontext"
 import "ahoy.js"
 import "trix"
+
+import "trix"
+import "@rails/actiontext"
