@@ -665,10 +665,6 @@ GEM
     solargraph-rails (1.1.0)
       activesupport
       solargraph
-    solid_cache (0.6.0)
-      activejob (>= 7)
-      activerecord (>= 7)
-      railties (>= 7)
     solid_queue (0.3.2)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -840,10 +836,10 @@ DEPENDENCIES
   simplecov
   solargraph
   solargraph-rails (~> 1.1.0)
-  solid_cache
   solid_queue
   sorbet
   sorbet-runtime
+  sprockets (~> 4.0)
   sprockets-rails (~> 3.4)
   sqlite3 (~> 2)
   stackprof

@@ -16,7 +16,7 @@
 #  index_sessions_on_updated_at  (updated_at)
 #
 class Session < ApplicationRecord
-  before_action :set_paper_trail_whodunnit
+  before_create :set_paper_trail_whodunnit
   belongs_to :agent
 
 end

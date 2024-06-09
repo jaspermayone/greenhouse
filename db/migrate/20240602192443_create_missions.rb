@@ -8,7 +8,6 @@ class CreateMissions < ActiveRecord::Migration[7.1]
       t.string :location
       t.text :cover_story
       t.references :agent, null: false, foreign_key: true
-      t.references :agent_alias, null: false, foreign_key: true
 
       t.timestamps
     end

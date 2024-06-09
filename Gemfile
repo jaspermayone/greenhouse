@@ -4,7 +4,6 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
-# ruby "3.3.0"
 
 gem "dotenv-rails"
 
@@ -12,7 +11,7 @@ gem "dotenv-rails"
 gem "rails", "~> 7.1.3"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem "propshaft"
+# gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3"
@@ -44,6 +43,7 @@ gem "cssbundling-rails", "~> 1.4"
 gem "jquery-rails"
 gem "jsbundling-rails", "~> 1.1"
 gem "react-rails"
+gem "sprockets", "~> 4.0"
 gem "sprockets-rails", "~> 3.4"
 gem "terser", "~> 1.1" # JS compressor
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -108,8 +108,8 @@ group :development do
   #
 
   # Ruby language server
-  gem "solargraph", require: false
-  gem "solargraph-rails", "~> 1.1.0", require: false
+  gem "solargraph"
+  gem "solargraph-rails", "~> 1.1.0"
 
   gem "htmlbeautifier", require: false # for https://marketplace.visualstudio.com/items?itemName=tomclose.format-erb
 
@@ -156,7 +156,6 @@ gem "rack-attack" # rate limiting
 gem "rack-cors" # manage CORS
 
 gem "mission_control-jobs"
-gem "solid_cache"
 gem "solid_queue"
 
 gem "namae" # multi-cultural human name parser
