@@ -39,14 +39,11 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# COPY --from=build /usr/local/bundle /usr/local/bundle
-# COPY --from=build /greenhouse /greenhouse
+RUN useradd greenhouse --create-home --shell /bin/bash && \
+    chown -R greenhouse:greenhouse db log storage tmp
+USER greenhouse:greenhouse
 
-# RUN useradd greenhouse --create-home --shell /bin/bash && \
-#     chown -R greenhouse:greenhouse db log storage tmp
-# USER greenhouse:greenhouse
-
-# ENTRYPOINT ["/greenhouse/bin/docker-entrypoint"]
+ENTRYPOINT ["/greenhouse/bin/docker-entrypoint"]
 
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
