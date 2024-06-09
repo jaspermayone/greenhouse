@@ -35,9 +35,9 @@ RUN ln -s /greenhouse/.rubocop.yml ~/.rubocop.yml
 RUN ln -s /greenhouse/.rubocop_todo.yml ~/.rubocop_todo.yml
 
 ADD . /greenhouse
-# RUN bundle exec bootsnap precompile app/ lib/
+RUN bundle exec bootsnap precompile app/ lib/
 
-# # RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # COPY --from=build /usr/local/bundle /usr/local/bundle
 # COPY --from=build /greenhouse /greenhouse

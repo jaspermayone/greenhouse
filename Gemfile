@@ -11,7 +11,7 @@ gem "dotenv-rails"
 gem "rails", "~> 7.1.3"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-# gem "propshaft"
+gem "propshaft"
 
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3"
@@ -43,8 +43,8 @@ gem "cssbundling-rails", "~> 1.4"
 gem "jquery-rails"
 gem "jsbundling-rails", "~> 1.1"
 gem "react-rails"
-gem "sprockets", "~> 4.0"
-gem "sprockets-rails", "~> 3.4"
+# gem "sprockets", "~> 4.0"
+# gem "sprockets-rails", "~> 3.4"
 gem "terser", "~> 1.1" # JS compressor
 gem "turbo-rails" # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 

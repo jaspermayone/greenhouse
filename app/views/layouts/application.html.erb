@@ -27,18 +27,18 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-<script>
-  console.log(`%c
-   ______                                 __
- .' ___  |                               [  |
-/ .'   \\_| _ .--.  .---.  .---.  _ .--.   | |--.   .--.   __   _   .--.  .---.
-| |   ____[ \`/'\\]/ /__\\\\/ /__\\\\[ \`.-. |  | .-. |/ .'\\ \\[  | | | ( (\`\\]/ /__\\\\
-\\ \`.___]  || |    | \\__.,| \\__., | | | |  | | | || \\__. | | \\_/ |, \`'.'.| \\__.,
- \`._____.'[___]    '.__.' '.__.'[___||__][___]|__]'.__.'  '.__.'_/[\\__) )'.__.'
+  <script>
+    console.log(`%c
+     ______                                 __
+     .' ___  |                               [  |
+    / .'   \\_| _ .--.  .---.  .---.  _ .--.   | |--.   .--.   __   _   .--.  .---.
+    | |   ____[ \`/'\\]/ /__\\\\/ /__\\\\[ \`.-. |  | .-. |/ .'\\ \\[  | | | ( (\`\\]/ /__\\\\
+    \\ \`.___]  || |    | \\__.,| \\__., | | | |  | | | || \\__. | | \\_/ |, \`'.'.| \\__.,
+     \`._____.'[___]    '.__.' '.__.'[___||__][___]|__]'.__.'  '.__.'_/[\\__) )'.__.'
 
- Loaded greenhouse.directory in env: <%= greenhouse_version %>
-`, 'color: #4a856b; font-weight: bold;');
-</script>
+     Loaded greenhouse.directory in env: <%= greenhouse_version %>
+    `, 'color: #4a856b; font-weight: bold;');
+  </script>
   <body>
     <%= yield %>
     <!-- <%= debug flash %> -->
@@ -60,13 +60,13 @@
         <%= flash[:danger] %>
       </div>
     <% end %>
-<!-- if page matches one of the routes in the array, no footer will be rendered <-->
-<% no_foot_routes = ['/', '/mailbox', '/enter'] %>
-<% if no_foot_routes.include?(request.path) %>
-  <!-- No footer will be rendered -->
-<% else %>
-  <%= render 'layouts/footer' %>
-<% end %>
+    <!-- if page matches one of the routes in the array, no footer will be rendered <-->
+    <% no_foot_routes = ['/', '/mailbox', '/enter'] %>
+    <% if no_foot_routes.include?(request.path) %>
+      <!-- No footer will be rendered -->
+    <% else %>
+      <%= render 'layouts/footer' %>
+    <% end %>
   </body>
   <style>
     @font-face {
