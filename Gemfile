@@ -34,7 +34,7 @@ gem "stimulus-rails"
 
 gem "pg" # database
 gem "pg_search" # full-text search
-gem "redis", "~> 5.0" # for caching, jobs, etc. (Use Redis adapter to run Action Cable in production)
+# gem "redis", "~> 5.0" # for caching, jobs, etc. (Use Redis adapter to run Action Cable in production)
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"

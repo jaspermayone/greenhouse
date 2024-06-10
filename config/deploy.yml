@@ -6,7 +6,21 @@ image: jaspermayone/greenhouse
 
 # Deploy to these servers.
 servers:
-  - 10.100.0.19
+  web:
+    hosts:
+      - 10.100.0.19
+    labels:
+      traefik.http.routers.my_awesome_app.entrypoints: websecure
+      traefik.http.routers.my_awesome_app.rule: Host(`greenhouse.directory`)
+    options:
+      network: "private" # This is important!
+
+  job:
+    hosts:
+      - 10.100.0.19
+    cmd: bundle exec rake solid_queue:start
+    options:
+      network: "private" # This is important!
 
 # Credentials for your image host.
 registry:
@@ -15,15 +29,47 @@ registry:
   username: jaspermayone
 
   # Always use an access token rather than real password when possible.
-  password:
-    - KAMAL_REGISTRY_PASSWORD
+  password: KAMAL_REGISTRY_PASSWORD
+
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
 env:
-  #   clear:
-  #     DB_HOST: 192.168.0.2
+  clear:
+    RAILS_ENV: "production"
+    POSTGRES_USER: "greenhouse"
+    POSTGRES_DB: "greenhouse_production"
+    POSTGRES_HOST: "greenhouse-db"
+    # - REDIS_URL: "redis://greenhouse-redis:6379/0"
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+    - KAMAL_REGISTRY_PASSWORD
+
+# Use accessory services (secrets come from .env).
+accessories:
+  db:
+    image: postgres:15
+    host: 10.100.0.19
+    container_name: greenhouse-db # Ensure this matches the POSTGRES_HOST value
+    env:
+      clear:
+        POSTGRES_USER: "greenhouse"
+        POSTGRES_DB: "greenhouse_production"
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - data:/var/lib/postgresql/data
+    options:
+      network: "private" # This is important!
+
+  # redis:
+  #   image: redis:7.0
+  #   host: 10.100.0.19
+  #   # port: 6379 # Remove this line!
+  #   directories:
+  #     - data:/data
+  #   options:
+  #     network: "private" # This is important!
 
 # Use a different ssh user than root
 ssh:
@@ -37,29 +83,6 @@ builder:
 #   remote:
 #     arch: amd64
 #     host: ssh://app@192.168.0.1
-
-# Use accessory services (secrets come from .env).
-accessories:
-  db:
-    image: postgres:15
-    roles:
-      - web
-    env:
-      clear:
-        POSTGRES_USER: POSTGRES_USER
-        POSTGRES_DB: "greenhouse_production"
-      secret:
-        - POSTGRES_PASSWORD
-    files:
-      # - config/init.sql:/docker-entrypoint-initdb.d/setup.sql
-    directories:
-      - data:/var/lib/postgresql/data
-  redis:
-    image: redis:latest
-    # host: 10.100.0.19
-#     port: 6379
-#     directories:
-#       - data:/data
 
 # Configure custom arguments for Traefik
 # traefik:
@@ -75,7 +98,8 @@ accessories:
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
-asset_path: /rails/public/assets
+# asset_path: /rails/public/assets
+
 # Configure rolling deploys by setting a wait time between batches of restarts.
 # boot:
 #   limit: 10 # Can also specify as a percentage of total hosts, such as "25%"

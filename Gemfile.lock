@@ -819,7 +819,6 @@ DEPENDENCIES
   rails_hotreload
   rainbow
   react-rails
-  redis (~> 5.0)
   relaxed-rubocop
   rubocop
   rubocop-capybara (~> 2.20)

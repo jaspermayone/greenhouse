@@ -12,7 +12,18 @@ ENV RAILS_ENV="production" \
     BUNDLE_GEMFILE=Gemfile
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config libcairo2-dev curl postgresql-client-15 libvips gnupg && \
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    git \
+    libpq-dev \
+    libvips \
+    pkg-config \
+    libcairo2-dev \
+    curl \
+    postgresql-client-15 \
+    libvips gnupg \
+    libpq-dev \
+    postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
