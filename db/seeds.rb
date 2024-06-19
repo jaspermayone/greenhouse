@@ -12,8 +12,6 @@
 # check what environment we are in and set variable to the current environment
 curent_env = Rails.env
 
-Agents = Agent.all
-
 # Check for Quail
 if Agents.find_by(email: ENV["SA_EMAIL"])
   puts "The agent Quail already exists in system, skipping creation of Quail"
