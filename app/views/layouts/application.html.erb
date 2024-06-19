@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
     <%= javascript_include_tag "application", 'data-turbo-track': "reload"%>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
     <%= javascript_importmap_tags %>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -19,9 +19,10 @@
     <meta name="msapplication-TileColor" content="#4a856b">
     <meta name="apple-mobile-web-app-title" content="The Greenhouse" />
     <meta name="application-name" content="The Greenhouse" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileColor" content="#4a856b" />
     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#4a856b" />
+    <meta name="format-detection" content="telephone=no">
     <title>
       <%= yield(:title).concat(" ~") if content_for?(:title) %>
       Greenhouse
@@ -30,7 +31,6 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= yield(:head) if content_for?(:head) %>
-
   </head>
   <script>
     console.log(`%c
