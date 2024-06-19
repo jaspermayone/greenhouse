@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_192443) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -369,6 +369,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_192443) do
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "fingerprint"
+    t.string "device_info"
+    t.string "os_info"
+    t.string "timezone"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
