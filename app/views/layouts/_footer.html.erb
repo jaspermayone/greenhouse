@@ -17,7 +17,7 @@
   </div>
 <% else %>
   <div id="foot-dev" class="box">
-   <p><b>DEVELOPMENT ENV</b> || Rails: <i><%= rails_version%></i> | Ruby: <i><%=ruby_version%></i> | SHA: <i><%=commit_name%></i> || <b>DEVELOPMENT ENV</b></p>
+   <p><b>DEVELOPMENT ENV</b> || Rails: <i><%= Rails::VERSION::STRING %></i> | Ruby: <i><%=ruby_version%></i> | SHA: <i><%=commit_name%></i> || <b>DEVELOPMENT ENV</b></p>
   </div>
 <% end %>
 </footer>

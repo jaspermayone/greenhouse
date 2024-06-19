@@ -76,7 +76,7 @@ module ApplicationHelper
   end
 
   def rails_version
-    Rails.version
+    Rails::VERSION::STRING
   end
 
   def ruby_version

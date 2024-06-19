@@ -1,3 +1,7 @@
+<% content_for :title do %>
+MSG: <%= @message.id %> - <%= @message.subject %>
+<% end %>
+
 <!-- preview message from message storage (message is passed) -->
 <div class="box">
   <div class="message">
