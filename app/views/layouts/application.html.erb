@@ -4,11 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script src="https://kit.fontawesome.com/c75c45309f.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
-    <%= javascript_include_tag "application", 'data-turbo-track': "reload"%>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
-    <%= javascript_importmap_tags %>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
@@ -31,6 +26,10 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= yield(:head) if content_for?(:head) %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= csrf_meta_tags %>
+    <%= javascript_importmap_tags %>
   </head>
   <script>
     console.log(`%c
@@ -65,10 +64,8 @@
         <%= flash[:danger] %>
       </div>
     <% end %>
-    <!-- if page matches one of the routes in the array, no footer will be rendered <-->
     <% no_foot_routes = ['/', '/mailbox', '/enter'] %>
     <% if no_foot_routes.include?(request.path) %>
-      <!-- No footer will be rendered -->
     <% else %>
       <%= render 'layouts/footer' %>
     <% end %>

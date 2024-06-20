@@ -15,8 +15,14 @@ class AgentsController < ApplicationController
 
   def create
     @agent = Agent.new(agent_params)
-    @agent.save!
-    ahoy.track "Created agent", agent: @agent
+    if @agent.save
+      redirect_to @agent
+      flash[:notice] = "Agent was successfully created."
+      ahoy.track "Created agent", agent: @agent
+    else
+      render :new
+      flash[:error] = "Agent was not created."
+    end
   end
 
   def update

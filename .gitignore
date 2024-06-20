@@ -40,6 +40,7 @@
 /node_modules
 .vscode/*
 /config/credentials/production.key
+browsers.json
 
 DOCUMENTS/*
 DOCUMENTS

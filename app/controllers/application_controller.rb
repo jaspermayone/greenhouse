@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
   #   # current_user
   # end
   #
+  #
+  helper_method :mobile_device?
+
+  def mobile_device?
+    browser.device.mobile?
+  end
 
   protected
 

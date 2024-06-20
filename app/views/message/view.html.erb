@@ -1,48 +1,53 @@
 <% content_for :title do %>
-MSG: <%= @message.id %> - <%= @message.subject %>
+  MSG: <%= @message.id %> <%= @message.subject %>
 <% end %>
 
-<!-- preview message from message storage (message is passed) -->
-<div class="box">
-  <div class="message">
+<div class="container px-2">
+  <div class="box">
+    <div class="msessage">
 
-<div class="columns">
+      <div class="columns">
+        <div id="back" class="column is-1">
+          <a  href="/mailbox" style="color: black;">&larr; Back</a>
+        </div>
+      </div>
 
-<div id="back" class="column is-1">
-         <!-- Back arrow -->
-<a  href="/mailbox" style="color: black;">&larr; Back</a>
-</div>
+      <table>
+        <tr>
+          <th><b>M-ID:</b></th>
+          <td><i><%= @message.id %></i></td>
+        </tr>
+        <tr>
+          <th><b>From:</b></th>
+          <td><i><%= @message.from %></i></td>
+        </tr>
+        <tr>
+          <th><b>Subject:</b></th>
+          <td><i><%= @message.subject %></i></td>
+        </tr>
+        <tr>
+          <th><b>Received:</b></th>
+          <td><i><%= @message.created_at.strftime("%B %d, %Y") %></i></td>
+        </tr>
+      </table>
+      <br/>
 
-</div>
-
-<table>
-    <tr>
-        <th><b>M-ID:</b></th>
-        <td><i><%= @message.id %></i></td>
-    </tr>
-    <tr>
-        <th><b>From:</b></th>
-        <td><i><%= @message.from %></i></td>
-    </tr>
-    <tr>
-        <th><b>Subject:</b></th>
-        <td><i><%= @message.subject %></i></td>
-    </tr>
-    <tr>
-        <th><b>Received:</b></th>
-        <td><i><%= @message.created_at.strftime("%B %d, %Y") %></i></td>
-    </tr>
-</table>
-<br/>
-
-
-    <div class="msgBody">
-    <p class="msgText"><%= @message.body %></p>
+      <div class="msgBody">
+        <p class="msgText"><%= @message.body %></p>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
+  .container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+  }
+
   .title {
     padding-top: .5rem;
   }
@@ -72,15 +77,7 @@ MSG: <%= @message.id %> - <%= @message.subject %>
     margin-bottom: -1rem;
   }
 
-   #actionbox {
-    /* Your styles for the actionbox here */
-    background-color: lightgray; /* Example background color */
-    margin: 0;
-    padding: 1rem;
-  }
-
   #back {
     margin-bottom: 1.5rem;
   }
-
-  </style>
+</style>

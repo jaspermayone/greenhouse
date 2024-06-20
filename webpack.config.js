@@ -1,5 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
+const browserslist = require('browserslist')
+const fs = require('fs')
+
+fs.writeFileSync('./browsers.json', JSON.stringify(browserslist()))
 
 const mode =
   process.env.NODE_ENV === 'development' ? 'development' : 'production'

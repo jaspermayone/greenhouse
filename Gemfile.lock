@@ -142,6 +142,9 @@ GEM
     brakeman (6.1.2)
       racc
     browser (6.0.0)
+    browserslist_useragent (0.2.0)
+      semantic
+      user_agent_parser
     builder (3.2.4)
     bullet (7.1.6)
       activesupport (>= 3.0.0)
@@ -628,6 +631,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    semantic (1.6.1)
     sexp_processor (4.17.1)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -723,6 +727,7 @@ GEM
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
     uri (0.13.0)
+    user_agent_parser (2.18.0)
     validates_email_format_of (1.8.2)
       i18n (>= 0.8.0)
       simpleidn
@@ -768,6 +773,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   brakeman
   browser (~> 6.0)
+  browserslist_useragent
   bullet
   bulma-rails
   bundler-audit

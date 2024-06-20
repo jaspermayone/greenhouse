@@ -174,3 +174,4 @@ gem "strong_migrations"
 # Get useful insights on your database health
 gem "ordinare"
 gem "rails-pg-extras"
+gem "browserslist_useragent"

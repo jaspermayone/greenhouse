@@ -6,3 +6,4 @@ import "trix"
 
 import "trix"
 import "@rails/actiontext"
+import * as bootstrap from "bootstrap"

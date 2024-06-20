@@ -32,10 +32,8 @@ Rails.application.routes.draw do
 
   resources :search
   resources :authentications
-  resources :agents, only: [:index, :new, :create]
+  resources :agents
   resources :messages
   resources :mailbox
-  # TODO! Redo the details view
-  # resources :details
 
 end

@@ -1,95 +1,71 @@
 <% content_for :title do %>
-<%= @agent.codename%>'s Mail
+  <%= @agent.codename %>'s Mail
 <% end %>
 
-
-<div class="box">
-    <!-- Back  -->
-<a href="/" style="color: black;">&larr; Back</a>
-
+<% unless mobile_device? %>
+  <div class="box">
+    <a href="/" style="color: black;">&larr; Back</a>
+    <br/>
     <h1 class="title"><u>Agent <%= @agent.codename %>'s Mailbox:</u></h1>
-
-<div class="mailbox">
-
-  <!-- List all messages in a table -->
-  <table class="table is-fullwidth is-striped is-hoverable">
-    <thead>
-      <tr>
-        <th></th>
-     <th>From</th>
-    <th>Subject</th>
-    <th>Preview</th>
-    <th>Attachments</th>
-    <th>Received</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @messages.each do |message| %>
-        <tr>
-  <td>
-        <% if message.read %>
-           <i class="far fa-circle unread-icon"></i> <!-- read message -->
-        <% else %>
-          <i class="fas fa-circle unread-icon"></i> <!-- Unread message -->
-        <% end %>
-      </td>
-       <td><%= message.from %></td>
-      <td><a href="/messages/<%= message.id %>"><%= message.subject %></a></td>
-      <td><%= message.body.truncate(50) %></td>
-      <td><%= message.attachments.count %></td>
-
-      <td><%= message.created_at.strftime("%B %d, %Y") %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-</div>
-</div>
+    <div id="mailbox">
+      <div class="table-responsive">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>From</th>
+              <th>Subject</th>
+              <th>Preview</th>
+              <th>Attachments</th>
+              <th>Received</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @messages.each do |message| %>
+              <tr>
+                <td>
+                  <a href="/messages/<%= message.id %>">
+                    <% if message.read %>
+                      <i class="far fa-circle unread-icon" style="color: inherit;"></i>
+                    <% else %>
+                      <i class="fas fa-circle unread-icon"></i>
+                    <% end %>
+                  </a>
+                </td>
+                <td><%= message.from %></td>
+                <td><%= message.subject %></td>
+                <td><%= message.body.truncate(50) %></td>
+                <td><%= message.attachments.count %></td>
+                <td><%= message.created_at.strftime("%B %d, %Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="box">
+    <p>This content is not available <br>
+      on mobile devices.</p>
+  </div>
+<% end %>
 
 <style>
   .box {
-  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  }
-
-  .unread-icon {
-    color: #3478f7; /* Color for unread messages */
-  }
-
-  .mailbox {
+  transform: translate(-50%,-50%);
   width: 95vw;
-  height: 80.5vh;
-  overflow-y: scroll;
-  }
-
-    /* Style for the table */
-    table {
-        width: 100%;
-        border-collapse: collapse;
+  height: 95vh;
     }
 
-    /* Style for the table header */
-    th {
-        background-color: #f2f2f2;
-        position: sticky;
-        top: 0;
+    .unread-icon {
+  color: #3478f7;
     }
 
-    /* Style for the table body */
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
+    #mailbox {
+  overflow-y: scroll;/
     }
-
-    /* Style for odd rows */
-      tr:nth-child(odd) {
-        background-color: #f9f9f9;
-    }
-
-  </style>
+</style>
