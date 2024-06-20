@@ -4,30 +4,30 @@
 
 <div class="container px-2">
   <div class="box">
-    <div class="msessage">
+    <div class="message">
 
       <div class="columns">
         <div id="back" class="column is-1">
-          <a  href="/mailbox" style="color: black;">&larr; Back</a>
+          <a href="/mailbox" style="color: black;">&larr; Back</a>
         </div>
       </div>
 
       <table>
         <tr>
-          <th><b>M-ID:</b></th>
+          <th><b>M-ID: </b></th>
           <td><i><%= @message.id %></i></td>
         </tr>
         <tr>
-          <th><b>From:</b></th>
+          <th><b>From: </b></th>
           <td><i><%= @message.from %></i></td>
         </tr>
         <tr>
-          <th><b>Subject:</b></th>
+          <th><b>Subject: </b></th>
           <td><i><%= @message.subject %></i></td>
         </tr>
         <tr>
-          <th><b>Received:</b></th>
-          <td><i><%= @message.created_at.strftime("%B %d, %Y") %></i></td>
+          <th><b>Received: </b></th>
+          <td>&nbsp;<i><%= @message.created_at.strftime("%B %d, %Y") %></i></td>
         </tr>
       </table>
       <br/>
