@@ -175,3 +175,5 @@ gem "strong_migrations"
 gem "ordinare"
 gem "rails-pg-extras"
 gem "browserslist_useragent"
+gem "premailer-rails" # css to inline styles for emails
+gem "statsd-instrument", "~> 3.8" # For reporting to jasper's Grafana
