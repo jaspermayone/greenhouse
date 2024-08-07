@@ -25,6 +25,9 @@
     <link rel="canonical" href="https://greenhouse.directory/" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src https://*; child-src 'none';">
     <%= yield(:head) if content_for?(:head) %>
     <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
