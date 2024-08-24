@@ -4,9 +4,6 @@ class AgentsController < ApplicationController
   # TODO: move agent/new page to admin namespace
 
   before_action :validate_email_update, only: :update
-
-  invisible_captcha only: [:new], honeypot: :loginid, on_timestamp_spam: :redirect_to_404
-
   before_action :ensure_admin, only: [:new, :create]
 
   def new
@@ -18,7 +15,6 @@ class AgentsController < ApplicationController
     if @agent.save
       redirect_to @agent
       flash[:notice] = "Agent was successfully created."
-      ahoy.track "Created agent", agent: @agent
     else
       render :new
       flash[:error] = "Agent was not created."
@@ -27,11 +23,9 @@ class AgentsController < ApplicationController
 
   def update
     if current_user.update_new_email!(@new_email)
-      ahoy.track "Updated agent email", agent: current_user
       # SEND EMAIL HERE
       render json: { status: "Email Confirmation has been sent to your new email." }, status: :ok
     else
-      ahoy.track "Failed to update agent email", agent: current_user
       render json: { errors: current_user.errors.values.flatten.compact }, status: :bad_request
     end
   end
@@ -42,7 +36,6 @@ class AgentsController < ApplicationController
     @agent = Agent.find(params.require(:id))
     @agent.active = false
     @agent.save!
-    ahoy.track "Deleted agent", agent: @agent
   end
 
   private

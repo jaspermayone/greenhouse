@@ -11,11 +11,6 @@ AllCops:
     - "vendor/**/*"
   NewCops: disable
 
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'config/**/*.rb'
-    - 'app/models/ahoy/{event,visit}.rb'
-
 # The "offical" rubocop style guide is indeed quite strict. So intead, we use
 # the Relaxed Ruby Style guide. https://relaxed.ruby.style/
 
@@ -172,7 +167,6 @@ Style/FormatStringToken:
 Style/ClassAndModuleChildren:
   Exclude:
     - "config/**/*.rb"
-    - "app/models/ahoy/{event,visit}.rb"
 
 Rails/UnknownEnv:
   Environments:

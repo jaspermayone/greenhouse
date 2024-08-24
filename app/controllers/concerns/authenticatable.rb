@@ -3,10 +3,6 @@
 module Authenticatable
   extend ActiveSupport::Concern
 
-  included do
-    before_action :ensure_authenticated
-  end
-
   def is_authenticated?
     if session[:current_authentication]
       true
@@ -51,7 +47,6 @@ module Authenticatable
     # FIXME: - this is broken, causes error "No route matches {:action=>"new", :controller=>"authentications", :server_id=>nil}"
     if !is_authenticated?
       flash[:warning=] = "You need to login to view that page."
-      ahoy.track "Unauthorized access attempt"
       redirect_to main_app.login_path
     end
   end
@@ -59,7 +54,6 @@ module Authenticatable
   def ensure_not_authenticated
     if is_authenticated?
       flash[:info] = "You are already logged in."
-      ahoy.track "User already logged in", agent: current_user
       redirect_to root_path
     end
   end
@@ -69,7 +63,6 @@ module Authenticatable
     # ensure_login_ready
     unless current_user.agent?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level agent", agent: current_user
       redirect_to root_path
     end
   end
@@ -79,7 +72,6 @@ module Authenticatable
     # ensure_login_ready
     unless current_user.admin?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level admin", agent: current_user
       redirect_to root_path
     end
   end
@@ -89,7 +81,6 @@ module Authenticatable
     # ensure_login_ready
     unless current_user.superadmin?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level superadmin", agent: current_user
       redirect_to root_path
     end
   end
@@ -99,7 +90,6 @@ module Authenticatable
     # ensure_login_ready
     unless current_user.jasper?
       flash[:danger] = "You are not authorized to view that page."
-      ahoy.track "Unauthorized access attempt for access level JASPER", agent: current_user
       redirect_to root_path
     end
   end

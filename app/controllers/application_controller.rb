@@ -3,8 +3,6 @@
 class ApplicationController < ActionController::Base
   include Authenticatable
 
-  after_action :track_action
-
   # def find_current_auditor
   #   nil if current_user.super_admin
 
@@ -12,16 +10,12 @@ class ApplicationController < ActionController::Base
   # end
   #
   #
-  helper_method :mobile_device?
 
-  def mobile_device?
-    browser.device.mobile?
-  end
+  helper_method :current_user
 
-  protected
-
-  def track_action
-    ahoy.track "Ran action", request.path_parameters
+  def current_user
+    # Assuming you use session to store current user ID
+    @current_user ||= Agent.find_by(id: session[:current_authentication]&.agent)
   end
 
 end

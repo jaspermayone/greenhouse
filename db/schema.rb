@@ -83,7 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.text "education"
     t.text "employment"
     t.bigint "agent_id", null: false
-    t.binary "fingerprints"
     t.binary "retina_scan"
     t.binary "facial_recognition_data"
     t.string "bank_account_details"
@@ -140,49 +139,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.datetime "updated_at", null: false
     t.index ["agent_id"], name: "index_agents_cases_on_agent_id"
     t.index ["case_id"], name: "index_agents_cases_on_case_id"
-  end
-
-  create_table "ahoy_events", force: :cascade do |t|
-    t.bigint "visit_id"
-    t.bigint "user_id"
-    t.string "name"
-    t.jsonb "properties"
-    t.datetime "time"
-    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
-    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
-    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
-  end
-
-  create_table "ahoy_visits", force: :cascade do |t|
-    t.string "visit_token"
-    t.string "visitor_token"
-    t.bigint "agent_id"
-    t.string "ip"
-    t.text "user_agent"
-    t.text "referrer"
-    t.string "referring_domain"
-    t.text "landing_page"
-    t.string "browser"
-    t.string "os"
-    t.string "device_type"
-    t.string "country"
-    t.string "region"
-    t.string "city"
-    t.float "latitude"
-    t.float "longitude"
-    t.string "utm_source"
-    t.string "utm_medium"
-    t.string "utm_term"
-    t.string "utm_content"
-    t.string "utm_campaign"
-    t.string "app_version"
-    t.string "os_version"
-    t.string "platform"
-    t.datetime "started_at"
-    t.index ["agent_id"], name: "index_ahoy_visits_on_agent_id"
-    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
-    t.index ["visitor_token", "started_at"], name: "index_ahoy_visits_on_visitor_token_and_started_at"
   end
 
   create_table "audits1984_audits", force: :cascade do |t|
@@ -369,7 +325,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "fingerprint"
     t.string "device_info"
     t.string "os_info"
     t.string "timezone"

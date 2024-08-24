@@ -61,7 +61,6 @@ class Agent < ApplicationRecord
   # validates :codename, uniqueness: true, presence: true
   validates :codename, uniqueness: true
 
-  has_many :visits, class_name: "Ahoy::Visit"
   has_one :mailbox, dependent: :destroy
   has_many :messages, dependent: :destroy
 

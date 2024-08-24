@@ -4,9 +4,8 @@
   <div class="box">
     <%= form_with url: agents_path, scope: :agent do |form| %>
       <div class="mb-2">
-        <p><i>Enter the inital details for the new agent below...</i></p>
+        <p><i>Enter the initial details for the new agent below...</i></p>
       </div>
-      <%= form.invisible_captcha :loginid %>
       <div>
         <%= form.label :full_name %>
         <%= form.text_field :full_name, required: true, class: "input" %>
@@ -21,11 +20,10 @@
       </div>
       <div>
         <%= form.label :codename %>
-        <%= form.text_field :codename, class: "input", required: true %>
+        <%= form.text_field :codename, required: true, class: "input" %>
       </div>
-
       <div id="sub" class="pt-3">
-        <%= form.submit "Create Agent", class: "button is-success"%>
+        <%= form.submit "Create Agent", class: "button is-success" %>
       </div>
     <% end %>
   </div>
@@ -36,6 +34,6 @@
     position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
   }
 </style>

@@ -7,7 +7,6 @@
         <p>Enter your credentials to gain access...</p>
       </div>
       <br/>
-      <%= form.invisible_captcha :loginid %>
       <div class="pb-3">
         <%= form.label :email %>
         <%= form.email_field :email, required: true, class: "input" %>
@@ -17,10 +16,6 @@
         <%= form.label :password %>
         <%= form.password_field :password, required: true, class: "input" %>
       </div>
-      <%= hidden_field_tag :fingerprint %>
-      <%= hidden_field_tag :device_info %>
-      <%= hidden_field_tag :os_info %>
-      <%= hidden_field_tag :timezone %>
       <br/>
       <%= form.submit "Login", class: "button is-success"%>
     <% end %>
@@ -34,4 +29,3 @@
   transform: translate(-50%,-50%);
   }
 </style>
-<%# <%= javascript_include_tag "fingerprint.js" %>

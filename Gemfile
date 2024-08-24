@@ -162,10 +162,7 @@ gem "namae" # multi-cultural human name parser
 gem "rainbow"
 gem "validates_email_format_of"
 
-gem "ahoy_matey"
 gem "blazer"
-gem "geocoder"
-gem "invisible_captcha"
 gem "paper_trail"
 gem "poppler" # PDF parsing
 
@@ -177,3 +174,4 @@ gem "rails-pg-extras"
 gem "browserslist_useragent"
 gem "premailer-rails" # css to inline styles for emails
 gem "statsd-instrument", "~> 3.8" # For reporting to jasper's Grafana
+gem "font-awesome-rails"
