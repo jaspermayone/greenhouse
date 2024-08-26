@@ -127,7 +127,6 @@ group :development do
   gem 'coverband'
   gem 'danger', require: false
   gem 'next_rails'
-  gem 'pre-commit', require: false
 end
 
 gem 'bulma-rails'
