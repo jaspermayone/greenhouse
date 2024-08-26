@@ -30,12 +30,30 @@ class AgentsController < ApplicationController
     end
   end
 
-  def destroy
-    # Don't actually delete the agent, just mark them as inactive (for data reasons)
-    # ative is a feild in the database under the agents table
-    @agent = Agent.find(params.require(:id))
-    @agent.active = false
+  # def destroy
+  #   # Don't actually delete the agent, just mark them as inactive (for data reasons)
+  #   # ative is a feild in the database under the agents table
+  #   @agent = Agent.find(params.require(:id))
+  #   @agent.active = false
+  #   @agent.save!
+
+  #   redirect_to admin_index_path
+  # end
+
+  def activate
+    @agent = Agent.find(params[:id])
+    @agent.approved = true
     @agent.save!
+
+    redirect_to admin_index_path
+  end
+
+  def deactivate
+    @agent = Agent.find(params[:id])
+    @agent.approved = false
+    @agent.save!
+
+    redirect_to admin_index_path
   end
 
   private

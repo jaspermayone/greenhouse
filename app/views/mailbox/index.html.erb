@@ -2,54 +2,47 @@
   <%= @agent.codename %>'s Mail
 <% end %>
 
-<% unless mobile_device? %>
-  <div class="box">
-    <a href="/" style="color: black;">&larr; Back</a>
-    <br/>
-    <h1 class="title"><u>Agent <%= @agent.codename %>'s Mailbox:</u></h1>
-    <div id="mailbox">
-      <div class="table-responsive">
-        <table class="table is-fullwidth is-striped is-hoverable">
-          <thead>
+<div class="box">
+  <a href="/" style="color: black;">&larr; Back</a>
+  <br/>
+  <h1 class="title"><u>Agent <%= @agent.codename %>'s Mailbox:</u></h1>
+  <div id="mailbox">
+    <div class="table-responsive">
+      <table class="table is-fullwidth is-striped is-hoverable">
+        <thead>
+          <tr>
+            <th></th>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Preview</th>
+            <th>Attachments</th>
+            <th>Received</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @messages.each do |message| %>
             <tr>
-              <th></th>
-              <th>From</th>
-              <th>Subject</th>
-              <th>Preview</th>
-              <th>Attachments</th>
-              <th>Received</th>
+              <td>
+                <a href="/messages/<%= message.id %>">
+                  <% if message.read %>
+                    <i class="far fa-circle unread-icon" style="color: inherit;"></i>
+                  <% else %>
+                    <i class="fas fa-circle unread-icon"></i>
+                  <% end %>
+                </a>
+              </td>
+              <td><%= message.from %></td>
+              <td><%= message.subject %></td>
+              <td><%= message.body.truncate(50) %></td>
+              <td><%= message.attachments.count %></td>
+              <td><%= message.created_at.strftime("%B %d, %Y") %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% @messages.each do |message| %>
-              <tr>
-                <td>
-                  <a href="/messages/<%= message.id %>">
-                    <% if message.read %>
-                      <i class="far fa-circle unread-icon" style="color: inherit;"></i>
-                    <% else %>
-                      <i class="fas fa-circle unread-icon"></i>
-                    <% end %>
-                  </a>
-                </td>
-                <td><%= message.from %></td>
-                <td><%= message.subject %></td>
-                <td><%= message.body.truncate(50) %></td>
-                <td><%= message.attachments.count %></td>
-                <td><%= message.created_at.strftime("%B %d, %Y") %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-<% else %>
-  <div class="box">
-    <p>This content is not available <br>
-      on mobile devices.</p>
-  </div>
-<% end %>
+</div>
 
 <style>
   .box {

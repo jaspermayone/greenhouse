@@ -13,7 +13,7 @@
 curent_env = Rails.env
 
 # Check for Quail
-if Agents.find_by(email: ENV["SA_EMAIL"])
+if Agent.find_by(email: ENV["SA_EMAIL"])
   puts "The agent Quail already exists in system, skipping creation of Quail"
 else
   puts "The agent Quail does not exist in system, creating Quail..."
@@ -22,9 +22,8 @@ else
   full_name: ENV["SA_FULLNAME"],
   active: true,
   password: ENV["SA_PASS"],
-  codename: ENV["SA_CODENAME"],
+  codename: "Quail",
   has_verified_email: true,
-  last_verified_email_at: Time.now,
   approved: true,
   access_level: 3,
 })
@@ -41,7 +40,6 @@ if curent_env == "development"
     password: "password",
     codename: "TestAgent",
     has_verified_email: true,
-    last_verified_email_at: Time.now,
     approved: true,
     access_level: 0,
   })
@@ -52,7 +50,6 @@ if curent_env == "development"
     password: "password",
     codename: "TestAdmin",
     has_verified_email: true,
-    last_verified_email_at: Time.now,
     approved: true,
     access_level: 1,
   })
@@ -63,7 +60,6 @@ if curent_env == "development"
     password: "password",
     codename: "TestSuperAdmin",
     has_verified_email: true,
-    last_verified_email_at: Time.now,
     approved: true,
     access_level: 2,
   })

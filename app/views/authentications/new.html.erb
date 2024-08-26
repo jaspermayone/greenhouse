@@ -2,30 +2,30 @@
 
 <div class="container px-2">
   <div class="box">
-    <%= form_with url: authentications_path, scope: :agent do |form| %>
+    <%= form_with url: authentications_path, scope: :agent, local: true do |form| %>
       <div class="creds">
         <p>Enter your credentials to gain access...</p>
       </div>
-      <br/>
+      <br />
       <div class="pb-3">
         <%= form.label :email %>
         <%= form.email_field :email, required: true, class: "input" %>
       </div>
-      <%# <br/> %>
       <div>
         <%= form.label :password %>
         <%= form.password_field :password, required: true, class: "input" %>
       </div>
-      <br/>
-      <%= form.submit "Login", class: "button is-success"%>
+      <br />
+      <%= form.submit "Login", class: "button is-success" %>
     <% end %>
   </div>
 </div>
+
 <style>
   .container {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 </style>

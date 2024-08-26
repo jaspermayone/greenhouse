@@ -1,0 +1,62 @@
+<div class="container-responsive px-4 pt-4 pb-4">
+  <div class="box">
+      <h1>Sessions</h1>
+      <div class="table-container">
+        <table class="table is-hoverable">
+          <thead>
+            <tr>
+              <th>Session ID</th>
+              <th>Created At</th>
+              <th>CSRF Token</th>
+              <th>Authentication Agent ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sessions.each do |session| %>
+              <tr>
+                <td><%= session[:session_id][-14..-1] %></td>
+                <td><%= session[:created_at].strftime("%B %d, %Y at %I:%M %p") %></td>
+                <td><%= session.dig(:data, "_csrf_token") ? session.dig(:data, "_csrf_token")[-10..-1] : "N/A" %></td>
+                <td><%= agent_codename(session.dig(:data, "current_authentication")&.instance_variable_get(:@agent_id)) || "Not Found" %></td>
+                <td>
+                    <!-- button to destroy session -->
+                      <button class="btn btn-danger" type="submit">
+                          <i class="fas fa-trash"></i>
+                      </button>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  border-bottom: 2px solid #ddd;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+</style>

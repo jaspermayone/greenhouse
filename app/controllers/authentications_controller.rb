@@ -5,7 +5,7 @@ class AuthenticationsController < ApplicationController
   before_action :ensure_not_authenticated, only: [:new, :create]
 
   def new
-    # @agent = Agent.new
+    @agent = Agent.new
 
     if session[:current_authentication]
       redirect_to enter_path
@@ -16,15 +16,14 @@ class AuthenticationsController < ApplicationController
 
   def create
     @agent = Agent.find_by(email: auth_params[:email]) || Agent.find_by(agent_email: auth_params[:email])
-    @access_level = @agent&.access_level
 
-    if @agent&.authenticate(auth_params[:password])
-      Authentication.new(session, @agent)
-      redirect_to root_path
-    else
-      flash[:danger] = "Login failed. Please try again."
-      render "new"
-    end
+    if @agent && @agent.authenticate(auth_params[:password])
+       Authentication.new(session, @agent)
+       redirect_to root_path
+     else
+       flash[:danger] = "Login failed. Please try again."
+       render "new"
+     end
   end
 
   def destroy

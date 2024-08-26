@@ -4,21 +4,22 @@
 #
 # Table name: agents
 #
-#  id                     :bigint           not null, primary key
-#  access_level           :integer          default("agent"), not null
-#  active                 :boolean          default(FALSE)
-#  agent_email            :string
-#  approved               :boolean          default(FALSE)
-#  approved_at            :datetime
-#  codename               :string
-#  email                  :string
-#  full_name              :string
-#  has_verified_email     :boolean          default(FALSE)
-#  last_verified_email_at :datetime
-#  password_digest        :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  approved_by_id         :bigint
+#  id                 :bigint           not null, primary key
+#  access_level       :integer          default("agent"), not null
+#  active             :boolean          default(FALSE)
+#  agent_email        :string
+#  approved           :boolean          default(FALSE)
+#  approvwed_at       :datetime
+#  codename           :string
+#  email              :string
+#  full_name          :string
+#  has_verified_email :boolean          default(FALSE)
+#  password_digest    :string
+#  string             :string
+#  verified           :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  approved_by_id     :bigint
 #
 # Indexes
 #
@@ -30,7 +31,6 @@
 # Foreign Keys
 #
 #  fk_rails_...  (approved_by_id => agents.id)
-#
 #
 
 
@@ -85,12 +85,6 @@ class Agent < ApplicationRecord
 
   validates :codename, uniqueness: true, presence: true
   validates_presence_of :full_name, :email
-  validates :password, presence: true
-  # TODO: ADD PASSWORD REQUIREMENTS
-  # validates :password, presence: true, length: {minimum: 8}
-
-  # encrypts :full_name
-  # encrypts :email, :codename, :approved, :verified, deterministic: true
 
   def agent?
     self.access_level == "agent" || self.access_level == "admin" || self.access_level == "superadmin" || self.access_level == "JASPER"

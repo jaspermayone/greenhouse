@@ -3,28 +3,21 @@
 module Authenticatable
   extend ActiveSupport::Concern
 
-  def is_authenticated?
-    if session[:current_authentication]
-      true
-    else
-      false
-    end
+  included do
+    before_action :ensure_authenticated
   end
 
-  def is_not_authenticated?
-    !is_authenticated?
+  def is_authenticated?
+    session[:current_authentication].present?
   end
+
 
   def is_activated?
-    if current_user.active?
-      true
-    end
+    current_user&.active? # Will return false if current_user is nil
   end
 
   def has_confirmed_email?
-    if current_user.verified?
-      true
-    end
+    current_user&.verified? # Will return false if current_user is nil
   end
 
   def current_user
@@ -61,7 +54,7 @@ module Authenticatable
   def ensure_agent
     ensure_authenticated
     # ensure_login_ready
-    unless current_user.agent?
+    if current_user.nil? || !current_user.agent?
       flash[:danger] = "You are not authorized to view that page."
       redirect_to root_path
     end

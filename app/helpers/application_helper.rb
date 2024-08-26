@@ -83,6 +83,27 @@ module ApplicationHelper
     RUBY_VERSION
   end
 
+  def agent_codename(agent_id)
+    return "N/A" if agent_id.blank?
+
+    agent = Agent.find_by(id: agent_id)
+    agent ? "Agent #{agent.codename}" : "N/A"
+  end
+
+  def agent_codename_min(agent_id)
+    return "N/A" if agent_id.blank?
+
+    agent = Agent.find_by(id: agent_id)
+    agent ? agent.codename : "N/A"
+  end
+
+  def agent_email(agent_id)
+    return "N/A" if agent_id.blank?
+
+    agent = Agent.find_by(id: agent_id)
+    agent ? agent.agent_email : "N/A"
+  end
+
   # def supported_browser?
   #   @browsers ||= JSON.parse(File.read("../../browsers.json"))
   #   matcher = BrowserslistUseragent::Match.new(@browsers, request.user_agent)

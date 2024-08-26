@@ -1,0 +1,47 @@
+<div class="container-responsive px-4 pt-4 pb-4">
+  <div class="box" id="bx">
+    <div class="columns" id="cl">
+      <div class="column is-1">
+        <%= link_to admin_agents_path, class: "btn btn-info rounded-pill shadow-sm" do %>
+          <i class="fas fa-user-secret"></i>
+        <% end %>
+      </div>
+      <div class="column is-1">
+        <%= link_to admin_sessions_path, class: "btn btn-info rounded-pill shadow-sm" do %>
+          <i class="fas fa-cubes-stacked"></i>
+        <% end %>
+      </div>
+    </div> <!-- Close columns div -->
+  </div> <!-- Close box div -->
+</div> <!-- Close container-responsive div -->
+
+
+<style>
+#cl {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0; /* Remove margins from the columns container */
+}
+
+.column {
+  padding: 0; /* Remove padding from each column */
+  margin-left: -3vw
+}
+
+.column:last-child {
+  margin-right: -3.5vw;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.rounded-pill {
+  border-radius: 50rem;
+}
+
+.shadow-sm {
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+</style>

@@ -19,20 +19,34 @@ Rails.application.routes.draw do
   get "login", to: "authentications#new"
   get "logout", to: "authentications#destroy"
 
+
   namespace :admin do
-    if Rails.env.development?
-      mount LetterOpenerWeb::Engine, at: "/letter_opener"
+
+     namespace :utils do
+       if Rails.env.development?
+         mount LetterOpenerWeb::Engine, at: "/letter_opener"
+       end
+
+       mount MissionControl::Jobs::Engine, at: "/jobs"
+       mount Blazer::Engine, at: "/blazer"
+       mount Audits1984::Engine => "/console"
+     end
+   end
+
+  resources :agents do
+    member do
+      get :activate
+      get :deactivate
     end
-
-    mount MissionControl::Jobs::Engine, at: "/jobs"
-    mount Blazer::Engine, at: "blazer"
-    mount Audits1984::Engine => "/console"
-
   end
 
+  get "admin", to: "admin#index"
+  get "admin/agents", to: "admin#agents"
+  get "admin/sessions", to: "admin#sessions"
+
+  resources :sessions
   resources :search
   resources :authentications
-  resources :agents
   resources :messages
   resources :mailbox
 

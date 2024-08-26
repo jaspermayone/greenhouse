@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    # Assuming you use session to store current user ID
     @current_user ||= Agent.find_by(id: session[:current_authentication]&.agent)
   end
 

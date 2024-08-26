@@ -26,9 +26,12 @@
     <meta name="description" content="" />
     <%= yield(:head) if content_for?(:head) %>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "application", media: "all", 'data-turbo-track': "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <script src="https://kit.fontawesome.com/96163f3b63.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -43,7 +46,7 @@
     <% end %>
 
     <!-- Conditional footer rendering -->
-    <% unless ['/', '/mailbox', '/enter'].include?(request.path) %>
+    <% unless [root_path, mailbox_path, admin_path, admin_agents_path].include?(request.path) %>
       <%= render 'layouts/footer' %>
     <% end %>
   </body>
@@ -62,12 +65,13 @@
   </script>
 
   <style>
-    @font-face {
-      font-family: "Ojuju";
-      font-style: light;
-      font-weight: 400;
-      src: url(<%= asset_path 'Ojuju-VariableFont_wght.ttf' %>) format("ttf");
-    }
+  /* @font-face {
+    font-family: "Ojuju";
+    font-style: normal;
+    font-weight: 400;
+    src: url(<%= asset_path 'Ojuju-VariableFont_wght.ttf' %>) format("truetype");
+  }
+  */
 
     body {
       font-family: "Ojuju", system-ui;
@@ -106,4 +110,26 @@
       vertical-align: middle;
     }
   </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+        const $notification = $delete.parentNode;
+
+        $delete.addEventListener('click', () => {
+          $notification.parentNode.removeChild($notification);
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const flash = document.getElementById('flash');
+      if (flash) {
+        setTimeout(() => {
+          flash.remove();
+        }, 5000);
+      }
+    });
+  </script>
+
 </html>

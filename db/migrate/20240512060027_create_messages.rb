@@ -11,8 +11,6 @@ class CreateMessages < ActiveRecord::Migration[7.1]
       t.string :subject, null: false
       t.text :body, null: false
       t.boolean :read, default: false # For tracking whether the message has been read
-      t.boolean :starred, default: false # For marking important messages
-      t.boolean :archived, default: false # For archiving messages
       t.datetime :sent_at # Timestamp when the message was sent
       t.datetime :received_at # Timestamp when the message was received
 

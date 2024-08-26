@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_191457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,70 +61,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "agent_alias_contacts", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "email_address"
-    t.string "address"
-    t.bigint "agent_alias_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agent_alias_id"], name: "index_agent_alias_contacts_on_agent_alias_id"
-  end
-
-  create_table "agent_aliases", force: :cascade do |t|
-    t.string "name", null: false
-    t.date "date_of_birth"
-    t.string "ssn"
-    t.string "passport_number"
-    t.string "driver_license_number"
-    t.string "place_of_birth"
-    t.string "citizenship"
-    t.text "background"
-    t.text "education"
-    t.text "employment"
-    t.bigint "agent_id", null: false
-    t.binary "retina_scan"
-    t.binary "facial_recognition_data"
-    t.string "bank_account_details"
-    t.string "credit_card_details"
-    t.string "social_media_profiles"
-    t.string "online_forum_participation"
-    t.string "websites_or_blogs"
-    t.text "mission_description"
-    t.text "mission_objectives"
-    t.datetime "mission_start_date"
-    t.datetime "mission_end_date"
-    t.string "mission_location"
-    t.text "cover_story"
-    t.text "known_threats"
-    t.text "potential_risks"
-    t.text "contingency_plans"
-    t.text "emergency_contact_protocols"
-    t.text "safehouses"
-    t.datetime "creation_date"
-    t.integer "created_by"
-    t.datetime "last_modified_date"
-    t.integer "modified_by"
-    t.datetime "expiration_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agent_id"], name: "index_agent_aliases_on_agent_id"
-  end
-
   create_table "agents", force: :cascade do |t|
     t.string "full_name"
     t.boolean "active", default: false
     t.string "email"
     t.string "password_digest"
+    t.string "string"
+    t.boolean "verified", default: false
     t.boolean "has_verified_email", default: false
     t.boolean "approved", default: false
+    t.datetime "approvwed_at"
     t.string "codename"
     t.string "agent_email"
     t.integer "access_level", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "last_verified_email_at"
-    t.datetime "approved_at"
     t.bigint "approved_by_id"
     t.index ["agent_email"], name: "index_agents_on_agent_email", unique: true
     t.index ["approved_by_id"], name: "index_agents_on_approved_by_id"
@@ -302,19 +253,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.index ["mailbox_id"], name: "index_messages_on_mailbox_id"
   end
 
-  create_table "missions", force: :cascade do |t|
-    t.text "description"
-    t.text "objectives"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "location"
-    t.text "cover_story"
-    t.bigint "agent_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["agent_id"], name: "index_missions_on_agent_id"
-  end
-
   create_table "pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -325,9 +263,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "device_info"
-    t.string "os_info"
-    t.string "timezone"
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
@@ -447,15 +382,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_224231) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "agent_alias_contacts", "agent_aliases"
-  add_foreign_key "agent_aliases", "agents"
   add_foreign_key "agents", "agents", column: "approved_by_id"
   add_foreign_key "agents_cases", "agents"
   add_foreign_key "agents_cases", "cases"
   add_foreign_key "mailboxes", "agents"
   add_foreign_key "messages", "agents"
   add_foreign_key "messages", "mailboxes"
-  add_foreign_key "missions", "agents"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

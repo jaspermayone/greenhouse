@@ -1,0 +1,147 @@
+<% content_for :title, "Historical Loans Data" %>
+
+<div class="container-responsive px-4 pt-4 pb-4">
+  <div class="box">
+
+    <div class="search-container">
+      <div class="field">
+        <div class="control">
+          <input class="input" type="text" placeholder="Begin searching..." />
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="table-container">
+      <table class="table is-hoverable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Access Level</th>
+            <th>Approved</th>
+            <th>Codename</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @agents.each do |agent| %>
+            <tr class="<%= case agent.access_level
+              when 'JASPER'
+                'bg-quail'
+              when 'agent'
+                'bg-agent'
+              when 'admin'
+                'bg-admin'
+              when 'superadmin'
+                'bg-superadmin'
+              else
+                'bg-unknown'
+              end %>">
+                <td><%= agent.id %></td>
+                <td>
+                  <% case agent.access_level %>
+                    <% when 'JASPER' %>
+                      Quail
+                    <% when 'agent' %>
+                      Agent
+                    <% when 'admin' %>
+                      Admin
+                    <% when 'superadmin' %>
+                      Super Admin
+                    <% else %>
+                      Unknown
+                  <% end %>
+                </td>
+                <td><%= agent.approved ? "✅" : "❌"  %></td>
+                <td><%= agent.codename %></td>
+                <td><%= agent.full_name %></td>
+                <td><%= agent.email %></td>
+                <td>
+                     <% if agent.active? %>
+                        <div class="btn-group">
+                            <%= link_to 'Deactivate', deactivate_agent_path(agent.id), class: 'btn btn-sm btn-primary' %>
+                        </div>
+                    <% else %>
+                        <%= link_to 'Activate', activate_agent_path(agent.id), method: :put, class: 'btn btn-sm btn-success' %>
+                    <% end %>
+
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  .table-container {
+    height: 80vh;
+    overflow-y: auto;
+  }
+
+  .table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+  }
+
+  .btn-group .btn-sm {
+    margin-right: 5px;
+  }
+
+  .btn-group .btn-sm:last-child {
+    margin-right: 0;
+  }
+
+  /* Define background colors for different access levels */
+  .bg-quail {
+    background-color: #f6b8c4;
+    /* #f6b8c4 */
+  }
+
+  .bg-agent {
+    background-color: #d1e7dd;
+    /* #d1e7dd  */
+  }
+
+  .bg-admin {
+    background-color: #cfe2f3;
+    /* #cfe2f3 */
+  }
+
+  .bg-superadmin {
+    background-color: #f9cb9c
+    /* #f9cb9c */
+  }
+
+  .bg-unknown {
+    background-color: #e0e0e0;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.search-container input');
+    const table = document.querySelector('.table');
+    const rows = table.querySelectorAll('tbody tr');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+
+      rows.forEach(row => {
+        // Select only the specific columns: Codename (4th), Name (5th), and Email (6th)
+        const codenames = row.cells[4].textContent.toLowerCase();
+        const names = row.cells[5].textContent.toLowerCase();
+        const emails = row.cells[6].textContent.toLowerCase();
+
+        const match = codenames.includes(query) || names.includes(query) || emails.includes(query);
+
+        row.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>
