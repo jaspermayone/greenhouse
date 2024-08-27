@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "admin", to: "admin#index"
   get "admin/agents", to: "admin#agents"
   get "admin/sessions", to: "admin#sessions"
+  get "admin/messages", to: "admin#messages"
 
   resources :sessions
   resources :search

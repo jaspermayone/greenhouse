@@ -1,0 +1,73 @@
+<div class="container-responsive px-4 pt-4 pb-4">
+  <div class="box">
+      <h1>Messages</h1>
+      <div class="table-container">
+        <table class="table is-hoverable">
+          <thead>
+            <tr>
+                <th>MID</th>
+              <th>ID</th>
+              <th>To</th>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Created At</th>
+            <th>Num of Attachments</th>
+            <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @messages.each do |message| %>
+              <tr>
+                <td><%= message.mailbox_id %></td>
+                <td><%= message.id %></td>
+                <td>
+                  <% if message.to.size > 1 %>
+                    <%= message.to.first %>....
+                  <% else %>
+                    <%= message.to.first %>
+                  <% end %>
+                </td>
+                <td><%= message.from %></td>
+                <td><%= message.subject %></td>
+                <td><%= message.created_at %></td>
+                <td><%= message.attachments.count %></td>
+                <td>
+                    <%= link_to message, class: "btn btn-info rounded-pill shadow-sm" do %>
+                        <i class="fas fa-eye"></i>
+                    <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  border-bottom: 2px solid #ddd;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+</style>

@@ -1,21 +1,57 @@
 <footer>
-  <% if greenhouse_version != "DEVELOPMENT"%>
-    <div id="foot-prod" class="box">
-      <p>
-        <%= help_message %>
-        <% if commit_hash.present? %>
-          <% if commit_duration.present? %>
-            Running build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>
-            from <%= commit_duration %> ago.
-          <% else %>
-            Build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>.
+  <% if greenhouse_version != "DEVELOPMENT" %>
+    <div id="foot-prod">
+      <div class="footer-content prod-color">
+        <p>
+          <%= help_message %>
+          <% if commit_hash.present? %>
+            <% if commit_duration.present? %>
+              Running build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>
+              from <%= commit_duration %> ago.
+            <% else %>
+              Build <em aria-label="<%= commit_hash %>" class="tooltipped tooltipped--n tooltipped--lg"><%= commit_name %></em>.
+            <% end %>
           <% end %>
-        <% end %>
-      </p>
+        </p>
+      </div>
     </div>
   <% else %>
-    <div id="foot-dev" class="box">
-      <p><b>DEVELOPMENT ENV</b> || Rails: <i><%= Rails::VERSION::STRING %></i> | Ruby: <i><%=ruby_version%></i> | SHA: <i><%=commit_name%></i> || <b>DEVELOPMENT ENV</b></p>
+    <div id="foot-dev">
+      <div class="footer-content dev-color">
+        <p><b>DEVELOPMENT ENV</b> || Rails: <i><%= Rails::VERSION::STRING %></i> | Ruby: <i><%= ruby_version %></i> | SHA: <i><%= commit_name %></i> || <b>DEVELOPMENT ENV</b></p>
+      </div>
     </div>
   <% end %>
 </footer>
+
+<style>
+#foot-prod, #foot-dev {
+    position: fixed;
+    bottom: 1vh;
+    left: 1vw;
+    width: 98vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.footer-content {
+    padding: 10px 35px; /* Adjust padding as needed */
+    display: inline-block;
+    border-radius: 8px; /* Optional: for rounded corners */
+}
+
+.prod-color {
+    background-color: hsl(0, 0%, 100%); /* White color in HSL */
+}
+
+.dev-color {
+    background-color: hsl(0, 71%, 63%); /* Red color in HSL */
+}
+
+#foot-prod p, #foot-dev p {
+    margin: 0;
+}
+</style>

@@ -4,21 +4,22 @@
 #
 # Table name: messages
 #
-#  id          :bigint           not null, primary key
-#  attachments :string           default([]), is an Array
-#  bcc         :string           default([]), is an Array
-#  body        :text             not null
-#  cc          :string           default([]), is an Array
-#  from        :string           not null
-#  read        :boolean          default(FALSE)
-#  received_at :datetime
-#  sent_at     :datetime
-#  subject     :string           not null
-#  to          :string           default([]), is an Array
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  agent_id    :bigint           not null
-#  mailbox_id  :bigint           not null
+#  id                :bigint           not null, primary key
+#  attachments       :string           default([]), is an Array
+#  attachments_count :integer          default(0), not null
+#  bcc               :string           default([]), is an Array
+#  body              :text             not null
+#  cc                :string           default([]), is an Array
+#  from              :string           not null
+#  read              :boolean          default(FALSE)
+#  received_at       :datetime
+#  sent_at           :datetime
+#  subject           :string           not null
+#  to                :string           default([]), is an Array
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  agent_id          :bigint           not null
+#  mailbox_id        :bigint           not null
 #
 # Indexes
 #

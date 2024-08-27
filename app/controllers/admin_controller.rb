@@ -25,6 +25,10 @@ class AdminController < ApplicationController
         end
   end
 
+  def messages
+    @messages = Message.includes([:attachments_attachments]).all
+  end
+
   private
 
     def parse_session_data(data)
